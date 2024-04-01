@@ -3,16 +3,14 @@
     <div class="container">
       <div class="navbar-inner">
         <div class="navbar-brand">
-          <router-link to="/">
-            <img src="@/assets/vue-logo.png" alt="A green V">
-          </router-link>
+          <h1>Tiles</h1>
         </div>
         <nav class="navbar-nav">
           <app-language-selector />
           <router-link v-for="route in routes" :key="route.name" class="navbar-item" :to="route.path">
             {{ $t(route.name) }}
           </router-link>
-          <a class="navbar-item" target="_blank" href="https://github.com/germanbisurgi/vue-app-template">GitHub</a>
+          <a class="navbar-item" target="_blank" href="https://github.com/germanbisurgi/tiles">GitHub</a>
         </nav>
       </div>
     </div>

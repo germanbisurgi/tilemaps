@@ -1,10 +1,6 @@
-# Vue App Template
+# Tile Map Editor
 
-A Vue.js application template configured with vite for quick setup and development.
-
-## Introduction
-
-Vue App Template is a project scaffold for Vue.js applications. It comes pre-configured with vite, allowing you to start building your Vue applications quickly and efficiently.
+A Vue.js application to generate tile based 2D maps
 
 ## Installation
 

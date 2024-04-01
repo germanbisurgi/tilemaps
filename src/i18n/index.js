@@ -6,16 +6,20 @@ const i18n = createI18n({
     en: {
       language: 'Language',
       home: 'Home',
-      about: 'About',
+      exportJson: 'Export JSON',
       en: 'English',
-      de: 'German'
+      de: 'German',
+      map: 'Map',
+      picker: 'Picker'
     },
     de: {
       language: 'Sprache',
       home: 'Startseite',
-      about: 'Über',
+      exportJson: 'JSON Exportieren',
       en: 'Englisch',
-      de: 'Deutsch'
+      de: 'Deutsch',
+      map: 'Karte',
+      picker: 'Picker'
     }
   }
 })
