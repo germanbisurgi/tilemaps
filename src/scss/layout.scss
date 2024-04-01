@@ -1,0 +1,12 @@
+$spacer: 16px;
+$container-max-with: 1200px;
+
+section {
+  margin-bottom: $spacer;
+}
+
+.container {
+  max-width: $container-max-with;
+  margin: 0 auto;
+  padding: 0 $spacer;
+}

@@ -1,0 +1,36 @@
+{
+  "name": "vue-app-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:germanbisurgi/vue-app-template.git",
+  "author": "g.bisurgi <gbisurgi@protonmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --config ./config/vite.config.js",
+    "build": "vite build --config ./config/vite.config.js",
+    "serve": "vite preview --config ./config/vite.config.js",
+    "e2e": "codeceptjs run-workers 1 -c tests/e2e/codecept.conf.js",
+    "unit": "jest --config=./tests/unit/jest.config.js",
+    "lint": "yarn eslint --config ./config/.eslintrc.js --ext .js,.vue ./src",
+    "lint:fix": "yarn eslint --fix  --config ./config/.eslintrc.js --ext .js,.vue ./src",
+    "qa": "yarn lint:fix && yarn unit && yarn e2e"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "codeceptjs": "^3.5.15",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "jest": "^29.7.0",
+    "node-sass": "^9.0.0",
+    "puppeteer": "^22.6.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.49.8",
+    "vite": "^5.2.6",
+    "vue": "^3.4.21"
+  },
+  "dependencies": {
+    "pinia": "^2.1.7",
+    "vue-i18n": "^9.10.2",
+    "vue-router": "4"
+  }
+}

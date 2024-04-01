@@ -1,0 +1,40 @@
+.map {
+  .layer {
+    .row {
+      display: flex;
+      flex-wrap: nowrap;
+
+      .column {
+        display: inline-flex;
+      }
+
+      .tile {
+        user-select: none;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        position: relative;
+      }
+
+      .tile:hover {
+        outline: 2px solid pink;
+        outline-offset: -2px;
+      }
+
+      .tile-value {
+        font-family: monospace;
+      }
+
+      .tile-coordinates {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-family: monospace;
+        font-size: 12px;
+        opacity: 0.4;
+      }
+    }
+  }
+}
