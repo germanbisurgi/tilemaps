@@ -1,3 +1,5 @@
+[![Tests](https://github.com/germanbisurgi/tile-map-editor/actions/workflows/main.yml/badge.svg)](https://github.com/germanbisurgi/tile-map-editor/actions/workflows/main.yml)
+
 # Tile Map Editor
 
 A Vue.js application to generate tile based 2D maps
