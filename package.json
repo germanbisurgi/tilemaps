@@ -13,7 +13,7 @@
     "unit": "jest --config=./tests/unit/jest.config.js",
     "lint": "yarn eslint --config ./config/.eslintrc.js --ext .js,.vue ./src",
     "lint:fix": "yarn eslint --fix  --config ./config/.eslintrc.js --ext .js,.vue ./src",
-    "qa": "yarn lint:fix && yarn unit && yarn e2e"
+    "qa": "yarn build && yarn serve & yarn lint:fix && yarn unit && yarn e2e"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
