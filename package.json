@@ -2,7 +2,6 @@
   "name": "vue-app-template",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "repository": "git@github.com:germanbisurgi/vue-app-template.git",
   "author": "g.bisurgi <gbisurgi@protonmail.com>",
   "license": "MIT",
