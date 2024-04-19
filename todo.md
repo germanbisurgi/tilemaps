@@ -1,2 +1,9 @@
-- AppMapTile
-- AppPickerTile
+- layers editor
+- app and project save to local storage
+- create tile
+- tile class
+- load images
+- display column and row numbers
+- page for app configurations
+- default tile
+- translations

@@ -1,0 +1,38 @@
+.tile {
+  color: rgba(255, 255, 255, 0.5);
+  user-select: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  border-collapse: collapse;
+  width: 32px;
+  height: 32px;
+}
+
+.tile.active {
+  outline: 3px solid #308CC6;
+  outline-offset: -3px;
+}
+
+.tile:hover {
+  outline: 3px solid #308CC6;
+  outline-offset: -3px;
+}
+
+.tile-value {
+  font-family: monospace;
+  font-size: 15cqw;
+}
+
+.tile-coordinates {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-family: monospace;
+  font-size: 15cqw;
+}

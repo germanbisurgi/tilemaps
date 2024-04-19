@@ -1,8 +1,12 @@
-@import "reset";
-@import "utils";
-@import "colors";
-@import "layout";
+@import "variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 @import "typography";
-@import "components/navbar";
 @import "components/map";
-@import "components/picker";
+@import "components/tile";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+body.no-scroll {
+  max-height: 100vh !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+}

@@ -11,9 +11,6 @@ import AppNavbar from '@/components/AppNavbar.vue'
 export default {
   components: {
     AppNavbar
-  },
-  data() {
-    return {}
   }
 }
 </script>
