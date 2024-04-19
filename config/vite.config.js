@@ -15,5 +15,8 @@ export default defineConfig({
   preview: {
     port: 8081,
     strictPort: true
+  },
+  build: {
+    // sourcemap: true
   }
 })

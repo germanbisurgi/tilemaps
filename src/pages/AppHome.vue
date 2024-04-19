@@ -9,10 +9,6 @@
         <app-tile-info />
       </div>
     </div>
-
-    <code>
-      {{ appStore }}
-    </code>
   </div>
 </template>
 
