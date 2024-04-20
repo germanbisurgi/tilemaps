@@ -34,19 +34,11 @@
     </div>
 
     <div class="map-container">
-      <div v-for="(layer, index) in appStore.project.layers" :key="index" class="layer" :class="{'no-scroll': appStore.drawing}"
-        @mousedown="startDrawing()"
-        @touchstart="startDrawing()"
-        @touchmove="fromPoint($event)"
-        @mousemove="fromPoint($event)"
-        @mouseup="stopDrawing()"
-        @touchend="stopDrawing()">
+      <div
+        v-for="(layer, index) in appStore.project.layers" :key="index" class="layer" :class="{'no-scroll': appStore.drawing}" @mousedown="startDrawing()" @touchstart="startDrawing()" @touchmove="fromPoint($event)" @mousemove="fromPoint($event)" @mouseup="stopDrawing()" @touchend="stopDrawing()">
         <div v-for="(row, y) in layer.grid" :key="y" class="layer-row">
           <div v-for="(tile, x) in row" :key="x" class="layer-column">
-            <div
-              class="tile" :data-x="x" :data-y="y" :style="{ background: appStore.getTileById(tile).color, width: tileSize + 'px', height: tileSize + 'px' }"
-              @contextmenu="stopContextMenu($event)"
-            >
+            <div class="tile" :data-x="x" :data-y="y" :style="{ background: appStore.getTileById(tile).color, width: tileSize + 'px', height: tileSize + 'px' }" @contextmenu="stopContextMenu($event)">
               <span v-if="appStore.showTileInfo" class="tile-coordinates">{{ x }},{{ y }}</span>
               <span v-if="appStore.showTileInfo" class="tile-value">{{ appStore.getTileById(tile).id }}</span>
             </div>
