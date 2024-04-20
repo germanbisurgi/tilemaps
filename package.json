@@ -10,8 +10,8 @@
     "dev": "vite --config ./config/vite.config.js",
     "build": "vite build --config ./config/vite.config.js",
     "serve": "vite preview --config ./config/vite.config.js",
-    "e2e": "codeceptjs run-workers 1 -c tests/e2e/codecept.conf.js",
-    "unit": "jest --config=./tests/unit/jest.config.js",
+    "e2e": "codeceptjs run-workers 1 -c tests/e2e/codecept.conf.cjs",
+    "unit": "jest --config=./tests/unit/jest.config.cjs",
     "lint": "yarn eslint --config ./config/eslint.config.js ./src",
     "lint:fix": "yarn eslint --fix  --config ./config/eslint.config.js ./src",
     "qa": "yarn build && yarn serve & yarn lint:fix && yarn unit && yarn e2e"
