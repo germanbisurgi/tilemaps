@@ -12,8 +12,10 @@
   }
 
   .map-container {
-    border: $border-width $border-style $border-color;
-    background-color: #eee;
+    @extend .border;
+    @extend .border-radius;
+    @extend .mb-3;
+    @extend .mt-2;
     position: relative;
     padding-top: calc(9 / 16 * 100%);
   }

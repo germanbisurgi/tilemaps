@@ -5,8 +5,8 @@
         <app-map />
       </div>
       <div class="col-12 col-md-4">
-        <app-tiles />
         <app-tile-info />
+        <app-tiles />
       </div>
     </div>
   </div>
@@ -40,13 +40,11 @@ export default {
         tiles: [
           {
             id: 0,
-            color: '#123456',
-            data: {},
+            color: '#123456'
           },
           {
             id: 1,
-            color: '#2ac4cf',
-            data: {},
+            color: '#2ac4cf'
           }
         ],
         layers: [layer]

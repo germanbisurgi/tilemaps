@@ -1,12 +1,21 @@
 <template>
   <div class="map">
-    <div class="d-flex align-items-center">
-      <div class="form-check">
-        <input id="showTileInfo" v-model="appStore.showTileInfo" class="form-check-input" type="checkbox">
-        <label class="form-check-label" for="showTileInfo">
-          Show tile info
-        </label>
+    <div class="map-container">
+      <div v-for="(layer, index) in appStore.project.layers" :key="index" class="layer" :class="{'no-scroll': appStore.drawing}" @mousedown="startDrawing()" @touchstart="startDrawing()" @touchmove="fromPoint($event)" @mousemove="fromPoint($event)" @mouseup="stopDrawing()" @touchend="stopDrawing()">
+        <div v-for="(row, y) in layer.grid" :key="y" class="layer-row">
+          <div v-for="(tile, x) in row" :key="x" class="layer-column">
+            <div class="tile" :data-x="x" :data-y="y" :style="{ background: appStore.getTileById(tile).color, width: tileSize + 'px', height: tileSize + 'px' }" @contextmenu="stopContextMenu($event)">
+              <span v-if="appStore.showTileInfo" class="tile-coordinates">{{ x }},{{ y }}</span>
+              <span v-if="appStore.showTileInfo" class="tile-value">{{ appStore.getTileById(tile).id }}</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <input id="showTileInfo" v-model="appStore.showTileInfo" class="form-check-input" type="checkbox">
+      <label for="showTileInfo">{{ $t('showTilesInfo') }}</label>
 
       <button class="map-btn" @click="appStore.prependColumn()">
         <i class="bi bi-arrow-left-square" />
@@ -31,20 +40,6 @@
       <button class="map-btn" @click="mapZoomOut()">
         <i class="bi bi-zoom-out" />
       </button>
-    </div>
-
-    <div class="map-container">
-      <div
-        v-for="(layer, index) in appStore.project.layers" :key="index" class="layer" :class="{'no-scroll': appStore.drawing}" @mousedown="startDrawing()" @touchstart="startDrawing()" @touchmove="fromPoint($event)" @mousemove="fromPoint($event)" @mouseup="stopDrawing()" @touchend="stopDrawing()">
-        <div v-for="(row, y) in layer.grid" :key="y" class="layer-row">
-          <div v-for="(tile, x) in row" :key="x" class="layer-column">
-            <div class="tile" :data-x="x" :data-y="y" :style="{ background: appStore.getTileById(tile).color, width: tileSize + 'px', height: tileSize + 'px' }" @contextmenu="stopContextMenu($event)">
-              <span v-if="appStore.showTileInfo" class="tile-coordinates">{{ x }},{{ y }}</span>
-              <span v-if="appStore.showTileInfo" class="tile-value">{{ appStore.getTileById(tile).id }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>

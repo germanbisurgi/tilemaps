@@ -1,10 +1,14 @@
-@import "variables";
-@import "@/../node_modules/bootstrap/scss/bootstrap";
-@import "typography";
+@import "@/../node_modules/neat/src/styles/neat.scss";
+
+@import "components/language-selector";
+@import "components/nav";
 @import "components/map";
 @import "components/tile";
-@import "@/../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+@import "bootstrap-icons";
 
+body {
+  padding-top: 80px;
+}
 body.no-scroll {
   max-height: 100vh !important;
   max-width: 100vw !important;

@@ -40,7 +40,6 @@ export default {
         container: this.$refs.tileInfoContainer,
         isEditor: true,
         data: this.appStore.getActiveTile(),
-        theme: 'bootstrap5',
         iconLib: 'bootstrap-icons',
         schema: {
           "type": "object",
@@ -53,12 +52,6 @@ export default {
             "color": {
               "type": "string",
               "format": "color"
-            },
-            "data": {
-              "type": "object",
-              "options": {
-                "editableProperties": true
-              }
             }
           }
         }

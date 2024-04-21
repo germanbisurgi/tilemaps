@@ -1,0 +1,11 @@
+.language-selector {
+  display: inline-block;
+
+  .language-selector-label {
+    @extend .sr-only;
+  }
+
+  .language-selector-select {
+    width: auto;
+  }
+}

@@ -1,0 +1,21 @@
+.nav {
+  @extend .fixed-top;
+  @extend .py-sm;
+  @extend .border-bottom;
+  background-color: var(--body-background);
+
+  .nav-items {
+    @extend .flex;
+    @extend .flex-ai-center;
+
+    .nav-item {
+      @extend .mr-3;
+      text-decoration: none;
+      color: var(--body-color) !important;
+
+      select {
+        @extend .my-0;
+      }
+    }
+  }
+}

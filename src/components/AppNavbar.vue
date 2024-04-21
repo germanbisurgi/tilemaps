@@ -1,31 +1,21 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="nav">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" />
-      </button>
-      <div id="navbarSupportedContent" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="btn" target="_blank" href="https://github.com/germanbisurgi/tiles">
-              <i class="bi bi-github me-1" />
-              <span>GitHub</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <button class="btn" @click="appStore.exportJson">
-              {{ $t('exportJson') }}
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="btn" @click="appStore.saveProject">
-              {{ $t('saveProject') }}
-            </button>
-          </li>
-          <li class="nav-item">
-            <app-language-selector />
-          </li>
-        </ul>
+      <div class="nav-items">
+        <a class="nav-item" target="_blank" href="https://github.com/germanbisurgi/tiles">
+          <i class="bi bi-github" />
+          <span class="sr-only">GitHub</span>
+        </a>
+
+        <button class="nav-item" @click="appStore.saveProject">
+          {{ $t('saveProject') }}
+        </button>
+
+        <button class="nav-item" @click="appStore.exportJson">
+          {{ $t('exportJson') }}
+        </button>
+
+        <app-language-selector class="nav-item" />
       </div>
     </div>
   </nav>

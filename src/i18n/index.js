@@ -12,7 +12,8 @@ const i18n = createI18n({
       map: 'Map',
       tiles: 'Tiles',
       brushes: 'Brushes',
-      saveProject: 'Save'
+      saveProject: 'Save',
+      showTilesInfo: 'Show tiles info'
     },
     de: {
       language: 'Sprache',
@@ -23,7 +24,8 @@ const i18n = createI18n({
       map: 'Karte',
       tiles: 'Fliesen',
       brushes: 'Pinsel',
-      saveProject: 'Speichern'
+      saveProject: 'Speichern',
+      showTilesInfo: 'Fliesen Info zeigen'
     }
   }
 })
