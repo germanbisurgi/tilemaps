@@ -1,5 +1,5 @@
-@import "@/../node_modules/neat/src/styles/neat.scss";
-
+//@import "@/../node_modules/neat/src/styles/neat.scss";
+@import "neat";
 @import "components/language-selector";
 @import "components/nav";
 @import "components/map";
@@ -9,6 +9,7 @@
 body {
   padding-top: 80px;
 }
+
 body.no-scroll {
   max-height: 100vh !important;
   max-width: 100vw !important;
