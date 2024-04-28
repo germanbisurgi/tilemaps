@@ -1,0 +1,14 @@
+.layers {
+    @extend .border;
+    @extend .border-radius;
+    @extend .mb-md;
+    @extend .shadow;
+
+    input {
+        @extend .mb-0;
+    }
+
+    button {
+        @extend .mb-0;
+    }
+}

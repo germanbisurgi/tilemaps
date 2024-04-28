@@ -13,7 +13,9 @@ const i18n = createI18n({
       tiles: 'Tiles',
       brushes: 'Brushes',
       saveProject: 'Save',
-      showTilesInfo: 'Show tiles info'
+      showTilesInfo: 'Show tiles info',
+      layers: 'Layers',
+      controls: 'Controls'
     },
     de: {
       language: 'Sprache',
@@ -25,7 +27,9 @@ const i18n = createI18n({
       tiles: 'Fliesen',
       brushes: 'Pinsel',
       saveProject: 'Speichern',
-      showTilesInfo: 'Fliesen Info zeigen'
+      showTilesInfo: 'Fliesen Info zeigen',
+      layers: 'Schichten',
+      controls: 'Steuerungen'
     }
   }
 })

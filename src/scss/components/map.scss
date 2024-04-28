@@ -1,9 +1,21 @@
 .map {
+  @extend .border;
+  @extend .border-radius;
+  @extend .p-md;
+  @extend .pb-0;
+  @extend .mb-md;
+  @extend .mb-md;
+  @extend .shadow;
+
   .wrapper {
     width: 100%;
   }
 
-  .map-btn {
+  .map-controls {
+    @extend .mb-md;
+  }
+
+  .map-control {
     background-color: transparent;
     padding: 0;
     border: none;
@@ -14,20 +26,17 @@
   .map-container {
     @extend .border;
     @extend .border-radius;
-    @extend .mb-3;
-    @extend .mt-2;
+    @extend .mb-md;
+    aspect-ratio: 16 / 9;
+    overflow: scroll;
     position: relative;
-    padding-top: calc(9 / 16 * 100%);
   }
 
   .layer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-height: 100%;
-    max-width: 100%;
-    overflow: scroll;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 0 3px gray;
 
     .layer-row {
       display: flex;
@@ -37,6 +46,14 @@
         display: inline-flex;
       }
     }
+  }
+
+  .layer.active {
+    box-shadow: 0 0 0 3px red;
+  }
+
+  .layer.hidden {
+    display: none;
   }
 
   .layer.no-scroll {

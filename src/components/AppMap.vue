@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map-container">
-      <div v-for="(layer, index) in appStore.project.layers" :key="index" class="layer" :class="{'no-scroll': appStore.drawing}" @mousedown="startDrawing()" @touchstart="startDrawing()" @touchmove="fromPoint($event)" @mousemove="fromPoint($event)" @mouseup="stopDrawing()" @touchend="stopDrawing()">
+      <div v-for="(layer, index) in appStore.project.layers" :key="index" class="layer" :class="{ 'active': index === appStore.activeLayer, 'hidden': !layer.visible, 'no-scroll': appStore.drawing }" @mousedown="startDrawing()" @touchstart="startDrawing()" @touchmove="fromPoint($event)" @mousemove="fromPoint($event)" @mouseup="stopDrawing()" @touchend="stopDrawing()">
         <div v-for="(row, y) in layer.grid" :key="y" class="layer-row">
           <div v-for="(tile, x) in row" :key="x" class="layer-column">
             <div class="tile" :data-x="x" :data-y="y" :style="{ background: appStore.getTileById(tile).color, width: tileSize + 'px', height: tileSize + 'px' }" @contextmenu="stopContextMenu($event)">
@@ -13,31 +13,31 @@
       </div>
     </div>
 
-    <div class="d-flex align-items-center">
-      <input id="showTileInfo" v-model="appStore.showTileInfo" class="form-check-input" type="checkbox">
+    <div class="map-controls d-flex align-items-center">
+      <input id="showTileInfo" v-model="appStore.showTileInfo" type="checkbox">
       <label for="showTileInfo">{{ $t('showTilesInfo') }}</label>
 
-      <button class="map-btn" @click="appStore.prependColumn()">
+      <button class="map-control" @click="appStore.prependColumn()">
         <i class="bi bi-arrow-left-square" />
       </button>
 
-      <button class="map-btn" @click="appStore.prependRow()">
+      <button class="map-control" @click="appStore.prependRow()">
         <i class="bi bi-arrow-up-square" />
       </button>
 
-      <button class="map-btn" @click="appStore.appendRow()">
+      <button class="map-control" @click="appStore.appendRow()">
         <i class="bi bi-arrow-down-square" />
       </button>
 
-      <button class="map-btn" @click="appStore.appendColumn()">
+      <button class="map-control" @click="appStore.appendColumn()">
         <i class="bi bi-arrow-right-square" />
       </button>
 
-      <button class="map-btn" @click="mapZoomIn()">
+      <button class="map-control" @click="mapZoomIn()">
         <i class="bi bi-zoom-in" />
       </button>
 
-      <button class="map-btn" @click="mapZoomOut()">
+      <button class="map-control" @click="mapZoomOut()">
         <i class="bi bi-zoom-out" />
       </button>
     </div>

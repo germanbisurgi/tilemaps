@@ -1,9 +1,9 @@
 import {defineStore} from 'pinia'
-import Layer from "@/modules/layer"
+import Tilemap from '@/modules/tilemap'
 
 const useAppStore = defineStore('app', {
   state: () => ({
-    mapScale: 1,
+    mapScale: 0.5,
     showTileInfo: false,
     languages: ['en', 'de'],
     activeLayer: 0,
@@ -31,7 +31,11 @@ const useAppStore = defineStore('app', {
         return
       }
 
-      this.project.layers[this.activeLayer].grid[y][x] = this.activeTileId
+      const cell = typeof this.project.layers[this.activeLayer].grid[y] !== 'undefined' && typeof this.project.layers[this.activeLayer].grid[y][x] !== 'undefined'
+
+      if (cell) {
+        this.project.layers[this.activeLayer].grid[y][x] = this.activeTileId
+      }
     },
     setActiveTileId(value) {
       this.activeTileId = value
@@ -76,12 +80,9 @@ const useAppStore = defineStore('app', {
 
       return false
     },
-    initializeProject(data) {
-      this.project = {
-        tileSize: data.tileSize,
-        tiles: data.tiles,
-        layers: data.layers.map((layerData) => new Layer(layerData))
-      }
+    initializeProject() {
+      const projectData = this.loadProject() || {}
+      this.project = new Tilemap(projectData)
     },
     exportJson() {
       const jsonString = JSON.stringify(this.project)

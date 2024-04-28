@@ -1,7 +1,7 @@
 class Layer {
   constructor(config = {}) {
-    this.name = config.name ? config.name : 'my-layer'
-    this.visible = config.visible ? config.name : true
+    this.name = config.name ? config.name : 'layer'
+    this.visible = config.visible ? config.visible : true
     this.columns = config.columns ? config.columns : 0
     this.rows = config.rows ? config.rows : 0
     this.grid = config.grid ? config.grid : []

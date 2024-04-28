@@ -2,20 +2,21 @@
   @extend .fixed-top;
   @extend .py-sm;
   @extend .border-bottom;
+  @extend .shadow;
   background-color: var(--body-background);
 
   .nav-items {
     @extend .flex;
     @extend .flex-ai-center;
+  }
+  .nav-item {
+    @extend .mr-sm;
+    @extend .mb-0;
+    text-decoration: none;
+    color: var(--body-color) !important;
+  }
 
-    .nav-item {
-      @extend .mr-3;
-      text-decoration: none;
-      color: var(--body-color) !important;
-
-      select {
-        @extend .my-0;
-      }
-    }
+  select {
+    @extend .mb-0;
   }
 }

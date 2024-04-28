@@ -8,20 +8,20 @@ function ee() {
     return i.includes(e) ? "[Circular]" : (i.push(e), e);
   };
 }
-function j(i) {
+function T(i) {
   if (!(typeof i > "u"))
     return JSON.parse(JSON.stringify(i, ee()));
 }
 function se(i) {
   return i.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
-function Ut(i, t, e) {
+function Ft(i, t, e) {
   return i.replace(new RegExp(se(t), "g"), e);
 }
 function S(i) {
-  return Ut(Ut(i, "#", "root"), "/", "-");
+  return Ft(Ft(i, "#", "root"), "/", "-");
 }
-function N(i, t) {
+function D(i, t) {
   return Object.prototype.hasOwnProperty.call(i, t);
 }
 function It(i) {
@@ -33,20 +33,20 @@ function wt(i, t) {
 function Ot(i, t) {
   return !wt(i, t);
 }
-function At(i) {
+function Pt(i) {
   return i === null;
 }
-function h(i) {
+function d(i) {
   return typeof i < "u";
 }
-function D(i) {
+function H(i) {
   return typeof i > "u";
 }
-function P(i) {
+function A(i) {
   return typeof i == "number";
 }
 function B(i) {
-  return P(i) && i === Math.floor(i);
+  return A(i) && i === Math.floor(i);
 }
 function V(i) {
   return typeof i == "string";
@@ -58,11 +58,11 @@ function x(i) {
   return Array.isArray(i);
 }
 function m(i) {
-  return !At(i) && !x(i) && typeof i == "object";
+  return !Pt(i) && !x(i) && typeof i == "object";
 }
 function ie(i) {
   let t = "any";
-  return P(i) ? t = B(i) ? "integer" : "number" : V(i) ? t = "string" : O(i) ? t = "boolean" : x(i) ? t = "array" : At(i) ? t = "null" : m(i) && (t = "object"), t;
+  return A(i) ? t = B(i) ? "integer" : "number" : V(i) ? t = "string" : O(i) ? t = "boolean" : x(i) ? t = "array" : Pt(i) ? t = "null" : m(i) && (t = "object"), t;
 }
 function K(i, ...t) {
   if (!t.length)
@@ -91,7 +91,7 @@ function ne(i, t) {
         s = s[r];
       else
         return;
-    } else if (N(s, n))
+    } else if (D(s, n))
       s = s[n];
     else
       return;
@@ -142,10 +142,10 @@ function Jt(i) {
 function de(i) {
   return m(i.dependentSchemas) ? i.dependentSchemas : void 0;
 }
-function T(i) {
+function j(i) {
   return V(i.description) ? i.description : void 0;
 }
-function Pt(i) {
+function At(i) {
   return m(i.else) || O(i.else) ? i.else : void 0;
 }
 function k(i) {
@@ -153,15 +153,15 @@ function k(i) {
     return i.enum;
 }
 function he(i) {
-  return P(i.exclusiveMaximum) ? i.exclusiveMaximum : void 0;
+  return A(i.exclusiveMaximum) ? i.exclusiveMaximum : void 0;
 }
 function ue(i) {
-  return P(i.exclusiveMinimum) ? i.exclusiveMinimum : void 0;
+  return A(i.exclusiveMinimum) ? i.exclusiveMinimum : void 0;
 }
-function H(i) {
+function q(i) {
   return V(i.format) ? i.format : void 0;
 }
-function Tt(i) {
+function jt(i) {
   if (m(i.if) || O(i.if))
     return i.if;
 }
@@ -169,7 +169,7 @@ function Gt(i) {
   return m(i.items) || O(i.items) ? i.items : void 0;
 }
 function pe(i) {
-  return P(i.maximum) ? i.maximum : void 0;
+  return A(i.maximum) ? i.maximum : void 0;
 }
 function me(i) {
   if (B(i.maxContains) && i.maxContains >= 0)
@@ -188,7 +188,7 @@ function ge(i) {
     return i.maxProperties;
 }
 function ve(i) {
-  return P(i.minimum) ? i.minimum : void 0;
+  return A(i.minimum) ? i.minimum : void 0;
 }
 function be(i) {
   if (B(i.minContains) && i.minContains >= 0)
@@ -207,7 +207,7 @@ function Ce(i) {
     return i.minProperties;
 }
 function Ee(i) {
-  if (P(i.multipleOf) && i.multipleOf >= 0)
+  if (A(i.multipleOf) && i.multipleOf >= 0)
     return i.multipleOf;
 }
 function Le(i) {
@@ -219,7 +219,7 @@ function f(i, t) {
 function xe(i) {
   return V(i.pattern) ? i.pattern : void 0;
 }
-function jt(i) {
+function Tt(i) {
   return m(i.patternProperties) ? i.patternProperties : void 0;
 }
 function kt(i) {
@@ -228,7 +228,7 @@ function kt(i) {
 function Mt(i) {
   return m(i.properties) ? i.properties : void 0;
 }
-function Dt(i) {
+function Ut(i) {
   return O(i.readOnly) ? i.readOnly : void 0;
 }
 function Qt(i) {
@@ -256,7 +256,7 @@ function we(i) {
 function J(i, t, e, s) {
   let n = [];
   const r = zt(e);
-  return h(r) && r.forEach((a) => {
+  return d(r) && r.forEach((a) => {
     const o = new w({ refParser: i.refParser, schema: a, data: t, rootName: s }), c = o.getErrors();
     o.destroy(), n = [...n, ...c], n = Kt(n);
   }), n;
@@ -295,7 +295,7 @@ const v = {
 };
 function G(i, t, e, s, n) {
   const r = [], a = ye(e);
-  return V(t) && h(a) && (t = t.replace(/[\uDCA9]/g, ""), t.length < a && r.push({
+  return V(t) && d(a) && (t = t.replace(/[\uDCA9]/g, ""), t.length < a && r.push({
     messages: [
       C(v.errorMinLength, {
         minLength: a
@@ -307,11 +307,11 @@ function G(i, t, e, s, n) {
 }
 function _(i, t, e, s, n) {
   const r = [], a = $(e);
-  if (h(a)) {
+  if (d(a)) {
     let o = !1;
     a.forEach((c) => {
-      const l = new w({ refParser: i.refParser, schema: c, data: t }), d = l.getErrors();
-      l.destroy(), d.length === 0 && (o = !0);
+      const l = new w({ refParser: i.refParser, schema: c, data: t }), h = l.getErrors();
+      l.destroy(), h.length === 0 && (o = !0);
     }), o || r.push({
       messages: [
         v.errorAnyOf
@@ -324,7 +324,7 @@ function _(i, t, e, s, n) {
 }
 function W(i, t, e, s, n) {
   const r = [], a = k(e);
-  return h(a) && !a.some((c) => JSON.stringify(t) === JSON.stringify(c)) && r.push({
+  return d(a) && !a.some((c) => JSON.stringify(t) === JSON.stringify(c)) && r.push({
     messages: [
       C(v.errorEnum, {
         enum: JSON.stringify(a)
@@ -336,7 +336,7 @@ function W(i, t, e, s, n) {
 }
 function Q(i, t, e, s, n) {
   const r = [], a = he(e);
-  return P(t) && h(a) && t >= a && r.push({
+  return A(t) && d(a) && t >= a && r.push({
     messages: [
       C(v.errorExclusiveMaximum, {
         exclusiveMaximum: a
@@ -348,7 +348,7 @@ function Q(i, t, e, s, n) {
 }
 function X(i, t, e, s, n) {
   const r = [], a = ue(e);
-  return P(t) && h(a) && t <= a && r.push({
+  return A(t) && d(a) && t <= a && r.push({
     messages: [
       C(v.errorExclusiveMinimum, {
         exclusiveMinimum: a
@@ -359,11 +359,11 @@ function X(i, t, e, s, n) {
   }), r;
 }
 function Y(i, t, e, s, n) {
-  const r = [], a = H(e);
+  const r = [], a = q(e);
   let o = i.validateFormat;
-  if (f(e, "validateFormat") && (o = e.options.validateFormat), h(a) && V(t) && o) {
+  if (f(e, "validateFormat") && (o = e.options.validateFormat), d(a) && V(t) && o) {
     let c;
-    a === "email" && (c = new RegExp(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i)), a === "url" && (c = new RegExp(/^(?:https?|ftp):\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)(?:\.(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)*(?:\.(?:[a-z\u{00a1}-\u{ffff}]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/iu)), a === "uuid" && (c = new RegExp(/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i)), h(c) && !c.test(t) && r.push({
+    a === "email" && (c = new RegExp(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i)), a === "url" && (c = new RegExp(/^(?:https?|ftp):\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)(?:\.(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)*(?:\.(?:[a-z\u{00a1}-\u{ffff}]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/iu)), a === "uuid" && (c = new RegExp(/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i)), d(c) && !c.test(t) && r.push({
       messages: [
         C(v.errorFormat, { format: a })
       ],
@@ -375,8 +375,8 @@ function Y(i, t, e, s, n) {
 }
 function Z(i, t, e, s, n) {
   const r = [], a = Gt(e), o = kt(e);
-  if (x(t) && h(a)) {
-    const c = h(o) ? o.length : 0;
+  if (x(t) && d(a)) {
+    const c = d(o) ? o.length : 0;
     a === !1 && t.length > 0 && t.length > c && r.push({
       messages: [v.errorItems],
       path: n,
@@ -387,7 +387,7 @@ function Z(i, t, e, s, n) {
 }
 function tt(i, t, e, s, n) {
   const r = [], a = _t(e);
-  return x(t) && h(a) && t.length > a && r.push({
+  return x(t) && d(a) && t.length > a && r.push({
     messages: [
       C(v.errorMaxItems, {
         maxItems: a
@@ -399,7 +399,7 @@ function tt(i, t, e, s, n) {
 }
 function et(i, t, e, s, n) {
   const r = [], a = fe(e);
-  return V(t) && h(a) && (t = t.replace(/[\uDCA9]/g, ""), t.length > a && r.push({
+  return V(t) && d(a) && (t = t.replace(/[\uDCA9]/g, ""), t.length > a && r.push({
     messages: [
       C(v.errorMaxLength, {
         maxLength: a
@@ -411,7 +411,7 @@ function et(i, t, e, s, n) {
 }
 function st(i, t, e, s, n) {
   const r = [], a = ge(e);
-  return m(t) && h(a) && Object.keys(t).length > a && r.push({
+  return m(t) && d(a) && Object.keys(t).length > a && r.push({
     messages: [
       C(v.errorMaxProperties, {
         maxProperties: a
@@ -423,7 +423,7 @@ function st(i, t, e, s, n) {
 }
 function it(i, t, e, s, n) {
   const r = [], a = ve(e);
-  return P(t) && h(a) && t < a && r.push({
+  return A(t) && d(a) && t < a && r.push({
     messages: [
       C(v.errorMinimum, {
         minimum: a
@@ -435,7 +435,7 @@ function it(i, t, e, s, n) {
 }
 function nt(i, t, e, s, n) {
   const r = [], a = Wt(e);
-  return x(t) && h(a) && t.length < a && r.push({
+  return x(t) && d(a) && t.length < a && r.push({
     messages: [
       C(v.errorMinItems, {
         minItems: a
@@ -447,7 +447,7 @@ function nt(i, t, e, s, n) {
 }
 function rt(i, t, e, s, n) {
   const r = [], a = Ce(e);
-  return m(t) && h(a) && Object.keys(t).length < a && r.push({
+  return m(t) && d(a) && Object.keys(t).length < a && r.push({
     messages: [
       C(v.errorMinProperties, {
         minProperties: a
@@ -459,7 +459,7 @@ function rt(i, t, e, s, n) {
 }
 function at(i, t, e, s, n) {
   const r = [], a = Ee(e);
-  if (P(t) && h(a)) {
+  if (A(t) && d(a)) {
     if (t === 0)
       return r;
     (!(t / a === Math.floor(t / a)) || t.toString().includes("e")) && r.push({
@@ -476,7 +476,7 @@ function at(i, t, e, s, n) {
 }
 function ot(i, t, e, s, n) {
   const r = [], a = Le(e);
-  if (h(a)) {
+  if (d(a)) {
     const o = new w({ refParser: i.refParser, schema: a, data: t }), c = o.getErrors();
     o.destroy(), c.length === 0 && r.push({
       messages: [
@@ -490,11 +490,11 @@ function ot(i, t, e, s, n) {
 }
 function ct(i, t, e, s, n) {
   const r = [], a = z(e);
-  if (h(a)) {
+  if (d(a)) {
     let o = 0;
     a.forEach((c) => {
-      const l = new w({ refParser: i.refParser, schema: c, data: t }), d = l.getErrors();
-      l.destroy(), d.length === 0 && o++;
+      const l = new w({ refParser: i.refParser, schema: c, data: t }), h = l.getErrors();
+      l.destroy(), h.length === 0 && o++;
     }), o !== 1 && r.push({
       messages: [
         C(v.errorOneOf, {
@@ -509,7 +509,7 @@ function ct(i, t, e, s, n) {
 }
 function lt(i, t, e, s, n) {
   const r = [], a = xe(e);
-  return V(t) && h(a) && !new RegExp(a).test(t) && r.push({
+  return V(t) && d(a) && !new RegExp(a).test(t) && r.push({
     messages: [
       C(v.errorPattern, {
         pattern: a
@@ -521,30 +521,30 @@ function lt(i, t, e, s, n) {
 }
 function dt(i, t, e, s) {
   let n = [];
-  const r = jt(e);
-  return m(t) && h(r) && Object.keys(t).forEach((a) => {
+  const r = Tt(e);
+  return m(t) && d(r) && Object.keys(t).forEach((a) => {
     Object.keys(r).forEach((o) => {
       if (new RegExp(o).test(a)) {
-        const l = r[o], d = new w({
+        const l = r[o], h = new w({
           refParser: i.refParser,
           schema: l,
           data: t[a]
-        }), u = d.getErrors().map((p) => ({
+        }), u = h.getErrors().map((p) => ({
           messages: p.messages,
           path: s + "/" + a,
           constrain: "patternProperties"
         }));
-        n = [...n, ...u], d.destroy();
+        n = [...n, ...u], h.destroy();
       }
     });
   }), n;
 }
 function ht(i, t, e, s, n) {
   const r = [], a = Qt(e);
-  if (m(t) && h(a)) {
+  if (m(t) && d(a)) {
     const o = [], c = Object.keys(t);
-    a.forEach((d) => {
-      c.includes(d) || o.push(d);
+    a.forEach((h) => {
+      c.includes(h) || o.push(h);
     }), o.length > 0 && r.push({
       messages: [
         C(v.errorRequired, {
@@ -561,15 +561,15 @@ function ut(i, t, e, s, n) {
   const r = [], a = R(e);
   if (a === "any")
     return r;
-  if (h(a)) {
+  if (d(a)) {
     const o = {
       string: (l) => V(l),
-      number: (l) => P(l),
+      number: (l) => A(l),
       integer: (l) => B(l),
       boolean: (l) => O(l),
       array: (l) => x(l),
       object: (l) => m(l),
-      null: (l) => At(l)
+      null: (l) => Pt(l)
     };
     let c = !0;
     x(a) ? c = a.some((l) => o[l](t)) : c = o[a](t), c || r.push({
@@ -587,7 +587,7 @@ function ut(i, t, e, s, n) {
 }
 function pt(i, t, e, s, n) {
   const r = [], a = pe(e);
-  return P(t) && h(a) && t > a && r.push({
+  return A(t) && d(a) && t > a && r.push({
     messages: [
       C(v.errorMaximum, {
         maximum: a
@@ -599,11 +599,11 @@ function pt(i, t, e, s, n) {
 }
 function mt(i, t, e, s, n) {
   const r = [], a = we(e);
-  if (x(t) && h(a) && a === !0) {
+  if (x(t) && d(a) && a === !0) {
     const o = [];
     let c = !1;
-    for (let d = 0; d < t.length; d++) {
-      let u = t[d];
+    for (let h = 0; h < t.length; h++) {
+      let u = t[h];
       m(u) && (u = It(u));
       const p = JSON.stringify(u);
       if (c = o.some((g) => g === p), c)
@@ -622,14 +622,14 @@ function mt(i, t, e, s, n) {
 }
 function ft(i, t, e, s, n) {
   let r = [];
-  const a = St(e), o = jt(e), c = Mt(e);
-  if (m(t) && h(a)) {
-    const l = h(c) ? c : {}, d = a, u = o;
+  const a = St(e), o = Tt(e), c = Mt(e);
+  if (m(t) && d(a)) {
+    const l = d(c) ? c : {}, h = a, u = o;
     l && Object.keys(t).forEach((p) => {
       let g = !1;
-      if (h(u) && Object.keys(u).forEach((b) => {
+      if (d(u) && Object.keys(u).forEach((b) => {
         g = new RegExp(b).test(p);
-      }), !g && d === !1 && !N(l, p) && r.push({
+      }), !g && h === !1 && !D(l, p) && r.push({
         messages: [
           C(v.errorAdditionalProperties, {
             property: p
@@ -637,10 +637,10 @@ function ft(i, t, e, s, n) {
         ],
         path: n,
         constrain: "additionalProperties"
-      }), !g && m(d) && !N(l, p)) {
+      }), !g && m(h) && !D(l, p)) {
         const b = new w({
           refParser: i.refParser,
-          schema: d,
+          schema: h,
           data: t[p]
         }), E = b.getErrors().map((y) => ({
           messages: y.messages,
@@ -681,7 +681,7 @@ const Se = {
 };
 function vt(i, t, e, s, n) {
   const r = [], a = oe(e);
-  return h(a) && Ot(t, a) && r.push({
+  return d(a) && Ot(t, a) && r.push({
     messages: [
       C(v.errorConst, {
         const: JSON.stringify(a)
@@ -693,14 +693,14 @@ function vt(i, t, e, s, n) {
 }
 function bt(i, t, e, s, n) {
   const r = [], a = ce(e), o = be(e), c = me(e);
-  if (x(t) && h(a)) {
+  if (x(t) && d(a)) {
     let l = 0;
     t.forEach((u) => {
       const p = new w({ refParser: i.refParser, schema: a, data: u });
       p.getErrors().length === 0 && l++, p.destroy();
     });
-    const d = l === 0;
-    h(o) ? l < o && r.push({
+    const h = l === 0;
+    d(o) ? l < o && r.push({
       messages: [
         C(v.errorMinContains, {
           counter: l,
@@ -709,11 +709,11 @@ function bt(i, t, e, s, n) {
       ],
       path: n,
       constrain: "minContains"
-    }) : d && r.push({
+    }) : h && r.push({
       messages: [v.errorContains],
       path: n,
       constrain: "contains"
-    }), h(c) && l > c && r.push({
+    }), d(c) && l > c && r.push({
       messages: [
         C(v.errorMaxContains, {
           counter: l,
@@ -728,10 +728,10 @@ function bt(i, t, e, s, n) {
 }
 function yt(i, t, e, s, n) {
   const r = [], a = Jt(e);
-  if (m(t) && h(a)) {
+  if (m(t) && d(a)) {
     let o = [];
     Object.keys(a).forEach((l) => {
-      h(t[l]) && (o = a[l].filter((u) => !N(t, u)));
+      d(t[l]) && (o = a[l].filter((u) => !D(t, u)));
     }), o.length > 0 && r.push({
       messages: [
         C(v.errorDependentRequired, {
@@ -747,47 +747,47 @@ function yt(i, t, e, s, n) {
 function Ct(i, t, e) {
   let s = [];
   const n = de(e);
-  return m(t) && h(n) && Object.keys(n).forEach((r) => {
-    if (h(t[r])) {
+  return m(t) && d(n) && Object.keys(n).forEach((r) => {
+    if (d(t[r])) {
       const a = n[r], o = new w({ refParser: i.refParser, schema: a, data: t }), c = o.getErrors();
       o.destroy(), s = [...s, ...c];
     }
   }), s;
 }
 function Et(i, t, e) {
-  const s = [], n = Tt(e), r = Vt(e), a = Pt(e);
-  if (h(n)) {
-    if (D(r) && D(a))
+  const s = [], n = jt(e), r = Vt(e), a = At(e);
+  if (d(n)) {
+    if (H(r) && H(a))
       return s;
     const o = new w({ refParser: i.refParser, schema: n, data: t }), c = o.getErrors();
     o.destroy();
-    let l = [], d = [];
-    if (h(r)) {
+    let l = [], h = [];
+    if (d(r)) {
       const u = new w({ refParser: i.refParser, schema: r, data: t });
       l = u.getErrors(), u.destroy();
     }
-    if (h(a)) {
+    if (d(a)) {
       const u = new w({ refParser: i.refParser, schema: a, data: t });
-      d = u.getErrors(), u.destroy();
+      h = u.getErrors(), u.destroy();
     }
     if (n === !0)
       return l;
     if (n === !1)
-      return d;
+      return h;
     if (c.length === 0)
       return l;
     if (c.length > 0)
-      return d;
+      return h;
   }
   return s;
 }
 function Lt(i, t, e, s, n) {
   const r = [], a = kt(e);
-  return x(t) && h(a) && a.forEach((o, c) => {
+  return x(t) && d(a) && a.forEach((o, c) => {
     const l = t[c];
-    if (h(l)) {
-      const d = new w({ refParser: i.refParser, schema: o, data: l }), u = d.getErrors();
-      d.destroy(), u.length > 0 && r.push({
+    if (d(l)) {
+      const h = new w({ refParser: i.refParser, schema: o, data: l }), u = h.getErrors();
+      h.destroy(), u.length > 0 && r.push({
         messages: [
           C(v.errorPrefixItems, {
             index: c
@@ -830,7 +830,7 @@ const Oe = {
   required: ht,
   type: ut,
   uniqueItems: mt
-}, Ae = {
+}, Pe = {
   additionalProperties: ft,
   allOf: J,
   anyOf: _,
@@ -864,23 +864,23 @@ const Oe = {
 };
 function Xt(i, t, e, s, n) {
   let r = [];
-  const a = Ie(e), o = jt(e), c = Mt(e), l = zt(e), d = $(e), u = z(e);
-  if (m(t) && h(a)) {
-    let p = h(c) ? c : {};
+  const a = Ie(e), o = Tt(e), c = Mt(e), l = zt(e), h = $(e), u = z(e);
+  if (m(t) && d(a)) {
+    let p = d(c) ? c : {};
     const g = a, b = o;
     [
       l,
-      d,
+      h,
       u
     ].forEach((y) => {
-      h(y) && y.forEach((L) => {
-        h(L.properties) && (p = { ...p, ...L.properties });
+      d(y) && y.forEach((L) => {
+        d(L.properties) && (p = { ...p, ...L.properties });
       });
     }), p && Object.keys(t).forEach((y) => {
       let L = !1;
-      if (h(b) && Object.keys(b).forEach((q) => {
-        L = new RegExp(q).test(y);
-      }), !L && g === !1 && !N(p, y) && r.push({
+      if (d(b) && Object.keys(b).forEach((N) => {
+        L = new RegExp(N).test(y);
+      }), !L && g === !1 && !D(p, y) && r.push({
         messages: [
           C(v.errorUnevaluatedProperties, {
             property: y
@@ -888,23 +888,23 @@ function Xt(i, t, e, s, n) {
         ],
         path: n,
         constrain: "unevaluatedProperties"
-      }), !L && m(g) && !N(p, y)) {
-        const q = new w({
+      }), !L && m(g) && !D(p, y)) {
+        const N = new w({
           refParser: i.refParser,
           schema: g,
           data: t[y]
-        }), M = q.getErrors().map((A) => ({
-          messages: A.messages,
+        }), M = N.getErrors().map((P) => ({
+          messages: P.messages,
           path: y,
           constrain: "unevaluatedProperties"
         }));
-        r = [...r, ...M], q.destroy();
+        r = [...r, ...M], N.destroy();
       }
     });
   }
   return r;
 }
-const Pe = {
+const Ae = {
   additionalProperties: ft,
   allOf: J,
   anyOf: _,
@@ -937,9 +937,9 @@ const Pe = {
   unevaluatedProperties: Xt,
   uniqueItems: mt
 };
-function Te(i, t, e, s, n) {
+function je(i, t, e, s, n) {
   const r = [], a = ae(e);
-  return m(t) && h(a) && Object.keys(t).forEach((o) => {
+  return m(t) && d(a) && Object.keys(t).forEach((o) => {
     new w({
       refParser: i.refParser,
       schema: a,
@@ -981,19 +981,19 @@ const Ht = {
   pattern: lt,
   patternProperties: dt,
   prefixItems: Lt,
-  propertyNames: Te,
+  propertyNames: je,
   required: ht,
   type: ut,
   unevaluatedProperties: Xt,
   uniqueItems: mt
 };
-class je {
+class Te {
   constructor(t = {}) {
     this.refParser = t.refParser, this.validateFormat = t.validateFormat ? t.validateFormat : !1, this.draft = Ht, this.jsonSchemaDrafts = {
       "http://json-schema.org/draft-04/schema#": Se,
       "http://json-schema.org/draft-06/schema#": Oe,
-      "http://json-schema.org/draft-07/schema#": Ae,
-      "https://json-schema.org/draft/2019-09/schema": Pe,
+      "http://json-schema.org/draft-07/schema#": Pe,
+      "https://json-schema.org/draft/2019-09/schema": Ae,
       "https://json-schema.org/draft/2020-12/schema": Ht
     };
   }
@@ -1002,14 +1002,14 @@ class je {
    */
   getErrors(t, e, s, n) {
     let r = [];
-    const a = f(e, "messages"), o = j(e);
+    const a = f(e, "messages"), o = T(e);
     return O(o) && o === !0 ? r : O(o) && o === !1 ? [{
-      messages: h(a) ? a : ["invalid"],
+      messages: d(a) ? a : ["invalid"],
       path: n
     }] : (Object.keys(this.draft).forEach((c) => {
-      if (N(o, c)) {
-        const l = this.draft[c], d = l(this, t, e, s, n);
-        d && (r = [...r, ...d]);
+      if (D(o, c)) {
+        const l = this.draft[c], h = l(this, t, e, s, n);
+        h && (r = [...r, ...h]);
       }
     }), r.length > 0 && a && (r = [
       {
@@ -1054,7 +1054,7 @@ class Yt {
 }
 class F extends Yt {
   constructor(t) {
-    super(), this.jedi = t.jedi, this.path = t.path || this.jedi.rootName, this.schema = t.schema, this.value = h(t.value) ? t.value : void 0, this.isActive = !0, this.parent = t.parent || null, this.children = [], this.ui = null, this.init();
+    super(), this.jedi = t.jedi, this.path = t.path || this.jedi.rootName, this.schema = t.schema, this.value = d(t.value) ? t.value : void 0, this.isActive = !0, this.parent = t.parent || null, this.children = [], this.ui = null, this.init();
   }
   /**
    * Initializes and register the instance
@@ -1091,7 +1091,7 @@ class F extends Yt {
    * Sets the default value of the instance based on it's type
    */
   setInitialValue() {
-    if (D(this.value)) {
+    if (H(this.value)) {
       let t;
       const e = R(this.schema);
       e === "boolean" && (t = !1), e === "number" && (t = 0), e === "integer" && (t = 0), e === "string" && (t = ""), e === "array" && (t = []), e === "object" && (t = {}), e === "null" && (t = null), this.value = t;
@@ -1099,7 +1099,7 @@ class F extends Yt {
   }
   setDefaultValue() {
     const t = le(this.schema);
-    h(t) && this.setValue(t, !1);
+    d(t) && this.setValue(t, !1);
   }
   /**
    * Returns the value of the instance
@@ -1149,7 +1149,7 @@ class F extends Yt {
    */
   isReadOnly() {
     let t = !1;
-    return Dt(this.schema) === !0 && (t = !0), this.parent && Dt(this.parent.schema) === !0 && (t = !0), t;
+    return Ut(this.schema) === !0 && (t = !0), this.parent && Ut(this.parent.schema) === !0 && (t = !0), t;
   }
   /**
    * Destroy the instance and it's children
@@ -1233,7 +1233,8 @@ class xt {
    * @private
    */
   getFieldset() {
-    return document.createElement("fieldset");
+    const t = document.createElement("fieldset");
+    return t.classList.add("jedi-editor-fieldset"), t;
   }
   /**
    * Represents a caption for the content of its parent fieldset
@@ -1241,28 +1242,31 @@ class xt {
    */
   getLegend(t) {
     const e = document.createElement("legend"), s = document.createElement("span");
-    return e.setAttribute("aria-labelledby", "#legend-" + t.id), s.textContent = t.textContent, s.setAttribute("id", "#legend-" + t.id), e.appendChild(s), e;
+    return e.classList.add("jedi-editor-legend"), s.classList.add("jedi-editor-legend-text"), e.setAttribute("aria-labelledby", "#legend-" + t.id), s.textContent = t.textContent, s.setAttribute("id", "#legend-" + t.id), e.appendChild(s), e;
   }
   /**
    * Container for complex editors like arrays, objects and multiple
    * @private
    */
   getCard() {
-    return document.createElement("div");
+    const t = document.createElement("div");
+    return t.classList.add("jedi-editor-card"), t;
   }
   /**
    * Header for cards
    * @private
    */
   getCardHeader() {
-    return document.createElement("div");
+    const t = document.createElement("div");
+    return t.classList.add("jedi-editor-card-header"), t;
   }
   /**
    * A body for the cards
    * @private
    */
   getCardBody() {
-    return document.createElement("div");
+    const t = document.createElement("div");
+    return t.classList.add("jedi-editor-card-body"), t;
   }
   /**
    * Wrapper for editor actions buttons
@@ -1286,15 +1290,15 @@ class xt {
    */
   getChildrenSlot() {
     const t = document.createElement("div");
-    return t.classList.add("jedi-child-editors-slot"), t;
+    return t.classList.add("jedi-children-slot"), t;
   }
   /**
    * Wrapper for error messages
    * @private
    */
-  getMessagesSlot() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-messages-slot"), t.setAttribute("aria-atomic", "false"), t.setAttribute("aria-live", "polite"), t;
+  getMessagesSlot(t = {}) {
+    const e = document.createElement("div");
+    return e.classList.add("jedi-messages-slot"), e.setAttribute("aria-atomic", "false"), e.setAttribute("aria-live", "polite"), t.id && e.setAttribute("id", t.id), e;
   }
   /**
    * Wrapper for editor controls
@@ -1318,7 +1322,7 @@ class xt {
    */
   getPropertiesAriaLive() {
     const t = document.createElement("div");
-    return t.setAttribute("role", "status"), t.setAttribute("aria-live", "polite"), t;
+    return t.classList.add("jedi-properties-aria-live"), t.setAttribute("role", "status"), t.setAttribute("aria-live", "polite"), t;
   }
   /**
    * A message that will be announced by screen reader
@@ -1326,7 +1330,7 @@ class xt {
    */
   getAriaLiveMessage(t) {
     const e = document.createElement("p");
-    return e.textContent = t, this.visuallyHidden(e), e;
+    return e.classList.add("jedi-aria-live-message"), e.textContent = t, this.visuallyHidden(e), e;
   }
   /**
    * Toggles the ObjectEditor properties wrapper visibility
@@ -1344,7 +1348,7 @@ class xt {
    */
   getPropertiesActivators() {
     const t = document.createElement("div");
-    return t.classList.add("jedi-properties-container"), t;
+    return t.classList.add("jedi-properties-activators"), t;
   }
   /**
    * Wrapper buttons
@@ -1352,7 +1356,7 @@ class xt {
    */
   getBtnGroup() {
     const t = document.createElement("span");
-    return t.style.display = "initial", t;
+    return t.classList.add("jedi-btn-group"), t.style.display = "initial", t;
   }
   /**
    * A button
@@ -1360,7 +1364,7 @@ class xt {
    */
   getButton(t) {
     const e = document.createElement("button");
-    e.setAttribute("type", "button"), t.value && (e.value = t.value), t.id && e.setAttribute("id", t.id);
+    e.classList.add("jedi-btn"), e.setAttribute("type", "button"), t.value && (e.value = t.value), t.id && e.setAttribute("id", t.id);
     const s = document.createElement("span");
     if (s.textContent = t.textContent, this.icons && t.icon) {
       const n = this.getIcon(t.icon);
@@ -1422,9 +1426,9 @@ class xt {
    * Wrapper for the editor description
    * @private
    */
-  getDescription(t) {
+  getDescription(t = {}) {
     const e = document.createElement("small");
-    return e.textContent = t.textContent, e;
+    return e.classList.add("jedi-description"), t.textContent && (e.textContent = t.textContent), t.id && e.setAttribute("id", t.id), e;
   }
   /**
    * Object control is a card containing multiple editors.
@@ -1435,13 +1439,13 @@ class xt {
   getObjectControl(t) {
     const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getCardBody(), a = this.getPropertiesAriaLive(), o = this.getDescription({
       textContent: t.description
-    }), c = this.getMessagesSlot(), l = this.getChildrenSlot(), d = this.getPropertiesSlot({
+    }), c = this.getMessagesSlot(), l = this.getChildrenSlot(), h = this.getPropertiesSlot({
       id: "properties-slot-" + t.id
     }), u = this.getPropertiesToggle({
       textContent: t.title + " properties",
       id: "properties-slot-toggle-" + t.id,
       icon: "properties",
-      propertiesContainer: d
+      propertiesContainer: h
     }), p = this.getPropertiesActivators(), g = this.getInputControl({
       type: "text",
       id: "jedi-add-property-input-" + t.id,
@@ -1450,14 +1454,14 @@ class xt {
       textContent: t.title,
       id: t.id
     });
-    return b.classList.add("jedi-object-add"), e.appendChild(E), E.appendChild(y), E.appendChild(r), r.appendChild(o), r.appendChild(c), y.appendChild(s), s.appendChild(n), r.appendChild(d), r.appendChild(l), t.addProperty && (d.appendChild(g.container), d.appendChild(b)), t.editableProperties && (s.appendChild(u), d.appendChild(a), d.appendChild(p)), {
+    return b.classList.add("jedi-object-add"), e.appendChild(E), E.appendChild(y), E.appendChild(r), r.appendChild(o), r.appendChild(c), y.appendChild(s), s.appendChild(n), r.appendChild(h), r.appendChild(l), t.addProperty && (h.appendChild(g.container), h.appendChild(b)), t.editableProperties && (s.appendChild(u), h.appendChild(a), h.appendChild(p)), {
       container: e,
       body: r,
       actions: s,
       messages: c,
       childrenSlot: l,
       propertiesToggle: u,
-      propertiesContainer: d,
+      propertiesContainer: h,
       addPropertyControl: g,
       addPropertyBtn: b,
       ariaLive: a,
@@ -1473,18 +1477,18 @@ class xt {
   getArrayControl(t) {
     const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getCardBody(), a = this.getDescription({
       textContent: t.description
-    }), o = this.getMessagesSlot(), c = this.getChildrenSlot(), l = this.getBtnGroup(), d = this.getArrayBtnAdd(), u = this.getFieldset(), p = this.getLegend({
+    }), o = this.getMessagesSlot(), c = this.getChildrenSlot(), l = this.getBtnGroup(), h = this.getArrayBtnAdd(), u = this.getFieldset(), p = this.getLegend({
       textContent: t.title,
       id: t.id
     });
-    return e.appendChild(u), u.appendChild(p), u.appendChild(r), r.appendChild(a), r.appendChild(o), p.appendChild(s), s.appendChild(l), l.appendChild(d), s.appendChild(n), r.appendChild(c), {
+    return e.appendChild(u), u.appendChild(p), u.appendChild(r), r.appendChild(a), r.appendChild(o), p.appendChild(s), s.appendChild(l), l.appendChild(h), s.appendChild(n), r.appendChild(c), {
       container: e,
       body: r,
       actions: s,
       messages: o,
       childrenSlot: c,
       btnGroup: l,
-      addBtn: d,
+      addBtn: h,
       arrayActions: n
     };
   }
@@ -1500,7 +1504,7 @@ class xt {
       srOnly: t.srOnly
     }), o = this.getCardBody(), c = this.getDescription({
       textContent: t.description
-    }), l = this.getMessagesSlot(), d = this.getChildrenSlot(), u = this.getSwitcher({
+    }), l = this.getMessagesSlot(), h = this.getChildrenSlot(), u = this.getSwitcher({
       values: t.switcherOptionValues,
       titles: t.switcherOptionsLabels,
       id: t.id + "-switcher",
@@ -1508,25 +1512,17 @@ class xt {
       srOnly: !0,
       readOnly: t.readOnly
     });
-    return u.container.classList.add("jedi-switcher"), e.appendChild(c), e.appendChild(s), s.appendChild(a), s.appendChild(o), a.appendChild(n), n.appendChild(r), n.appendChild(u.container), o.appendChild(l), o.appendChild(d), {
+    return u.container.classList.add("jedi-switcher"), e.appendChild(c), e.appendChild(s), s.appendChild(a), s.appendChild(o), a.appendChild(n), n.appendChild(r), n.appendChild(u.container), o.appendChild(l), o.appendChild(h), {
       container: e,
       card: s,
       header: a,
       body: o,
       actions: n,
       messages: l,
-      childrenSlot: d,
+      childrenSlot: h,
       switcher: u,
       arrayActions: r
     };
-  }
-  /**
-   * Control for NullEditor
-   * @private
-   */
-  getCircularControl() {
-    const t = document.createElement("div"), e = this.getActionsSlot(), s = this.getArrayActionsSlot(), n = document.createElement("div"), r = this.getMessagesSlot();
-    return n.textContent = "CIRCULAR", t.appendChild(n), t.appendChild(r), t.appendChild(e), e.appendChild(s), { container: t, description: n, messages: r, actions: e, arrayActions: s };
   }
   /**
    * Control for NullEditor
@@ -1537,9 +1533,10 @@ class xt {
     r.setAttribute("for", t.id);
     const a = document.createElement("span");
     a.textContent = t.label, t.srOnly && this.visuallyHidden(r);
-    const o = t.id + "-description", c = document.createElement("div");
-    c.setAttribute("id", o), t.description && (c.textContent = t.description);
-    const l = this.getMessagesSlot();
+    const o = t.id + "-description", c = this.getDescription({
+      textContent: t.description,
+      id: o
+    }), l = this.getMessagesSlot();
     return e.appendChild(r), e.appendChild(c), e.appendChild(l), e.appendChild(s), s.appendChild(n), r.appendChild(a), { container: e, label: r, labelText: a, description: c, messages: l, actions: s, arrayActions: n };
   }
   /**
@@ -1553,12 +1550,13 @@ class xt {
     a.setAttribute("for", t.id);
     const o = document.createElement("span");
     o.textContent = t.label, t.srOnly && this.visuallyHidden(a);
-    const c = document.createElement("div"), l = t.id + "-description";
-    c.setAttribute("id", l), t.description && (c.textContent = t.description);
-    const d = this.getMessagesSlot(), u = t.id + "-messages";
-    d.setAttribute("id", u);
-    const p = u + " " + l;
-    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), e.appendChild(c), e.appendChild(d), e.appendChild(s), s.appendChild(n), a.appendChild(o), { container: e, input: r, label: a, labelText: o, description: c, messages: d, actions: s, arrayActions: n };
+    const c = t.id + "-description", l = this.getDescription({
+      textContent: t.description,
+      id: c
+    }), h = t.id + "-messages", u = this.getMessagesSlot({
+      id: h
+    }), p = h + " " + c;
+    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), e.appendChild(l), e.appendChild(u), e.appendChild(s), s.appendChild(n), a.appendChild(o), { container: e, input: r, label: a, labelText: o, description: l, messages: u, actions: s, arrayActions: n };
   }
   /**
    * An Input control
@@ -1571,39 +1569,44 @@ class xt {
     a.setAttribute("for", t.id);
     const o = document.createElement("span");
     o.textContent = t.label, t.srOnly && this.visuallyHidden(a);
-    const c = document.createElement("div"), l = t.id + "-description";
-    c.setAttribute("id", l), t.description && (c.textContent = t.description);
-    const d = this.getMessagesSlot(), u = t.id + "-messages";
-    d.setAttribute("id", u);
-    const p = u + " " + l;
-    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), e.appendChild(c), e.appendChild(d), e.appendChild(s), s.appendChild(n), a.appendChild(o), { container: e, input: r, label: a, labelText: o, description: c, messages: d, actions: s, arrayActions: n };
+    const c = t.id + "-description", l = this.getDescription({
+      textContent: t.description,
+      id: c
+    }), h = t.id + "-messages", u = this.getMessagesSlot({
+      id: h
+    }), p = h + " " + c;
+    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), e.appendChild(l), e.appendChild(u), e.appendChild(s), s.appendChild(n), a.appendChild(o), { container: e, input: r, label: a, labelText: o, description: l, messages: u, actions: s, arrayActions: n };
   }
   /**
    * A radio group control
    * @private
    */
   getRadiosControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getFieldset(), a = this.getMessagesSlot(), o = this.getCardBody(), c = this.getLegend({
-      id: t.label
-    }), l = t.id + "-messages";
-    a.setAttribute("id", l);
-    const d = document.createElement("div"), u = t.id + "-description";
-    d.setAttribute("id", u), t.srOnly && this.visuallyHidden(c);
+    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getFieldset(), a = this.getCardBody(), o = this.getLegend({
+      textContent: t.label,
+      id: t.id
+    }), c = t.id + "-messages", l = this.getMessagesSlot({
+      id: c
+    }), h = t.id + "-description", u = this.getDescription({
+      textContent: t.description,
+      id: h
+    });
+    t.srOnly && this.visuallyHidden(o);
     const p = [], g = [], b = [], E = [];
     return t.values.forEach((y, L) => {
-      const q = document.createElement("div");
-      p.push(q);
+      const N = document.createElement("div");
+      p.push(N);
       const M = document.createElement("input");
       M.setAttribute("type", "radio"), M.setAttribute("id", t.id + "-" + L), M.setAttribute("value", y), g.push(M);
-      const A = l + " " + u;
-      M.setAttribute("aria-describedby", A);
+      const P = c + " " + h;
+      M.setAttribute("aria-describedby", P);
       const gt = document.createElement("label");
       gt.setAttribute("for", t.id + "-" + L);
-      const Ft = document.createElement("span");
-      E.push(Ft), t.titles && t.titles[L] && (Ft.textContent = t.titles[L]), b.push(gt);
-    }), t.description && (d.textContent = t.description), t.label && (c.textContent = t.label), e.appendChild(r), e.appendChild(s), r.appendChild(c), r.appendChild(o), s.appendChild(n), p.forEach((y, L) => {
-      o.appendChild(p[L]), y.appendChild(g[L]), y.appendChild(b[L]), b[L].appendChild(E[L]);
-    }), r.appendChild(d), r.appendChild(a), { container: e, fieldset: r, legend: c, body: o, radios: g, labels: b, labelTexts: E, radioControls: p, description: d, messages: a, actions: s, arrayActions: n };
+      const Dt = document.createElement("span");
+      E.push(Dt), t.titles && t.titles[L] && (Dt.textContent = t.titles[L]), b.push(gt);
+    }), e.appendChild(r), e.appendChild(s), r.appendChild(o), r.appendChild(a), s.appendChild(n), p.forEach((y, L) => {
+      a.appendChild(p[L]), y.appendChild(g[L]), y.appendChild(b[L]), b[L].appendChild(E[L]);
+    }), r.appendChild(u), r.appendChild(l), { container: e, fieldset: r, legend: o, body: a, radios: g, labels: b, labelTexts: E, radioControls: p, description: u, messages: l, actions: s, arrayActions: n };
   }
   /**
    * A checkbox control
@@ -1616,12 +1619,13 @@ class xt {
     o.setAttribute("for", t.id);
     const c = document.createElement("span");
     c.textContent = t.label, t.srOnly && this.visuallyHidden(o);
-    const l = document.createElement("div"), d = t.id + "-description";
-    l.setAttribute("id", d), t.description && (l.textContent = t.description);
-    const u = this.getMessagesSlot(), p = t.id + "-messages";
-    u.setAttribute("id", p);
-    const g = p + " " + d;
-    return a.setAttribute("aria-describedby", g), e.appendChild(r), e.appendChild(s), s.appendChild(n), r.appendChild(a), r.appendChild(o), o.appendChild(c), r.appendChild(l), r.appendChild(u), { container: e, formGroup: r, input: a, label: o, labelText: c, description: l, messages: u, actions: s, arrayActions: n };
+    const l = t.id + "-description", h = this.getDescription({
+      textContent: t.description,
+      id: l
+    }), u = t.id + "-messages", p = this.getMessagesSlot({
+      id: u
+    }), g = u + " " + l;
+    return a.setAttribute("aria-describedby", g), e.appendChild(r), e.appendChild(s), s.appendChild(n), r.appendChild(a), r.appendChild(o), o.appendChild(c), r.appendChild(h), r.appendChild(p), { container: e, formGroup: r, input: a, label: o, labelText: c, description: h, messages: p, actions: s, arrayActions: n };
   }
   /**
    * A select control
@@ -1637,12 +1641,13 @@ class xt {
     a.setAttribute("for", t.id);
     const o = document.createElement("span");
     o.textContent = t.label, t.srOnly && this.visuallyHidden(a);
-    const c = document.createElement("div"), l = t.id + "-description";
-    c.setAttribute("id", l), t.description && (c.textContent = t.description);
-    const d = this.getMessagesSlot(), u = t.id + "-messages";
-    d.setAttribute("id", u);
-    const p = u + " " + l;
-    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), a.appendChild(o), e.appendChild(c), e.appendChild(d), e.appendChild(s), s.appendChild(n), { container: e, input: r, label: a, labelText: o, description: c, messages: d, actions: s, arrayActions: n };
+    const c = t.id + "-description", l = this.getDescription({
+      textContent: t.description,
+      id: c
+    }), h = t.id + "-messages", u = this.getMessagesSlot({
+      id: h
+    }), p = h + " " + c;
+    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), a.appendChild(o), e.appendChild(l), e.appendChild(u), e.appendChild(s), s.appendChild(n), { container: e, input: r, label: a, labelText: o, description: l, messages: u, actions: s, arrayActions: n };
   }
   /**
    * Control to switch between multiple editors options
@@ -1664,8 +1669,8 @@ class xt {
    * @public
    */
   getInvalidFeedback(t) {
-    const e = document.createElement("div"), s = document.createElement("span"), n = document.createElement("small");
-    return s.textContent = t.message, n.textContent = "❌ ", n.classList.add("jedi-error-message"), n.setAttribute("aria-hidden", "true"), e.classList.add("jedi-error-message"), e.appendChild(n), e.appendChild(s), e;
+    const e = document.createElement("div"), s = document.createElement("span"), n = document.createElement("span");
+    return s.textContent = t.message, n.textContent = "⚠ ", n.classList.add("jedi-error-message"), n.setAttribute("aria-hidden", "true"), e.classList.add("jedi-error-message"), e.appendChild(n), e.appendChild(s), e;
   }
   /**
    * Container for columns
@@ -1783,8 +1788,8 @@ class Ne extends xt {
   }
   getRadiosControl(t) {
     const e = super.getRadiosControl(t), { body: s, radios: n, labels: r, labelTexts: a, radioControls: o, description: c, messages: l } = e;
-    return o.forEach((d, u) => {
-      d.classList.add("radio"), s.appendChild(o[u]), d.appendChild(r[u]), r[u].appendChild(n[u]), r[u].appendChild(a[u]);
+    return o.forEach((h, u) => {
+      h.classList.add("radio"), s.appendChild(o[u]), h.appendChild(r[u]), r[u].appendChild(n[u]), r[u].appendChild(a[u]);
     }), s.appendChild(c), s.appendChild(l), e;
   }
   getCheckboxControl(t) {
@@ -1833,7 +1838,7 @@ class Ne extends xt {
     t.classList.remove("sr-only");
   }
 }
-class Fe extends xt {
+class De extends xt {
   init() {
     this.useToggleEvents = !1;
   }
@@ -1886,10 +1891,10 @@ class Fe extends xt {
     return s.classList.add("form-group"), n.classList.add("form-control"), t.srOnly && this.visuallyHidden(r), e;
   }
   getRadiosControl(t) {
-    const e = super.getRadiosControl(t), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: c, description: l, messages: d } = e;
+    const e = super.getRadiosControl(t), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: c, description: l, messages: h } = e;
     return s.classList.add("form-group"), c.forEach((u, p) => {
       u.classList.add("form-check"), r[p].classList.add("form-check-input"), a[p].classList.add("form-check-label"), n.appendChild(c[p]), u.appendChild(r[p]), u.appendChild(a[p]), a[p].appendChild(o[p]);
-    }), n.appendChild(l), n.appendChild(d), e;
+    }), n.appendChild(l), n.appendChild(h), e;
   }
   getCheckboxControl(t) {
     const e = super.getCheckboxControl(t), { container: s, formGroup: n, input: r, label: a, description: o, messages: c } = e;
@@ -1940,7 +1945,7 @@ class Fe extends xt {
     t.classList.remove("sr-only");
   }
 }
-class Ue extends xt {
+class Fe extends xt {
   init() {
     this.useToggleEvents = !1;
   }
@@ -1997,10 +2002,10 @@ class Ue extends xt {
     return s.classList.add("mb-3"), n.classList.add("form-control"), t.srOnly && this.visuallyHidden(r), e;
   }
   getRadiosControl(t) {
-    const e = super.getRadiosControl(t), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: c, description: l, messages: d } = e;
+    const e = super.getRadiosControl(t), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: c, description: l, messages: h } = e;
     return s.classList.add("mb-3"), c.forEach((u, p) => {
       u.classList.add("form-check"), r[p].classList.add("form-check-input"), a[p].classList.add("form-check-label"), n.appendChild(c[p]), u.appendChild(r[p]), u.appendChild(a[p]), a[p].appendChild(o[p]);
-    }), n.appendChild(l), n.appendChild(d), e;
+    }), n.appendChild(l), n.appendChild(h), e;
   }
   getCheckboxControl(t) {
     const e = super.getCheckboxControl(t), { container: s, formGroup: n, input: r, label: a, description: o, messages: c } = e;
@@ -2070,7 +2075,7 @@ class U {
    */
   init() {
     let t = null;
-    if (h(this.instance.jedi.options.iconLib))
+    if (d(this.instance.jedi.options.iconLib))
       switch (this.instance.jedi.options.iconLib) {
         case "glyphicons":
           t = ke;
@@ -2096,10 +2101,10 @@ class U {
         this.theme = new Ne(t);
         break;
       case "bootstrap4":
-        this.theme = new Fe(t);
+        this.theme = new De(t);
         break;
       case "bootstrap5":
-        this.theme = new Ue(t);
+        this.theme = new Fe(t);
         break;
       default:
         this.theme = new xt(t);
@@ -2123,7 +2128,7 @@ class U {
    */
   coerceValue() {
     const t = k(this.instance.schema);
-    h(t) && !t.includes(this.instance.getValue()) && h(t[0]) && this.instance.setValue(t[0], !1);
+    d(t) && !t.includes(this.instance.getValue()) && d(t[0]) && this.instance.setValue(t[0], !1);
   }
   /**
    * Add event listeners to ui elements
@@ -2203,7 +2208,7 @@ class Zt extends U {
       title: "Options",
       srOnly: f(this.instance.schema, "hideTitle"),
       id: S(this.instance.path),
-      description: T(this.instance.schema),
+      description: j(this.instance.schema),
       switcherOptionValues: this.instance.switcherOptionValues,
       switcherOptionsLabels: this.instance.switcherOptionsLabels
     });
@@ -2221,7 +2226,7 @@ class Zt extends U {
     return this.theme.getAlert(t);
   }
 }
-class De extends F {
+class Ue extends F {
   setUI() {
     this.ui = new Zt(this);
   }
@@ -2229,9 +2234,9 @@ class De extends F {
     this.instances = [], this.activeInstance = null, this.activeInstanceChanged = !0, this.index = 0, this.schemas = [], this.switcherOptionValues = [], this.switcherOptionsLabels = [], this.ifThenElseShemas = [], this.traverseSchema(this.schema), delete this.schema.if, delete this.schema.then, delete this.schema.else;
     let t = 0;
     this.ifThenElseShemas.forEach((r) => {
-      h(r.then) && (this.schemas.push(K({}, j(this.schema), r.then)), this.switcherOptionValues.push(t), this.switcherOptionsLabels.push(JSON.stringify(r.then)), t++), h(r.else) && (this.schemas.push(K({}, j(this.schema), r.else)), this.switcherOptionValues.push(t), this.switcherOptionsLabels.push(JSON.stringify(r.else)), t++);
+      d(r.then) && (this.schemas.push(K({}, T(this.schema), r.then)), this.switcherOptionValues.push(t), this.switcherOptionsLabels.push(JSON.stringify(r.then)), t++), d(r.else) && (this.schemas.push(K({}, T(this.schema), r.else)), this.switcherOptionValues.push(t), this.switcherOptionsLabels.push(JSON.stringify(r.else)), t++);
     });
-    const e = j(this.schema);
+    const e = T(this.schema);
     delete e.if, delete e.then, delete e.else;
     const s = this.jedi.createInstance({
       jedi: this.jedi,
@@ -2253,8 +2258,8 @@ class De extends F {
     }), this.on("set-value", (r) => {
       this.instances.forEach((c) => {
         const l = c.getValue();
-        let d = r;
-        m(l) && m(d) && (d = $t(l, d)), c.setValue(d, !1);
+        let h = r;
+        m(l) && m(h) && (h = $t(l, h)), c.setValue(h, !1);
       });
       const a = this.getFittestIndex(r);
       a !== this.index && (this.switchInstance(a), this.emit("change"));
@@ -2266,15 +2271,15 @@ class De extends F {
     this.index = t, this.activeInstance = this.instances[this.index], this.value = this.activeInstance.getValue(), this.emit("change");
   }
   traverseSchema(t) {
-    const e = Tt(t);
-    if (h(e)) {
-      const s = Vt(t), n = Pt(t);
+    const e = jt(t);
+    if (d(e)) {
+      const s = Vt(t), n = At(t);
       this.ifThenElseShemas.push({
         if: e,
-        then: h(s) ? s : {}
+        then: d(s) ? s : {}
       }), this.ifThenElseShemas.push({
         if: e,
-        else: h(n) ? n : {}
+        else: d(n) ? n : {}
       });
     }
   }
@@ -2319,13 +2324,13 @@ class He extends F {
       this.onSetValue();
     });
     const t = R(this.schema);
-    if (h($(this.schema)) || h(z(this.schema))) {
-      const s = h($(this.schema)) ? $(this.schema) : z(this.schema), n = j(this.schema);
+    if (d($(this.schema)) || d(z(this.schema))) {
+      const s = d($(this.schema)) ? $(this.schema) : z(this.schema), n = T(this.schema);
       delete n.anyOf, delete n.oneOf, delete n.options, s.forEach((r, a) => {
         r = { ...n, ...r }, this.jedi.refParser && (r = this.jedi.refParser.expand(r));
         let o = "Option-" + (a + 1);
         const c = f(r, "switcherTitle"), l = I(r);
-        h(l) && (o = l), h(c) && (o = c), this.switcherOptionValues.push(a), this.switcherOptionsLabels.push(o), this.schemas.push(r);
+        d(l) && (o = l), d(c) && (o = c), this.switcherOptionValues.push(a), this.switcherOptionsLabels.push(o), this.schemas.push(r);
       });
     } else if (x(t))
       t.forEach((s, n) => {
@@ -2334,10 +2339,10 @@ class He extends F {
           type: s,
           title: s[0].toUpperCase() + s.slice(1)
         };
-        h(r.title) && (a.title = r.title), this.switcherOptionValues.push(n), this.switcherOptionsLabels.push(s.charAt(0).toUpperCase() + s.slice(1)), this.schemas.push(a);
+        d(r.title) && (a.title = r.title), this.switcherOptionValues.push(n), this.switcherOptionsLabels.push(s.charAt(0).toUpperCase() + s.slice(1)), this.schemas.push(a);
       });
     else if (t === "any" || !t) {
-      const s = j(this.schema);
+      const s = T(this.schema);
       this.schemas = [
         { ...s, type: "object" },
         { ...s, type: "array" },
@@ -2364,22 +2369,22 @@ class He extends F {
         schema: s,
         path: this.path,
         parent: this.parent,
-        value: j(this.value)
+        value: T(this.value)
       });
-      h(this.value) && n.setValue(this.value, !1), n.unregister(), n.on("change", () => {
+      d(this.value) && n.setValue(this.value, !1), n.unregister(), n.on("change", () => {
         this.activeInstanceChanged = !0, this.setValue(this.activeInstance.getValue());
       }), this.instances.push(n), this.register();
     });
-    const e = h(this.if) ? this.getIfIndex(this.value) : this.getFittestIndex(this.value);
+    const e = d(this.if) ? this.getIfIndex(this.value) : this.getFittestIndex(this.value);
     this.switchInstance(e, this.value);
   }
   switchInstance(t, e) {
-    this.lastIndex = this.index, this.index = t, this.activeInstance = this.instances[t], h(e) && this.activeInstance.setValue(e, !1), this.setValue(this.activeInstance.getValue());
+    this.lastIndex = this.index, this.index = t, this.activeInstance = this.instances[t], d(e) && this.activeInstance.setValue(e, !1), this.setValue(this.activeInstance.getValue());
   }
   onSetValue() {
     if (Ot(this.activeInstance.getValue(), this.value) || this.activeInstanceChanged) {
       this.activeInstanceChanged = !1;
-      const t = h(this.if) ? this.getIfIndex(this.value) : this.getFittestIndex(this.value);
+      const t = d(this.if) ? this.getIfIndex(this.value) : this.getFittestIndex(this.value);
       this.switchInstance(t, this.value);
     }
   }
@@ -2401,7 +2406,7 @@ class He extends F {
     let e = 0, s, n;
     for (const r of this.instances) {
       const a = this.jedi.validator.getErrors(t, r.schema, r.getKey(), r.path);
-      (D(s) || D(n)) && (s = e, n = a), a.length < n.length && (s = e, n = a), e++;
+      (H(s) || H(n)) && (s = e, n = a), a.length < n.length && (s = e, n = a), e++;
     }
     return s;
   }
@@ -2417,7 +2422,7 @@ class Rt extends U {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2440,7 +2445,7 @@ class $e extends Rt {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2466,7 +2471,7 @@ class Ke extends Rt {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2481,7 +2486,7 @@ class Ke extends Rt {
 }
 class ze extends F {
   setUI() {
-    const t = R(this.schema), e = H(this.schema);
+    const t = R(this.schema), e = q(this.schema);
     t === "boolean" && e === "radio" ? this.ui = new $e(this) : t === "boolean" && e === "select" ? this.ui = new Ke(this) : t === "boolean" && (this.ui = new Rt(this));
   }
 }
@@ -2491,13 +2496,13 @@ class Bt extends U {
     const t = this.instance.schema.options || {};
     let e = !0;
     const s = St(this.instance.schema);
-    h(s) && s === !1 && (e = !1);
+    d(s) && s === !1 && (e = !1);
     let n = !1;
-    h(this.instance.jedi.options.editableProperties) && (n = this.instance.jedi.options.editableProperties), h(t.editableProperties) && (n = t.editableProperties), this.control = this.theme.getObjectControl({
+    d(this.instance.jedi.options.editableProperties) && (n = this.instance.jedi.options.editableProperties), d(t.editableProperties) && (n = t.editableProperties), this.control = this.theme.getObjectControl({
       title: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
       id: S(this.instance.path),
-      description: T(this.instance.schema),
+      description: j(this.instance.schema),
       editableProperties: n,
       addProperty: e
     });
@@ -2505,17 +2510,17 @@ class Bt extends U {
   addEventListeners() {
     this.control.addPropertyBtn.addEventListener("click", () => {
       const t = this.control.addPropertyControl.input.value.split(" ").join("");
-      if (t.length === 0 || h(this.instance.value[t]))
+      if (t.length === 0 || d(this.instance.value[t]))
         return;
       let n = {};
       const r = St(this.instance.schema);
-      h(r) && (n = r);
+      d(r) && (n = r);
       const a = this.instance.createChild(n, t);
       a.activate(), this.instance.properties[t] = { schema: n }, this.instance.setValue(this.instance.value), this.control.addPropertyControl.input.value = "";
       const o = this.control.ariaLive;
       o.innerHTML = "";
-      const c = I(a.schema), l = h(c) ? c : t, d = this.theme.getAriaLiveMessage();
-      d.textContent = l + " field was added to the form", o.appendChild(d);
+      const c = I(a.schema), l = d(c) ? c : t, h = this.theme.getAriaLiveMessage();
+      h.textContent = l + " field was added to the form", o.appendChild(h);
     });
   }
   sanitize(t) {
@@ -2527,7 +2532,7 @@ class Bt extends U {
   refreshPropertiesSlot() {
     const t = f(this.instance.schema, "editableProperties");
     (wt(this.instance.jedi.options.editableProperties, !0) || wt(t, !0)) && Object.keys(this.instance.properties).forEach((e) => {
-      const s = this.instance.isRequired(e), n = this.instance.isDependentRequired(e), r = !s && !n, a = this.propertyActivators[e], o = this.control.ariaLive, c = this.instance.properties[e].schema, l = I(c), d = this.instance.path + this.instance.jedi.pathSeparator + e, u = S(d) + "-activator", p = h(l) ? l : e;
+      const s = this.instance.isRequired(e), n = this.instance.isDependentRequired(e), r = !s && !n, a = this.propertyActivators[e], o = this.control.ariaLive, c = this.instance.properties[e].schema, l = I(c), h = this.instance.path + this.instance.jedi.pathSeparator + e, u = S(h) + "-activator", p = d(l) ? l : e;
       if (r && !a) {
         const b = this.theme.getCheckboxControl({
           id: u,
@@ -2541,7 +2546,7 @@ class Bt extends U {
         }), this.control.propertiesActivators.appendChild(b.container);
       }
       const g = this.propertyActivators[e];
-      g && (g.disabled = this.disabled, g.checked = N(this.instance.getValue(), e));
+      g && (g.disabled = this.disabled, g.checked = D(this.instance.getValue(), e));
     });
   }
   refreshEditors() {
@@ -2573,38 +2578,38 @@ class Ge extends Bt {
   refreshEditors() {
     for (; this.control.childrenSlot.firstChild; )
       this.control.childrenSlot.removeChild(this.control.childrenSlot.lastChild);
-    const t = this.instance.schema["x-control-cols"], e = this.instance.schema["x-control-stacked"], s = this.instance.schema["x-control-variant"], n = this.theme.getRow(), r = h(t) ? t : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), c = this.theme.getTabContent(), l = this.theme.getTabList({
-      stacked: h(e) ? e : !1,
-      type: h(s) ? s : "pils"
+    const t = this.instance.schema["x-control-cols"], e = this.instance.schema["x-control-stacked"], s = this.instance.schema["x-control-variant"], n = this.theme.getRow(), r = d(t) ? t : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), c = this.theme.getTabContent(), l = this.theme.getTabList({
+      stacked: d(e) ? e : !1,
+      type: d(s) ? s : "pils"
     });
-    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(l), o.appendChild(c), this.instance.children.forEach((d, u) => {
-      if (d.isActive) {
-        const p = u === this.activeTabIndex, g = S(d.path), b = I(d.schema), E = this.theme.getTab({
-          title: h(b) ? b : d.getKey(),
+    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(l), o.appendChild(c), this.instance.children.forEach((h, u) => {
+      if (h.isActive) {
+        const p = u === this.activeTabIndex, g = S(h.path), b = I(h.schema), E = this.theme.getTab({
+          title: d(b) ? b : h.getKey(),
           id: g,
           active: p
         });
         E.list.addEventListener("click", () => {
           this.activeTabIndex = u;
-        }), this.theme.setTabPaneAttributes(d.ui.control.container, p, g), l.appendChild(E.list), c.appendChild(d.ui.control.container), this.disabled || this.instance.isReadOnly() ? d.ui.disable() : d.ui.enable();
+        }), this.theme.setTabPaneAttributes(h.ui.control.container, p, g), l.appendChild(E.list), c.appendChild(h.ui.control.container), this.disabled || this.instance.isReadOnly() ? h.ui.disable() : h.ui.enable();
       }
     });
   }
 }
 class _e extends F {
   setUI() {
-    const t = R(this.schema), e = H(this.schema), s = this.schema["x-control"];
+    const t = R(this.schema), e = q(this.schema), s = this.schema["x-control"];
     t === "object" && e === "grid" ? this.ui = new Je(this) : t === "object" && s === "nav" ? this.ui = new Ge(this) : this.ui = new Bt(this);
   }
   prepare() {
     this.properties = {};
     const t = Mt(this.schema);
-    h(t) && Object.keys(t).forEach((e) => {
+    d(t) && Object.keys(t).forEach((e) => {
       const s = t[e];
       this.properties[e] = { schema: s };
       let n = !0;
       const r = f(this.schema, "deactivateNonRequired"), a = f(s, "deactivateNonRequired");
-      this.isNotRequired(e) && h(r) && r === !0 && (n = !1), this.isNotRequired(e) && h(a) && a === !0 && (n = !1), n && this.createChild(s, e);
+      this.isNotRequired(e) && d(r) && r === !0 && (n = !1), this.isNotRequired(e) && d(a) && a === !0 && (n = !1), n && this.createChild(s, e);
     }), this.refreshInstances(), this.on("set-value", () => {
       this.refreshInstances();
     });
@@ -2614,17 +2619,17 @@ class _e extends F {
    */
   isRequired(t) {
     const e = Qt(this.schema);
-    return h(e) && e.includes(t);
+    return d(e) && e.includes(t);
   }
   /**
    * Returns true if the property is dependent required
    */
   isDependentRequired(t) {
     const e = Jt(this.schema);
-    if (h(e)) {
+    if (d(e)) {
       let s = [];
       return Object.keys(e).forEach((n) => {
-        h(this.value[n]) && (s = e[n].filter((a) => !N(this.value, a)));
+        d(this.value[n]) && (s = e[n].filter((a) => !D(this.value, a)));
       }), s.includes(t);
     }
     return !1;
@@ -2635,11 +2640,11 @@ class _e extends F {
       schema: t,
       path: this.path + this.jedi.pathSeparator + e,
       parent: this,
-      value: j(s)
+      value: T(s)
     });
     this.children.push(n), this.value[e] = n.getValue();
     const r = f(this.schema, "deactivateNonRequired");
-    return this.isNotRequired(e) && h(r) && r === !0 && n.deactivate(), n;
+    return this.isNotRequired(e) && d(r) && r === !0 && n.deactivate(), n;
   }
   isNotRequired(t) {
     return !this.isRequired(t) && !this.isDependentRequired(t);
@@ -2673,7 +2678,7 @@ class _e extends F {
       });
       for (let e = this.children.length - 1; e >= 0; e--) {
         const s = this.children[e], n = s.getKey();
-        D(t[n]) && (this.getChild(n) ? s.deactivate() : this.deleteChild(n));
+        H(t[n]) && (this.getChild(n) ? s.deactivate() : this.deleteChild(n));
       }
     }
   }
@@ -2684,7 +2689,7 @@ class te extends U {
       title: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
       id: S(this.instance.path),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2701,7 +2706,7 @@ class te extends U {
   refreshUI() {
     this.refreshInteractiveElements();
     const t = _t(this.instance.schema), e = Wt(this.instance.schema);
-    h(t) && t === this.instance.value.length && this.control.addBtn.setAttribute("disabled", ""), this.control.childrenSlot.innerHTML = "", this.instance.children.forEach((s) => {
+    d(t) && t === this.instance.value.length && this.control.addBtn.setAttribute("disabled", ""), this.control.childrenSlot.innerHTML = "", this.instance.children.forEach((s) => {
       const n = Number(s.getKey()), r = this.theme.getDeleteItemBtn(), a = this.theme.getMoveUpItemBtn(), o = this.theme.getMoveDownItemBtn();
       s.ui.control.arrayActions.innerHTML = "", s.ui.control.arrayActions.appendChild(r), s.ui.control.arrayActions.appendChild(a), s.ui.control.arrayActions.appendChild(o), this.control.childrenSlot.appendChild(s.ui.control.container), r.addEventListener("click", () => {
         const c = Number(s.path.split(this.instance.jedi.pathSeparator).pop());
@@ -2712,7 +2717,7 @@ class te extends U {
       }), o.addEventListener("click", () => {
         const c = n + 1;
         this.instance.move(n, c);
-      }), this.disabled || this.instance.isReadOnly() ? s.ui.disable() : s.ui.enable(), h(e) && this.instance.value.length <= e && r.setAttribute("disabled", "");
+      }), this.disabled || this.instance.isReadOnly() ? s.ui.disable() : s.ui.enable(), d(e) && this.instance.value.length <= e && r.setAttribute("disabled", "");
     });
   }
 }
@@ -2727,49 +2732,49 @@ class We extends te {
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.childrenSlot.innerHTML = "";
-    const t = f(this.instance.schema, "navCols"), e = f(this.instance.schema, "navStacked"), s = f(this.instance.schema, "navType"), n = this.theme.getRow(), r = h(t) ? t : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), c = this.theme.getTabContent(), l = this.theme.getTabList({
-      stacked: h(e) ? e : !1,
-      type: h(s) ? s : "pils"
+    const t = f(this.instance.schema, "navCols"), e = f(this.instance.schema, "navStacked"), s = f(this.instance.schema, "navType"), n = this.theme.getRow(), r = d(t) ? t : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), c = this.theme.getTabContent(), l = this.theme.getTabList({
+      stacked: d(e) ? e : !1,
+      type: d(s) ? s : "pils"
     });
-    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(l), o.appendChild(c), this.instance.children.forEach((d, u) => {
+    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(l), o.appendChild(c), this.instance.children.forEach((h, u) => {
       const p = this.theme.getDeleteItemBtn(), g = this.theme.getMoveUpItemBtn(), b = this.theme.getMoveDownItemBtn();
-      d.ui.control.arrayActions.innerHTML = "", d.ui.control.arrayActions.appendChild(p), d.ui.control.arrayActions.appendChild(g), d.ui.control.arrayActions.appendChild(b), this.control.childrenSlot.appendChild(d.ui.control.container);
+      h.ui.control.arrayActions.innerHTML = "", h.ui.control.arrayActions.appendChild(p), h.ui.control.arrayActions.appendChild(g), h.ui.control.arrayActions.appendChild(b), this.control.childrenSlot.appendChild(h.ui.control.container);
       let E;
       const y = f(this.instance.schema, "itemTemplate");
       if (y) {
-        const A = y, gt = {
+        const P = y, gt = {
           i0: u,
           i1: u + 1,
-          value: d.getValue()
+          value: h.getValue()
         };
-        E = C(A, gt);
+        E = C(P, gt);
       } else {
-        const A = I(d.schema);
-        E = h(A) ? A + " " + (u + 1) : d.getKey();
+        const P = I(h.schema);
+        E = d(P) ? P + " " + (u + 1) : h.getKey();
       }
       p.addEventListener("click", () => {
         this.activeTabIndex = re(u - 1, 0, this.instance.value.length - 1), this.instance.deleteItem(u);
       }), g.addEventListener("click", () => {
-        const A = u - 1;
-        this.activeTabIndex = A, this.instance.move(u, A);
+        const P = u - 1;
+        this.activeTabIndex = P, this.instance.move(u, P);
       }), b.addEventListener("click", () => {
-        const A = u + 1;
-        this.activeTabIndex = A, this.instance.move(u, A);
+        const P = u + 1;
+        this.activeTabIndex = P, this.instance.move(u, P);
       });
-      const L = u === this.activeTabIndex, q = S(d.path), M = this.theme.getTab({
+      const L = u === this.activeTabIndex, N = S(h.path), M = this.theme.getTab({
         title: E,
-        id: q,
+        id: N,
         active: L
       });
       M.list.addEventListener("click", () => {
         this.activeTabIndex = u;
-      }), this.theme.setTabPaneAttributes(d.ui.control.container, L, q), l.appendChild(M.list), c.appendChild(d.ui.control.container), this.disabled || this.instance.isReadOnly() ? d.ui.disable() : d.ui.enable(), u === 0 && g.setAttribute("disabled", ""), this.instance.value.length - 1 === u && b.setAttribute("disabled", "");
+      }), this.theme.setTabPaneAttributes(h.ui.control.container, L, N), l.appendChild(M.list), c.appendChild(h.ui.control.container), this.disabled || this.instance.isReadOnly() ? h.ui.disable() : h.ui.enable(), u === 0 && g.setAttribute("disabled", ""), this.instance.value.length - 1 === u && b.setAttribute("disabled", "");
     });
   }
 }
 class Qe extends F {
   setUI() {
-    const t = R(this.schema), e = H(this.schema);
+    const t = R(this.schema), e = q(this.schema);
     t === "array" && e === "nav" ? this.ui = new We(this) : this.ui = new te(this);
   }
   prepare() {
@@ -2780,26 +2785,26 @@ class Qe extends F {
   createItemInstance(t) {
     let e;
     const s = this.children.length, n = Gt(this.schema), r = kt(this.schema);
-    e = h(n) ? n : {}, h(r) && h(r[s]) && (e = r[s]);
+    e = d(n) ? n : {}, d(r) && d(r[s]) && (e = r[s]);
     const o = this.jedi.createInstance({
       jedi: this.jedi,
       schema: e,
       path: this.path + this.jedi.pathSeparator + s,
       parent: this,
-      value: j(t)
+      value: T(t)
     });
-    return h(t) && o.setValue(t, !1), o;
+    return d(t) && o.setValue(t, !1), o;
   }
   move(t, e) {
-    const s = j(this.getValue()), n = s[t];
+    const s = T(this.getValue()), n = s[t];
     s.splice(t, 1), s.splice(e, 0, n), this.setValue(s);
   }
   addItem() {
-    const t = this.createItemInstance(), e = j(this.getValue());
+    const t = this.createItemInstance(), e = T(this.getValue());
     e.push(t.getValue()), t.destroy(), this.setValue(e);
   }
   deleteItem(t) {
-    const s = j(this.getValue()).filter((n, r) => r !== t);
+    const s = T(this.getValue()).filter((n, r) => r !== t);
     this.setValue(s);
   }
   onChildChange() {
@@ -2819,13 +2824,13 @@ class Qe extends F {
 }
 class qt extends U {
   build() {
-    const t = ["hidden", "color", "date", "datetime-local", "email", "number", "month", "password", "search", "time", "tel", "text", "textarea", "url", "week"], e = H(this.instance.schema);
+    const t = ["hidden", "color", "date", "datetime-local", "email", "number", "month", "password", "search", "time", "tel", "text", "textarea", "url", "week"], e = q(this.instance.schema);
     this.control = this.theme.getInputControl({
       type: t.includes(e) ? e : "text",
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      srOnly: f(this.instance.schema, "hideTitle") || e === "hidden",
+      description: j(this.instance.schema)
     }), e === "color" && this.instance.value.length === 0 && this.instance.setValue("#000000", !1);
   }
   addEventListeners() {
@@ -2848,7 +2853,7 @@ class Xe extends qt {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2872,7 +2877,7 @@ class Ye extends qt {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     }), this.control.input.addEventListener("change", () => {
       this.instance.setValue(this.control.input.value);
     });
@@ -2883,8 +2888,8 @@ class Ze extends U {
     this.control = this.theme.getTextareaControl({
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      srOnly: f(this.instance.schema, "hideTitle") || q(this.instance.schema) === "hidden",
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2901,8 +2906,8 @@ class Ze extends U {
 }
 class ts extends F {
   setUI() {
-    const t = R(this.schema), e = k(this.schema), s = H(this.schema);
-    t === "string" && h(e) && s === "radio" ? this.ui = new Xe(this) : t === "string" && s === "textarea" ? this.ui = new Ze(this) : t === "string" && h(e) ? this.ui = new Ye(this) : t === "string" && (this.ui = new qt(this));
+    const t = R(this.schema), e = k(this.schema), s = q(this.schema);
+    t === "string" && d(e) && s === "radio" ? this.ui = new Xe(this) : t === "string" && s === "textarea" ? this.ui = new Ze(this) : t === "string" && d(e) ? this.ui = new Ye(this) : t === "string" && (this.ui = new qt(this));
   }
 }
 class Nt extends U {
@@ -2911,8 +2916,8 @@ class Nt extends U {
       type: "number",
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      srOnly: f(this.instance.schema, "hideTitle") || q(this.instance.schema) === "hidden",
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2927,7 +2932,7 @@ class Nt extends U {
   refreshUI() {
     this.refreshInteractiveElements();
     const t = this.instance.getValue();
-    P(t) && (this.control.input.value = this.instance.getValue());
+    A(t) && (this.control.input.value = this.instance.getValue());
   }
 }
 class es extends Nt {
@@ -2938,7 +2943,7 @@ class es extends Nt {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2963,7 +2968,7 @@ class ss extends Nt {
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
       srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      description: j(this.instance.schema)
     });
   }
   addEventListeners() {
@@ -2975,8 +2980,8 @@ class ss extends Nt {
 }
 class is extends F {
   setUI() {
-    const t = R(this.schema), e = k(this.schema), s = H(this.schema), n = t === "number" || t === "integer";
-    n && h(e) && s === "radio" ? this.ui = new es(this) : n && h(e) ? this.ui = new ss(this) : n && (this.ui = new Nt(this));
+    const t = R(this.schema), e = k(this.schema), s = q(this.schema), n = t === "number" || t === "integer";
+    n && d(e) && s === "radio" ? this.ui = new es(this) : n && d(e) ? this.ui = new ss(this) : n && (this.ui = new Nt(this));
   }
 }
 class ns extends U {
@@ -2984,8 +2989,8 @@ class ns extends U {
     this.control = this.theme.getNullControl({
       id: S(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      srOnly: f(this.instance.schema, "hideTitle"),
-      description: T(this.instance.schema)
+      srOnly: f(this.instance.schema, "hideTitle") || q(this.instance.schema) === "hidden",
+      description: j(this.instance.schema)
     });
   }
   sanitize() {
@@ -3023,11 +3028,11 @@ class as extends Yt {
    * @private
    */
   init() {
-    this.schema = this.options.schema, this.validator = new je({ refParser: this.refParser, validateFormat: this.options.validateFormat }), this.root = this.createInstance({
+    this.schema = this.options.schema, this.validator = new Te({ refParser: this.refParser, validateFormat: this.options.validateFormat }), this.root = this.createInstance({
       jedi: this,
       schema: this.options.schema,
       path: this.rootName
-    }), h(this.options.data) && this.root.setValue(this.options.data, !1), this.options.isEditor && this.options.container && (this.container = this.options.container, this.appendHiddenInput(), this.container.appendChild(this.root.ui.control.container), this.container.classList.add("jedi-ready")), this.bindEventListeners();
+    }), d(this.options.data) && this.root.setValue(this.options.data, !1), this.options.isEditor && this.options.container && (this.container = this.options.container, this.appendHiddenInput(), this.container.appendChild(this.root.ui.control.container), this.container.classList.add("jedi-ready")), this.bindEventListeners();
   }
   bindEventListeners() {
     this.root && this.root.on("change", () => {
@@ -3068,11 +3073,11 @@ class as extends Yt {
    */
   createInstance(t) {
     this.refParser && (t.schema = this.refParser.expand(t.schema, t.path));
-    const e = R(t.schema), s = z(t.schema), n = $(t.schema), r = Tt(t.schema), a = Vt(t.schema), o = Pt(t.schema);
-    if (h(n) || h(s) || e === "any" || x(e) || D(e))
+    const e = R(t.schema), s = z(t.schema), n = $(t.schema), r = jt(t.schema), a = Vt(t.schema), o = At(t.schema);
+    if (d(n) || d(s) || e === "any" || x(e) || H(e))
       return new He(t);
-    if (h(r) && (h(a) || h(o)))
-      return new De(t);
+    if (d(r) && (d(a) || d(o)))
+      return new Ue(t);
     if (e === "object")
       return new _e(t);
     if (e === "array")

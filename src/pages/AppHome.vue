@@ -5,10 +5,15 @@
         <app-map />
       </div>
       <div class="col-12 col-md-4">
+        <app-layers />
         <app-tile-info />
         <app-tiles />
       </div>
     </div>
+
+    <!--    <pre>
+{{ appStore.project }}
+    </pre>-->
   </div>
 </template>
 
@@ -18,38 +23,16 @@ import useAppStore from '@/store/app'
 import AppMap from '@/components/AppMap.vue'
 import AppTiles from '@/components/AppTiles.vue'
 import AppTileInfo from '@/components/AppTileInfo.vue'
-import Layer from "@/modules/layer"
+import AppLayers from '@/components/AppLayers.vue'
 
 export default {
   name: 'AppHome',
-  components: {AppTileInfo, AppTiles, AppMap},
+  components: {AppTileInfo, AppTiles, AppMap, AppLayers},
   computed: {
     ...mapStores(useAppStore)
   },
   created() {
-    const projectData = this.appStore.loadProject()
-
-    if (projectData) {
-      this.appStore.initializeProject(projectData)
-    } else {
-      const layer = new Layer()
-      layer.appendRows(2 * 9 )
-      layer.appendColumns(2 * 16)
-      this.appStore.initializeProject({
-        tileSize: 16,
-        tiles: [
-          {
-            id: 0,
-            color: '#123456'
-          },
-          {
-            id: 1,
-            color: '#2ac4cf'
-          }
-        ],
-        layers: [layer]
-      })
-    }
+    this.appStore.initializeProject()
   }
 }
 </script>
