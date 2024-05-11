@@ -38,7 +38,6 @@ export default {
 
       this.editor = new Jedi.Jedi({
         container: this.$refs.tileInfoContainer,
-        isEditor: true,
         data: this.appStore.getActiveTile(),
         iconLib: 'bootstrap-icons',
         schema: {
