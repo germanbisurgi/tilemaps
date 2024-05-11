@@ -14,8 +14,11 @@ const i18n = createI18n({
       brushes: 'Brushes',
       saveProject: 'Save',
       showTilesInfo: 'Show tiles info',
+      showGrid: 'Show Grid',
       layers: 'Layers',
-      controls: 'Controls'
+      controls: 'Controls',
+      addTile: 'Add Tile',
+      addLayer: 'Add Layer',
     },
     de: {
       language: 'Sprache',
@@ -28,8 +31,11 @@ const i18n = createI18n({
       brushes: 'Pinsel',
       saveProject: 'Speichern',
       showTilesInfo: 'Fliesen Info zeigen',
+      showGrid: 'Raster anzeigen',
       layers: 'Schichten',
-      controls: 'Steuerungen'
+      controls: 'Steuerungen',
+      addTile: 'Fliesen hinzufügen',
+      addLayer: 'Schicht hinzufügen'
     }
   }
 })

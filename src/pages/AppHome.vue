@@ -1,19 +1,28 @@
 <template>
   <div class="container pt-3">
+    <h1>{{ appStore.tilemap.name }}</h1>
+
+    <app-map />
+
     <div class="row">
-      <div class="col-12 col-md-8">
-        <app-map />
-      </div>
-      <div class="col-12 col-md-4">
-        <app-layers />
+      <div class="col-md-6">
         <app-tile-info />
         <app-tiles />
       </div>
-    </div>
 
-    <!--    <pre>
-{{ appStore.project }}
-    </pre>-->
+      <div class="col-md-6">
+        <app-layers />
+      </div>
+    </div>
+    <pre>
+{{ JSON.stringify(appStore.tilemap, (key, value) => {
+      if (Array.isArray(value) && Array.isArray(value[0])) {
+        const indentedArray = value.map(innerArray => `  ${JSON.stringify(innerArray)},`).join('');
+        return `[${indentedArray}]`;
+      }
+      return value;
+    }, 2) }}
+    </pre>
   </div>
 </template>
 

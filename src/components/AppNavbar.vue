@@ -7,14 +7,6 @@
           <span class="sr-only">GitHub</span>
         </a>
 
-        <button class="nav-item" @click="appStore.saveProject">
-          {{ $t('saveProject') }}
-        </button>
-
-        <button class="nav-item" @click="appStore.exportJson">
-          {{ $t('exportJson') }}
-        </button>
-
         <app-language-selector class="nav-item" />
       </div>
     </div>

@@ -9,9 +9,10 @@
       </thead>
 
       <tbody>
-        <tr v-for="(layer, index) in appStore.project.layers" :key="index" class="layer">
+        <tr v-for="(layer, index) in appStore.tilemap.layers" :key="index" class="layer">
           <td>
-            <input v-model="layer.name" type="text">
+            <label class="sr-only" for="layer-name">layer name</label>
+            <input id="layer-name" v-model="layer.name" type="text">
           </td>
           <td>
             <button @click="appStore.activeLayer = index">
@@ -20,13 +21,13 @@
               <span class="sr-only">Select</span>
             </button>
 
-            <button @click="selectLayer(index)">
+            <button>
               <i v-if="layer.visible" class="bi bi-eye-fill" @click="layer.visible = !layer.visible" />
               <i v-if="!layer.visible" class="bi bi-eye-slash" @click="layer.visible = !layer.visible" />
               <span class="sr-only">Select</span>
             </button>
 
-            <button @click="deleteLayer(index)">
+            <button @click="appStore.tilemap.deleteLayer(layer.id)">
               <i class="bi bi-trash" />
               <span class="sr-only">Delete</span>
             </button>
@@ -34,6 +35,9 @@
         </tr>
       </tbody>
     </table>
+    <button @click="appStore.tilemap.addLayer()">
+      {{ $t('addLayer') }}
+    </button>
   </div>
 </template>
 

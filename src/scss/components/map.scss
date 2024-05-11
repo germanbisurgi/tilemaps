@@ -27,16 +27,19 @@
     @extend .border;
     @extend .border-radius;
     @extend .mb-md;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     overflow: scroll;
     position: relative;
+  }
+
+  .map-container.no-scroll {
+    overflow: hidden !important;
   }
 
   .layer {
     position: absolute;
     top: 0;
     left: 0;
-    box-shadow: 0 0 0 3px gray;
 
     .layer-row {
       display: flex;
@@ -48,15 +51,31 @@
     }
   }
 
-  .layer.active {
-    box-shadow: 0 0 0 3px red;
-  }
-
   .layer.hidden {
     display: none;
   }
 
-  .layer.no-scroll {
-    overflow: hidden !important;
+  .tile {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    container-type: inline-size;
+  }
+
+  .tile.bordered {
+    border: 1px solid #333;
+  }
+
+  .tile-value {
+    font-family: monospace;
+    font-size: 20cqw;
+  }
+
+  .tile-coordinates {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-family: monospace;
+    font-size: 15cqw;
   }
 }

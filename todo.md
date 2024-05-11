@@ -1,9 +1,7 @@
-- layers editor
-- app and project save to local storage
-- create tile
-- tile class
-- load images
-- display column and row numbers
-- page for app configurations
+- undo/redo
+- remember config
+- scroll / move
+- config page
 - default tile
 - translations
+- layer index
