@@ -5,8 +5,8 @@ class Tilemap {
   constructor(config = {}) {
     this.name = config.name ? config.name : 'tilemap'
     this.tileSize = config.tileSize ? config.tileSize : 32
-    this.columns = config.columns ? config.columns : 10
-    this.rows = config.rows ? config.rows : 10
+    this.columns = config.columns ? config.columns : 40
+    this.rows = config.rows ? config.rows : 40
     this.tiles = config.tiles ? config.tiles : []
     this.layers = config.layers ? config.layers : []
   }
@@ -37,6 +37,7 @@ class Tilemap {
 
   addTile() {
     const tile = new Tile()
+    tile.id = this.tiles.length
     this.tiles.push(tile)
   }
 

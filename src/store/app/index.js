@@ -52,7 +52,9 @@ const useAppStore = defineStore('app', {
         return tile
       })
 
-      this.tilemap.tiles = tiles
+      this.$patch((state) => {
+        state.tilemap.tiles = tiles
+      })
     },
     setDrawing(value) {
       this.drawing = value
