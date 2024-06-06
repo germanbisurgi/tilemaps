@@ -41,6 +41,14 @@ const useAppStore = defineStore('app', {
     setActiveTileId(value) {
       this.activeTileId = value
     },
+    deleteTile (id) {
+      const tilemap = this.tilemap
+      tilemap.deleteTile(id)
+
+      this.$patch((state) => {
+        state.tilemap = tilemap
+      })
+    },
     updateTile(newTile) {
       let tiles = this.tilemap.tiles
 

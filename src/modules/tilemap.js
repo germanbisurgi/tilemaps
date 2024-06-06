@@ -40,6 +40,20 @@ class Tilemap {
     tile.id = this.tiles.length
     this.tiles.push(tile)
   }
+  deleteTile(id) {
+    this.tiles = this.tiles.filter((tile => tile.id !== id))
+
+    this.layers.forEach((layer) => {
+
+      layer.grid.forEach((row) => {
+        row.forEach((column, index) => {
+          if (column === id) {
+            row[index] = 0
+          }
+        })
+      })
+    })
+  }
 
   appendRows(q) {
     for (let i = 0; i < q; i++) {
