@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <div class="container">
+    <div class="container-fluid">
       <div class="nav-items">
         <a class="nav-item" target="_blank" href="https://github.com/germanbisurgi/tiles">
           <i class="bi bi-github" />

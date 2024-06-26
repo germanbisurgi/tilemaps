@@ -1,10 +1,12 @@
 <template>
   <div class="tiles">
-    <button @click="appStore.tilemap.addTile()">
-      {{ $t('addTile') }}
-    </button>
     <div v-for="(tile, index) in appStore.tilemap.tiles" :key="index" class="tile" :class="{ 'active': tile.id === appStore.activeTileId }" :style="{ background: tile.color }" @click="appStore.setActiveTileId(tile.id)">
       <div>{{ tile.name }}</div>
+    </div>
+    <div>
+      <button @click="appStore.tilemap.addTile()">
+        {{ $t('addTile') }}
+      </button>
     </div>
   </div>
 </template>

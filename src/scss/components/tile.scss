@@ -2,6 +2,7 @@
   .tile {
     @extend .border;
     @extend .mr-sm;
+    @extend .mb-md;
     display: inline-block;
     cursor: pointer;
     width: 32px;

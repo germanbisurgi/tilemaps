@@ -1,54 +1,54 @@
-function ee() {
+function et() {
   const i = [];
-  return function(t, e) {
-    if (typeof e != "object" || e === null)
-      return e;
+  return function(e, t) {
+    if (typeof t != "object" || t === null)
+      return t;
     for (; i.length > 0 && i.at(-1) !== this; )
       i.pop();
-    return i.includes(e) ? "[Circular]" : (i.push(e), e);
+    return i.includes(t) ? "[Circular]" : (i.push(t), t);
   };
 }
-function k(i) {
+function M(i) {
   if (!(typeof i > "u"))
-    return JSON.parse(JSON.stringify(i, ee()));
+    return JSON.parse(JSON.stringify(i, et()));
 }
-function se(i) {
+function tt(i) {
   return i.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
-function Dt(i, t, e) {
-  return i.replace(new RegExp(se(t), "g"), e);
+function De(i, e, t) {
+  return i.replace(new RegExp(tt(e), "g"), t);
 }
-function S(i) {
-  return Dt(Dt(i, "#", "root"), "/", "-");
+function w(i) {
+  return De(De(i, "#", "root"), "/", "-");
 }
-function N(i, t) {
-  return Object.prototype.hasOwnProperty.call(i, t);
+function N(i, e) {
+  return Object.prototype.hasOwnProperty.call(i, e);
 }
-function It(i) {
-  return Object.keys(i).sort().reduce((t, e) => (t[e] = i[e], t), {});
+function Ie(i) {
+  return Object.keys(i).sort().reduce((e, t) => (e[t] = i[t], e), {});
 }
-function wt(i, t) {
-  return m(i) && m(t) && (i = It(i), t = It(t)), JSON.stringify(i) === JSON.stringify(t);
+function we(i, e) {
+  return g(i) && g(e) && (i = Ie(i), e = Ie(e)), JSON.stringify(i) === JSON.stringify(e);
 }
-function Pt(i, t) {
-  return !wt(i, t);
+function Pe(i, e) {
+  return !we(i, e);
 }
-function At(i) {
+function Ae(i) {
   return i === null;
 }
-function l(i) {
+function d(i) {
   return typeof i < "u";
 }
 function U(i) {
   return typeof i > "u";
 }
-function O(i) {
+function T(i) {
   return typeof i == "number";
 }
-function H(i) {
-  return O(i) && i === Math.floor(i);
+function B(i) {
+  return T(i) && i === Math.floor(i);
 }
-function V(i) {
+function R(i) {
   return typeof i == "string";
 }
 function P(i) {
@@ -57,34 +57,34 @@ function P(i) {
 function x(i) {
   return Array.isArray(i);
 }
-function m(i) {
-  return !At(i) && !x(i) && typeof i == "object";
+function g(i) {
+  return !Ae(i) && !x(i) && typeof i == "object";
 }
-function ie(i) {
-  let t = "any";
-  return O(i) ? t = H(i) ? "integer" : "number" : V(i) ? t = "string" : P(i) ? t = "boolean" : x(i) ? t = "array" : At(i) ? t = "null" : m(i) && (t = "object"), t;
+function st(i) {
+  let e = "any";
+  return T(i) ? e = B(i) ? "integer" : "number" : R(i) ? e = "string" : P(i) ? e = "boolean" : x(i) ? e = "array" : Ae(i) ? e = "null" : g(i) && (e = "object"), e;
 }
-function K(i, ...t) {
-  if (!t.length)
+function K(i, ...e) {
+  if (!e.length)
     return i;
-  const e = t.shift();
-  return m(i) && m(e) && Object.keys(e).forEach((s) => {
-    m(e[s]) ? (i[s] || Object.assign(i, {
+  const t = e.shift();
+  return g(i) && g(t) && Object.keys(t).forEach((s) => {
+    g(t[s]) ? (i[s] || Object.assign(i, {
       [s]: {}
-    }), K(i[s], e[s])) : Object.assign(i, {
-      [s]: e[s]
+    }), K(i[s], t[s])) : Object.assign(i, {
+      [s]: t[s]
     });
-  }), K(i, ...t);
+  }), K(i, ...e);
 }
-function $t(i, t) {
-  return Object.keys(t).forEach(function(e) {
-    e in i && typeof i[e] == typeof t[e] && (i[e] = t[e]);
+function it(i, e) {
+  return Object.keys(e).forEach(function(t) {
+    t in i && typeof i[t] == typeof e[t] && (i[t] = e[t]);
   }), i;
 }
-function ne(i, t) {
-  const e = t.split(".");
+function nt(i, e) {
+  const t = e.split(".");
   let s = i;
-  for (const n of e)
+  for (const n of t)
     if (Array.isArray(s) && /^\d+$/.test(n)) {
       const r = parseInt(n);
       if (r >= 0 && r < s.length)
@@ -97,168 +97,168 @@ function ne(i, t) {
       return;
   return s;
 }
-function y(i, t) {
-  return i.replace(/{{(.*?)}}/g, (e) => {
-    e = e.replace(/\s/g, "");
-    const s = e.split(/{{|}}/)[1];
-    return ne(t, s);
+function E(i, e) {
+  return i.replace(/{{(.*?)}}/g, (t) => {
+    t = t.replace(/\s/g, "");
+    const s = t.split(/{{|}}/)[1];
+    return nt(e, s);
   });
 }
-function re(i, t, e) {
-  return Math.max(t, Math.min(i, e));
+function rt(i, e, t) {
+  return Math.max(e, Math.min(i, t));
 }
-function Kt(i) {
-  const t = [], e = /* @__PURE__ */ new Set();
+function $e(i) {
+  const e = [], t = /* @__PURE__ */ new Set();
   for (const s of i) {
     const n = JSON.stringify(s);
-    e.has(n) || (e.add(n), t.push(s));
+    t.has(n) || (t.add(n), e.push(s));
   }
-  return t;
+  return e;
 }
-function St(i) {
-  return m(i.additionalProperties) || P(i.additionalProperties) ? i.additionalProperties : void 0;
+function Se(i) {
+  return g(i.additionalProperties) || P(i.additionalProperties) ? i.additionalProperties : void 0;
 }
-function ae(i) {
-  return m(i.propertyNames) || P(i.propertyNames) ? i.propertyNames : void 0;
+function at(i) {
+  return g(i.propertyNames) || P(i.propertyNames) ? i.propertyNames : void 0;
 }
-function zt(i) {
+function Ke(i) {
   return x(i.allOf) ? i.allOf : void 0;
 }
 function $(i) {
   return x(i.anyOf) ? i.anyOf : void 0;
 }
-function oe(i) {
+function ot(i) {
   return i.const;
 }
-function ce(i) {
-  return m(i.contains) || P(i.contains) ? i.contains : void 0;
+function lt(i) {
+  return g(i.contains) || P(i.contains) ? i.contains : void 0;
 }
-function de(i) {
+function ct(i) {
   return i.default;
 }
-function Jt(i) {
-  return m(i.dependentRequired) ? i.dependentRequired : void 0;
+function ze(i) {
+  return g(i.dependentRequired) ? i.dependentRequired : void 0;
 }
-function le(i) {
-  return m(i.dependentSchemas) ? i.dependentSchemas : void 0;
+function dt(i) {
+  return g(i.dependentSchemas) ? i.dependentSchemas : void 0;
 }
 function j(i) {
-  return V(i.description) ? i.description : void 0;
+  return R(i.description) ? i.description : void 0;
 }
-function Ot(i) {
-  return m(i.else) || P(i.else) ? i.else : void 0;
+function Oe(i) {
+  return g(i.else) || P(i.else) ? i.else : void 0;
 }
-function T(i) {
+function V(i) {
   if (x(i.enum) && i.enum.length > 0)
     return i.enum;
 }
-function he(i) {
-  return O(i.exclusiveMaximum) ? i.exclusiveMaximum : void 0;
+function ht(i) {
+  return T(i.exclusiveMaximum) ? i.exclusiveMaximum : void 0;
 }
-function ue(i) {
-  return O(i.exclusiveMinimum) ? i.exclusiveMinimum : void 0;
+function ut(i) {
+  return T(i.exclusiveMinimum) ? i.exclusiveMinimum : void 0;
 }
-function B(i) {
-  return V(i.format) ? i.format : void 0;
+function q(i) {
+  return R(i.format) ? i.format : void 0;
 }
-function jt(i) {
-  if (m(i.if) || P(i.if))
+function Te(i) {
+  if (g(i.if) || P(i.if))
     return i.if;
 }
-function Gt(i) {
-  return m(i.items) || P(i.items) ? i.items : void 0;
+function Je(i) {
+  return g(i.items) || P(i.items) ? i.items : void 0;
 }
-function pe(i) {
-  return O(i.maximum) ? i.maximum : void 0;
+function pt(i) {
+  return T(i.maximum) ? i.maximum : void 0;
 }
-function me(i) {
-  if (H(i.maxContains) && i.maxContains >= 0)
+function mt(i) {
+  if (B(i.maxContains) && i.maxContains >= 0)
     return i.maxContains;
 }
-function _t(i) {
-  if (H(i.maxItems) && i.maxItems >= 0)
+function Ge(i) {
+  if (B(i.maxItems) && i.maxItems >= 0)
     return i.maxItems;
 }
-function fe(i) {
-  if (H(i.maxLength) && i.maxLength >= 0)
+function ft(i) {
+  if (B(i.maxLength) && i.maxLength >= 0)
     return i.maxLength;
 }
-function ge(i) {
-  if (H(i.maxProperties))
+function gt(i) {
+  if (B(i.maxProperties))
     return i.maxProperties;
 }
-function ve(i) {
-  return O(i.minimum) ? i.minimum : void 0;
+function bt(i) {
+  return T(i.minimum) ? i.minimum : void 0;
 }
-function be(i) {
-  if (H(i.minContains) && i.minContains >= 0)
+function vt(i) {
+  if (B(i.minContains) && i.minContains >= 0)
     return i.minContains;
 }
-function Wt(i) {
-  if (H(i.minItems) && i.minItems >= 0)
+function _e(i) {
+  if (B(i.minItems) && i.minItems >= 0)
     return i.minItems;
 }
-function Ce(i) {
-  if (H(i.minLength) && i.minLength >= 0)
+function Ct(i) {
+  if (B(i.minLength) && i.minLength >= 0)
     return i.minLength;
 }
-function ye(i) {
-  if (H(i.minProperties) && i.minProperties >= 0)
+function yt(i) {
+  if (B(i.minProperties) && i.minProperties >= 0)
     return i.minProperties;
 }
-function Le(i) {
-  if (O(i.multipleOf) && i.multipleOf >= 0)
+function Et(i) {
+  if (T(i.multipleOf) && i.multipleOf >= 0)
     return i.multipleOf;
 }
-function Ee(i) {
-  return m(i.not) || P(i.not) ? i.not : void 0;
+function Lt(i) {
+  return g(i.not) || P(i.not) ? i.not : void 0;
 }
-function f(i, t) {
-  return i.options && i.options[t] ? i.options[t] : void 0;
+function m(i, e) {
+  return i.options && i.options[e] ? i.options[e] : void 0;
 }
-function xe(i) {
-  return V(i.pattern) ? i.pattern : void 0;
+function xt(i) {
+  return R(i.pattern) ? i.pattern : void 0;
 }
-function kt(i) {
-  return m(i.patternProperties) ? i.patternProperties : void 0;
+function je(i) {
+  return g(i.patternProperties) ? i.patternProperties : void 0;
 }
-function Tt(i) {
+function ke(i) {
   return x(i.prefixItems) ? i.prefixItems : void 0;
 }
-function Mt(i) {
-  return m(i.properties) ? i.properties : void 0;
+function Me(i) {
+  return g(i.properties) ? i.properties : void 0;
 }
-function Ft(i) {
+function Fe(i) {
   return P(i.readOnly) ? i.readOnly : void 0;
 }
-function Qt(i) {
+function We(i) {
   return x(i.required) ? [...new Set(i.required)] : void 0;
 }
-function Vt(i) {
-  return m(i.then) || P(i.then) ? i.then : void 0;
+function Ve(i) {
+  return g(i.then) || P(i.then) ? i.then : void 0;
 }
 function I(i) {
-  return V(i.title) ? i.title : void 0;
+  return R(i.title) ? i.title : void 0;
 }
-function R(i) {
-  if (V(i.type) || x(i.type))
+function H(i) {
+  if (R(i.type) || x(i.type))
     return i.type;
 }
 function z(i) {
   return x(i.oneOf) ? i.oneOf : void 0;
 }
-function Ie(i) {
+function It(i) {
   return P(i.unevaluatedProperties) ? i.unevaluatedProperties : void 0;
 }
-function we(i) {
+function wt(i) {
   return P(i.uniqueItems) ? i.uniqueItems : void 0;
 }
-function J(i, t, e, s) {
+function J(i, e, t, s) {
   let n = [];
-  const r = zt(e);
-  return l(r) && r.forEach((a) => {
-    const o = new w({ refParser: i.refParser, schema: a, data: t, rootName: s }), c = o.getErrors();
-    o.destroy(), n = [...n, ...c], n = Kt(n);
+  const r = Ke(t);
+  return d(r) && r.forEach((a) => {
+    const o = new S({ refParser: i.refParser, schema: a, data: e, rootName: s }), l = o.getErrors();
+    o.destroy(), n = [...n, ...l], n = $e(n);
   }), n;
 }
 const v = {
@@ -293,11 +293,11 @@ const v = {
   errorUnevaluatedProperties: 'Has invalid unevaluated property "{{ property }}"',
   errorUniqueItems: "Must have unique items."
 };
-function G(i, t, e, s, n) {
-  const r = [], a = Ce(e);
-  return V(t) && l(a) && (t = t.replace(/[\uDCA9]/g, ""), t.length < a && r.push({
+function G(i, e, t, s, n) {
+  const r = [], a = Ct(t);
+  return R(e) && d(a) && (e = e.replace(/[\uDCA9]/g, ""), e.length < a && r.push({
     messages: [
-      y(v.errorMinLength, {
+      E(v.errorMinLength, {
         minLength: a
       })
     ],
@@ -305,13 +305,13 @@ function G(i, t, e, s, n) {
     constrain: "minLength"
   })), r;
 }
-function _(i, t, e, s, n) {
-  const r = [], a = $(e);
-  if (l(a)) {
+function _(i, e, t, s, n) {
+  const r = [], a = $(t);
+  if (d(a)) {
     let o = !1;
-    a.forEach((c) => {
-      const d = new w({ refParser: i.refParser, schema: c, data: t }), h = d.getErrors();
-      d.destroy(), h.length === 0 && (o = !0);
+    a.forEach((l) => {
+      const c = new S({ refParser: i.refParser, schema: l, data: e }), h = c.getErrors();
+      c.destroy(), h.length === 0 && (o = !0);
     }), o || r.push({
       messages: [
         v.errorAnyOf
@@ -322,11 +322,11 @@ function _(i, t, e, s, n) {
   }
   return r;
 }
-function W(i, t, e, s, n) {
-  const r = [], a = T(e);
-  return l(a) && !a.some((c) => JSON.stringify(t) === JSON.stringify(c)) && r.push({
+function W(i, e, t, s, n) {
+  const r = [], a = V(t);
+  return d(a) && !a.some((l) => JSON.stringify(e) === JSON.stringify(l)) && r.push({
     messages: [
-      y(v.errorEnum, {
+      E(v.errorEnum, {
         enum: JSON.stringify(a)
       })
     ],
@@ -334,11 +334,11 @@ function W(i, t, e, s, n) {
     constrain: "enum"
   }), r;
 }
-function Q(i, t, e, s, n) {
-  const r = [], a = he(e);
-  return O(t) && l(a) && t >= a && r.push({
+function Q(i, e, t, s, n) {
+  const r = [], a = ht(t);
+  return T(e) && d(a) && e >= a && r.push({
     messages: [
-      y(v.errorExclusiveMaximum, {
+      E(v.errorExclusiveMaximum, {
         exclusiveMaximum: a
       })
     ],
@@ -346,11 +346,11 @@ function Q(i, t, e, s, n) {
     constrain: "exclusiveMaximum"
   }), r;
 }
-function X(i, t, e, s, n) {
-  const r = [], a = ue(e);
-  return O(t) && l(a) && t <= a && r.push({
+function X(i, e, t, s, n) {
+  const r = [], a = ut(t);
+  return T(e) && d(a) && e <= a && r.push({
     messages: [
-      y(v.errorExclusiveMinimum, {
+      E(v.errorExclusiveMinimum, {
         exclusiveMinimum: a
       })
     ],
@@ -358,14 +358,14 @@ function X(i, t, e, s, n) {
     constrain: "exclusiveMinimum"
   }), r;
 }
-function Y(i, t, e, s, n) {
-  const r = [], a = B(e);
+function Y(i, e, t, s, n) {
+  const r = [], a = q(t);
   let o = i.validateFormat;
-  if (f(e, "validateFormat") && (o = e.options.validateFormat), l(a) && V(t) && o) {
-    let c;
-    a === "email" && (c = new RegExp(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i)), a === "url" && (c = new RegExp(/^(?:https?|ftp):\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)(?:\.(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)*(?:\.(?:[a-z\u{00a1}-\u{ffff}]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/iu)), a === "uuid" && (c = new RegExp(/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i)), l(c) && !c.test(t) && r.push({
+  if (m(t, "validateFormat") && (o = t.options.validateFormat), d(a) && R(e) && o) {
+    let l;
+    a === "email" && (l = new RegExp(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i)), a === "url" && (l = new RegExp(/^(?:https?|ftp):\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)(?:\.(?:[a-z0-9\u{00a1}-\u{ffff}]+-)*[a-z0-9\u{00a1}-\u{ffff}]+)*(?:\.(?:[a-z\u{00a1}-\u{ffff}]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/iu)), a === "uuid" && (l = new RegExp(/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i)), d(l) && !l.test(e) && r.push({
       messages: [
-        y(v.errorFormat, { format: a })
+        E(v.errorFormat, { format: a })
       ],
       path: n,
       constrain: "format"
@@ -373,11 +373,11 @@ function Y(i, t, e, s, n) {
   }
   return r;
 }
-function Z(i, t, e, s, n) {
-  const r = [], a = Gt(e), o = Tt(e);
-  if (x(t) && l(a)) {
-    const c = l(o) ? o.length : 0;
-    a === !1 && t.length > 0 && t.length > c && r.push({
+function Z(i, e, t, s, n) {
+  const r = [], a = Je(t), o = ke(t);
+  if (x(e) && d(a)) {
+    const l = d(o) ? o.length : 0;
+    a === !1 && e.length > 0 && e.length > l && r.push({
       messages: [v.errorItems],
       path: n,
       constrain: "items"
@@ -385,11 +385,11 @@ function Z(i, t, e, s, n) {
   }
   return r;
 }
-function tt(i, t, e, s, n) {
-  const r = [], a = _t(e);
-  return x(t) && l(a) && t.length > a && r.push({
+function ee(i, e, t, s, n) {
+  const r = [], a = Ge(t);
+  return x(e) && d(a) && e.length > a && r.push({
     messages: [
-      y(v.errorMaxItems, {
+      E(v.errorMaxItems, {
         maxItems: a
       })
     ],
@@ -397,11 +397,11 @@ function tt(i, t, e, s, n) {
     constrain: "maxItems"
   }), r;
 }
-function et(i, t, e, s, n) {
-  const r = [], a = fe(e);
-  return V(t) && l(a) && (t = t.replace(/[\uDCA9]/g, ""), t.length > a && r.push({
+function te(i, e, t, s, n) {
+  const r = [], a = ft(t);
+  return R(e) && d(a) && (e = e.replace(/[\uDCA9]/g, ""), e.length > a && r.push({
     messages: [
-      y(v.errorMaxLength, {
+      E(v.errorMaxLength, {
         maxLength: a
       })
     ],
@@ -409,11 +409,11 @@ function et(i, t, e, s, n) {
     constrain: "maxLength"
   })), r;
 }
-function st(i, t, e, s, n) {
-  const r = [], a = ge(e);
-  return m(t) && l(a) && Object.keys(t).length > a && r.push({
+function se(i, e, t, s, n) {
+  const r = [], a = gt(t);
+  return g(e) && d(a) && Object.keys(e).length > a && r.push({
     messages: [
-      y(v.errorMaxProperties, {
+      E(v.errorMaxProperties, {
         maxProperties: a
       })
     ],
@@ -421,11 +421,11 @@ function st(i, t, e, s, n) {
     constrain: "maxProperties"
   }), r;
 }
-function it(i, t, e, s, n) {
-  const r = [], a = ve(e);
-  return O(t) && l(a) && t < a && r.push({
+function ie(i, e, t, s, n) {
+  const r = [], a = bt(t);
+  return T(e) && d(a) && e < a && r.push({
     messages: [
-      y(v.errorMinimum, {
+      E(v.errorMinimum, {
         minimum: a
       })
     ],
@@ -433,11 +433,11 @@ function it(i, t, e, s, n) {
     constrain: "minimum"
   }), r;
 }
-function nt(i, t, e, s, n) {
-  const r = [], a = Wt(e);
-  return x(t) && l(a) && t.length < a && r.push({
+function ne(i, e, t, s, n) {
+  const r = [], a = _e(t);
+  return x(e) && d(a) && e.length < a && r.push({
     messages: [
-      y(v.errorMinItems, {
+      E(v.errorMinItems, {
         minItems: a
       })
     ],
@@ -445,11 +445,11 @@ function nt(i, t, e, s, n) {
     constrain: "minItems"
   }), r;
 }
-function rt(i, t, e, s, n) {
-  const r = [], a = ye(e);
-  return m(t) && l(a) && Object.keys(t).length < a && r.push({
+function re(i, e, t, s, n) {
+  const r = [], a = yt(t);
+  return g(e) && d(a) && Object.keys(e).length < a && r.push({
     messages: [
-      y(v.errorMinProperties, {
+      E(v.errorMinProperties, {
         minProperties: a
       })
     ],
@@ -457,14 +457,14 @@ function rt(i, t, e, s, n) {
     constrain: "minProperties"
   }), r;
 }
-function at(i, t, e, s, n) {
-  const r = [], a = Le(e);
-  if (O(t) && l(a)) {
-    if (t === 0)
+function ae(i, e, t, s, n) {
+  const r = [], a = Et(t);
+  if (T(e) && d(a)) {
+    if (e === 0)
       return r;
-    (!(t / a === Math.floor(t / a)) || t.toString().includes("e")) && r.push({
+    (!(e / a === Math.floor(e / a)) || e.toString().includes("e")) && r.push({
       messages: [
-        y(v.errorMultipleOf, {
+        E(v.errorMultipleOf, {
           multipleOf: a
         })
       ],
@@ -474,13 +474,13 @@ function at(i, t, e, s, n) {
   }
   return r;
 }
-function ot(i, t, e, s, n) {
-  const r = [], a = Ee(e);
-  if (l(a)) {
-    const o = new w({ refParser: i.refParser, schema: a, data: t }), c = o.getErrors();
-    o.destroy(), c.length === 0 && r.push({
+function oe(i, e, t, s, n) {
+  const r = [], a = Lt(t);
+  if (d(a)) {
+    const o = new S({ refParser: i.refParser, schema: a, data: e }), l = o.getErrors();
+    o.destroy(), l.length === 0 && r.push({
       messages: [
-        y(v.errorNot)
+        E(v.errorNot)
       ],
       path: n,
       constrain: "not"
@@ -488,16 +488,16 @@ function ot(i, t, e, s, n) {
   }
   return r;
 }
-function ct(i, t, e, s, n) {
-  const r = [], a = z(e);
-  if (l(a)) {
+function le(i, e, t, s, n) {
+  const r = [], a = z(t);
+  if (d(a)) {
     let o = 0;
-    a.forEach((c) => {
-      const d = new w({ refParser: i.refParser, schema: c, data: t }), h = d.getErrors();
-      d.destroy(), h.length === 0 && o++;
+    a.forEach((l) => {
+      const c = new S({ refParser: i.refParser, schema: l, data: e }), h = c.getErrors();
+      c.destroy(), h.length === 0 && o++;
     }), o !== 1 && r.push({
       messages: [
-        y(v.errorOneOf, {
+        E(v.errorOneOf, {
           counter: o
         })
       ],
@@ -507,11 +507,11 @@ function ct(i, t, e, s, n) {
   }
   return r;
 }
-function dt(i, t, e, s, n) {
-  const r = [], a = xe(e);
-  return V(t) && l(a) && !new RegExp(a).test(t) && r.push({
+function ce(i, e, t, s, n) {
+  const r = [], a = xt(t);
+  return R(e) && d(a) && !new RegExp(a).test(e) && r.push({
     messages: [
-      y(v.errorPattern, {
+      E(v.errorPattern, {
         pattern: a
       })
     ],
@@ -519,16 +519,16 @@ function dt(i, t, e, s, n) {
     constrain: "pattern"
   }), r;
 }
-function lt(i, t, e, s) {
+function de(i, e, t, s) {
   let n = [];
-  const r = kt(e);
-  return m(t) && l(r) && Object.keys(t).forEach((a) => {
+  const r = je(t);
+  return g(e) && d(r) && Object.keys(e).forEach((a) => {
     Object.keys(r).forEach((o) => {
       if (new RegExp(o).test(a)) {
-        const d = r[o], h = new w({
+        const c = r[o], h = new S({
           refParser: i.refParser,
-          schema: d,
-          data: t[a]
+          schema: c,
+          data: e[a]
         }), u = h.getErrors().map((p) => ({
           messages: p.messages,
           path: s + "/" + a,
@@ -539,15 +539,15 @@ function lt(i, t, e, s) {
     });
   }), n;
 }
-function ht(i, t, e, s, n) {
-  const r = [], a = Qt(e);
-  if (m(t) && l(a)) {
-    const o = [], c = Object.keys(t);
+function he(i, e, t, s, n) {
+  const r = [], a = We(t);
+  if (g(e) && d(a)) {
+    const o = [], l = Object.keys(e);
     a.forEach((h) => {
-      c.includes(h) || o.push(h);
+      l.includes(h) || o.push(h);
     }), o.length > 0 && r.push({
       messages: [
-        y(v.errorRequired, {
+        E(v.errorRequired, {
           required: o.join(", ")
         })
       ],
@@ -557,26 +557,26 @@ function ht(i, t, e, s, n) {
   }
   return r;
 }
-function ut(i, t, e, s, n) {
-  const r = [], a = R(e);
+function ue(i, e, t, s, n) {
+  const r = [], a = H(t);
   if (a === "any")
     return r;
-  if (l(a)) {
+  if (d(a)) {
     const o = {
-      string: (d) => V(d),
-      number: (d) => O(d),
-      integer: (d) => H(d),
-      boolean: (d) => P(d),
-      array: (d) => x(d),
-      object: (d) => m(d),
-      null: (d) => At(d)
+      string: (c) => R(c),
+      number: (c) => T(c),
+      integer: (c) => B(c),
+      boolean: (c) => P(c),
+      array: (c) => x(c),
+      object: (c) => g(c),
+      null: (c) => Ae(c)
     };
-    let c = !0;
-    x(a) ? c = a.some((d) => o[d](t)) : c = o[a](t), c || r.push({
+    let l = !0;
+    x(a) ? l = a.some((c) => o[c](e)) : l = o[a](e), l || r.push({
       messages: [
-        y(v.errorType, {
+        E(v.errorType, {
           type: a,
-          valueType: ie(t)
+          valueType: st(e)
         })
       ],
       path: n,
@@ -585,11 +585,11 @@ function ut(i, t, e, s, n) {
   }
   return r;
 }
-function pt(i, t, e, s, n) {
-  const r = [], a = pe(e);
-  return O(t) && l(a) && t > a && r.push({
+function pe(i, e, t, s, n) {
+  const r = [], a = pt(t);
+  return T(e) && d(a) && e > a && r.push({
     messages: [
-      y(v.errorMaximum, {
+      E(v.errorMaximum, {
         maximum: a
       })
     ],
@@ -597,20 +597,20 @@ function pt(i, t, e, s, n) {
     constrain: "maximum"
   }), r;
 }
-function mt(i, t, e, s, n) {
-  const r = [], a = we(e);
-  if (x(t) && l(a) && a === !0) {
+function me(i, e, t, s, n) {
+  const r = [], a = wt(t);
+  if (x(e) && d(a) && a === !0) {
     const o = [];
-    let c = !1;
-    for (let h = 0; h < t.length; h++) {
-      let u = t[h];
-      m(u) && (u = It(u));
+    let l = !1;
+    for (let h = 0; h < e.length; h++) {
+      let u = e[h];
+      g(u) && (u = Ie(u));
       const p = JSON.stringify(u);
-      if (c = o.some((g) => g === p), c)
+      if (l = o.some((f) => f === p), l)
         break;
       o.push(p);
     }
-    c && r.push({
+    l && r.push({
       messages: [
         v.errorUniqueItems
       ],
@@ -620,41 +620,41 @@ function mt(i, t, e, s, n) {
   }
   return r;
 }
-function ft(i, t, e, s, n) {
+function fe(i, e, t, s, n) {
   let r = [];
-  const a = St(e), o = kt(e), c = Mt(e);
-  if (m(t) && l(a)) {
-    const d = l(c) ? c : {}, h = a, u = o;
-    d && Object.keys(t).forEach((p) => {
-      let g = !1;
-      if (l(u) && Object.keys(u).forEach((b) => {
-        g = new RegExp(b).test(p);
-      }), !g && h === !1 && !N(d, p) && r.push({
+  const a = Se(t), o = je(t), l = Me(t);
+  if (g(e) && d(a)) {
+    const c = d(l) ? l : {}, h = a, u = o;
+    c && Object.keys(e).forEach((p) => {
+      let f = !1;
+      if (d(u) && Object.keys(u).forEach((b) => {
+        f = new RegExp(b).test(p);
+      }), !f && h === !1 && !N(c, p) && r.push({
         messages: [
-          y(v.errorAdditionalProperties, {
+          E(v.errorAdditionalProperties, {
             property: p
           })
         ],
         path: n,
         constrain: "additionalProperties"
-      }), !g && m(h) && !N(d, p)) {
-        const b = new w({
+      }), !f && g(h) && !N(c, p)) {
+        const b = new S({
           refParser: i.refParser,
           schema: h,
-          data: t[p]
-        }), L = b.getErrors().map((C) => ({
-          messages: C.messages,
+          data: e[p]
+        }), C = b.getErrors().map((y) => ({
+          messages: y.messages,
           path: p,
           constrain: "additionalProperties"
         }));
-        r = [...r, ...L], b.destroy();
+        r = [...r, ...C], b.destroy();
       }
     });
   }
   return r;
 }
-const Se = {
-  additionalProperties: ft,
+const St = {
+  additionalProperties: fe,
   allOf: J,
   anyOf: _,
   enum: W,
@@ -662,28 +662,28 @@ const Se = {
   exclusiveMinimum: X,
   format: Y,
   items: Z,
-  maximum: pt,
-  maxItems: tt,
-  maxLength: et,
-  maxProperties: st,
-  minimum: it,
-  minItems: nt,
+  maximum: pe,
+  maxItems: ee,
+  maxLength: te,
+  maxProperties: se,
+  minimum: ie,
+  minItems: ne,
   minLength: G,
-  minProperties: rt,
-  multipleOf: at,
-  not: ot,
-  oneOf: ct,
-  pattern: dt,
-  patternProperties: lt,
-  required: ht,
-  type: ut,
-  uniqueItems: mt
+  minProperties: re,
+  multipleOf: ae,
+  not: oe,
+  oneOf: le,
+  pattern: ce,
+  patternProperties: de,
+  required: he,
+  type: ue,
+  uniqueItems: me
 };
-function vt(i, t, e, s, n) {
-  const r = [], a = oe(e);
-  return l(a) && Pt(t, a) && r.push({
+function be(i, e, t, s, n) {
+  const r = [], a = ot(t);
+  return d(a) && Pe(e, a) && r.push({
     messages: [
-      y(v.errorConst, {
+      E(v.errorConst, {
         const: JSON.stringify(a)
       })
     ],
@@ -691,19 +691,19 @@ function vt(i, t, e, s, n) {
     constrain: "const"
   }), r;
 }
-function bt(i, t, e, s, n) {
-  const r = [], a = ce(e), o = be(e), c = me(e);
-  if (x(t) && l(a)) {
-    let d = 0;
-    t.forEach((u) => {
-      const p = new w({ refParser: i.refParser, schema: a, data: u });
-      p.getErrors().length === 0 && d++, p.destroy();
+function ve(i, e, t, s, n) {
+  const r = [], a = lt(t), o = vt(t), l = mt(t);
+  if (x(e) && d(a)) {
+    let c = 0;
+    e.forEach((u) => {
+      const p = new S({ refParser: i.refParser, schema: a, data: u });
+      p.getErrors().length === 0 && c++, p.destroy();
     });
-    const h = d === 0;
-    l(o) ? d < o && r.push({
+    const h = c === 0;
+    d(o) ? c < o && r.push({
       messages: [
-        y(v.errorMinContains, {
-          counter: d,
+        E(v.errorMinContains, {
+          counter: c,
           minContains: o
         })
       ],
@@ -713,11 +713,11 @@ function bt(i, t, e, s, n) {
       messages: [v.errorContains],
       path: n,
       constrain: "contains"
-    }), l(c) && d > c && r.push({
+    }), d(l) && c > l && r.push({
       messages: [
-        y(v.errorMaxContains, {
-          counter: d,
-          maxContains: c
+        E(v.errorMaxContains, {
+          counter: c,
+          maxContains: l
         })
       ],
       path: n,
@@ -726,15 +726,15 @@ function bt(i, t, e, s, n) {
   }
   return r;
 }
-function Ct(i, t, e, s, n) {
-  const r = [], a = Jt(e);
-  if (m(t) && l(a)) {
+function Ce(i, e, t, s, n) {
+  const r = [], a = ze(t);
+  if (g(e) && d(a)) {
     let o = [];
-    Object.keys(a).forEach((d) => {
-      l(t[d]) && (o = a[d].filter((u) => !N(t, u)));
+    Object.keys(a).forEach((c) => {
+      d(e[c]) && (o = a[c].filter((u) => !N(e, u)));
     }), o.length > 0 && r.push({
       messages: [
-        y(v.errorDependentRequired, {
+        E(v.errorDependentRequired, {
           dependentRequired: o.join(", ")
         })
       ],
@@ -744,53 +744,53 @@ function Ct(i, t, e, s, n) {
   }
   return r;
 }
-function yt(i, t, e) {
+function ye(i, e, t) {
   let s = [];
-  const n = le(e);
-  return m(t) && l(n) && Object.keys(n).forEach((r) => {
-    if (l(t[r])) {
-      const a = n[r], o = new w({ refParser: i.refParser, schema: a, data: t }), c = o.getErrors();
-      o.destroy(), s = [...s, ...c];
+  const n = dt(t);
+  return g(e) && d(n) && Object.keys(n).forEach((r) => {
+    if (d(e[r])) {
+      const a = n[r], o = new S({ refParser: i.refParser, schema: a, data: e }), l = o.getErrors();
+      o.destroy(), s = [...s, ...l];
     }
   }), s;
 }
-function Lt(i, t, e) {
-  const s = [], n = jt(e), r = Vt(e), a = Ot(e);
-  if (l(n)) {
+function Ee(i, e, t) {
+  const s = [], n = Te(t), r = Ve(t), a = Oe(t);
+  if (d(n)) {
     if (U(r) && U(a))
       return s;
-    const o = new w({ refParser: i.refParser, schema: n, data: t }), c = o.getErrors();
+    const o = new S({ refParser: i.refParser, schema: n, data: e }), l = o.getErrors();
     o.destroy();
-    let d = [], h = [];
-    if (l(r)) {
-      const u = new w({ refParser: i.refParser, schema: r, data: t });
-      d = u.getErrors(), u.destroy();
+    let c = [], h = [];
+    if (d(r)) {
+      const u = new S({ refParser: i.refParser, schema: r, data: e });
+      c = u.getErrors(), u.destroy();
     }
-    if (l(a)) {
-      const u = new w({ refParser: i.refParser, schema: a, data: t });
+    if (d(a)) {
+      const u = new S({ refParser: i.refParser, schema: a, data: e });
       h = u.getErrors(), u.destroy();
     }
     if (n === !0)
-      return d;
+      return c;
     if (n === !1)
       return h;
-    if (c.length === 0)
-      return d;
-    if (c.length > 0)
+    if (l.length === 0)
+      return c;
+    if (l.length > 0)
       return h;
   }
   return s;
 }
-function Et(i, t, e, s, n) {
-  const r = [], a = Tt(e);
-  return x(t) && l(a) && a.forEach((o, c) => {
-    const d = t[c];
-    if (l(d)) {
-      const h = new w({ refParser: i.refParser, schema: o, data: d }), u = h.getErrors();
+function Le(i, e, t, s, n) {
+  const r = [], a = ke(t);
+  return x(e) && d(a) && a.forEach((o, l) => {
+    const c = e[l];
+    if (d(c)) {
+      const h = new S({ refParser: i.refParser, schema: o, data: c }), u = h.getErrors();
       h.destroy(), u.length > 0 && r.push({
         messages: [
-          y(v.errorPrefixItems, {
-            index: c
+          E(v.errorPrefixItems, {
+            index: l
           })
         ],
         path: n,
@@ -799,216 +799,216 @@ function Et(i, t, e, s, n) {
     }
   }), r;
 }
-const Pe = {
-  additionalProperties: ft,
+const Pt = {
+  additionalProperties: fe,
   allOf: J,
   anyOf: _,
-  const: vt,
-  contains: bt,
-  dependentRequired: Ct,
-  dependentSchemas: yt,
+  const: be,
+  contains: ve,
+  dependentRequired: Ce,
+  dependentSchemas: ye,
   enum: W,
   exclusiveMaximum: Q,
   exclusiveMinimum: X,
   format: Y,
-  if: Lt,
+  if: Ee,
   items: Z,
-  maximum: pt,
-  maxItems: tt,
-  maxLength: et,
-  maxProperties: st,
-  minimum: it,
-  minItems: nt,
+  maximum: pe,
+  maxItems: ee,
+  maxLength: te,
+  maxProperties: se,
+  minimum: ie,
+  minItems: ne,
   minLength: G,
-  minProperties: rt,
-  multipleOf: at,
-  not: ot,
-  oneOf: ct,
-  pattern: dt,
-  patternProperties: lt,
-  prefixItems: Et,
-  required: ht,
-  type: ut,
-  uniqueItems: mt
-}, Ae = {
-  additionalProperties: ft,
+  minProperties: re,
+  multipleOf: ae,
+  not: oe,
+  oneOf: le,
+  pattern: ce,
+  patternProperties: de,
+  prefixItems: Le,
+  required: he,
+  type: ue,
+  uniqueItems: me
+}, At = {
+  additionalProperties: fe,
   allOf: J,
   anyOf: _,
-  const: vt,
-  contains: bt,
-  dependentRequired: Ct,
-  dependentSchemas: yt,
+  const: be,
+  contains: ve,
+  dependentRequired: Ce,
+  dependentSchemas: ye,
   enum: W,
   exclusiveMaximum: Q,
   exclusiveMinimum: X,
   format: Y,
-  if: Lt,
+  if: Ee,
   items: Z,
-  maximum: pt,
-  maxItems: tt,
-  maxLength: et,
-  maxProperties: st,
-  minimum: it,
-  minItems: nt,
+  maximum: pe,
+  maxItems: ee,
+  maxLength: te,
+  maxProperties: se,
+  minimum: ie,
+  minItems: ne,
   minLength: G,
-  minProperties: rt,
-  multipleOf: at,
-  not: ot,
-  oneOf: ct,
-  pattern: dt,
-  patternProperties: lt,
-  prefixItems: Et,
-  required: ht,
-  type: ut,
-  uniqueItems: mt
+  minProperties: re,
+  multipleOf: ae,
+  not: oe,
+  oneOf: le,
+  pattern: ce,
+  patternProperties: de,
+  prefixItems: Le,
+  required: he,
+  type: ue,
+  uniqueItems: me
 };
-function Xt(i, t, e, s, n) {
+function Qe(i, e, t, s, n) {
   let r = [];
-  const a = Ie(e), o = kt(e), c = Mt(e), d = zt(e), h = $(e), u = z(e);
-  if (m(t) && l(a)) {
-    let p = l(c) ? c : {};
-    const g = a, b = o;
+  const a = It(t), o = je(t), l = Me(t), c = Ke(t), h = $(t), u = z(t);
+  if (g(e) && d(a)) {
+    let p = d(l) ? l : {};
+    const f = a, b = o;
     [
-      d,
+      c,
       h,
       u
-    ].forEach((C) => {
-      l(C) && C.forEach((E) => {
-        l(E.properties) && (p = { ...p, ...E.properties });
+    ].forEach((y) => {
+      d(y) && y.forEach((L) => {
+        d(L.properties) && (p = { ...p, ...L.properties });
       });
-    }), p && Object.keys(t).forEach((C) => {
-      let E = !1;
-      if (l(b) && Object.keys(b).forEach((q) => {
-        E = new RegExp(q).test(C);
-      }), !E && g === !1 && !N(p, C) && r.push({
+    }), p && Object.keys(e).forEach((y) => {
+      let L = !1;
+      if (d(b) && Object.keys(b).forEach((k) => {
+        L = new RegExp(k).test(y);
+      }), !L && f === !1 && !N(p, y) && r.push({
         messages: [
-          y(v.errorUnevaluatedProperties, {
-            property: C
+          E(v.errorUnevaluatedProperties, {
+            property: y
           })
         ],
         path: n,
         constrain: "unevaluatedProperties"
-      }), !E && m(g) && !N(p, C)) {
-        const q = new w({
+      }), !L && g(f) && !N(p, y)) {
+        const k = new S({
           refParser: i.refParser,
-          schema: g,
-          data: t[C]
-        }), M = q.getErrors().map((A) => ({
-          messages: A.messages,
-          path: C,
+          schema: f,
+          data: e[y]
+        }), A = k.getErrors().map((O) => ({
+          messages: O.messages,
+          path: y,
           constrain: "unevaluatedProperties"
         }));
-        r = [...r, ...M], q.destroy();
+        r = [...r, ...A], k.destroy();
       }
     });
   }
   return r;
 }
-const Oe = {
-  additionalProperties: ft,
+const Ot = {
+  additionalProperties: fe,
   allOf: J,
   anyOf: _,
-  const: vt,
-  contains: bt,
-  dependentRequired: Ct,
-  dependentSchemas: yt,
+  const: be,
+  contains: ve,
+  dependentRequired: Ce,
+  dependentSchemas: ye,
   enum: W,
   exclusiveMaximum: Q,
   exclusiveMinimum: X,
   format: Y,
-  if: Lt,
+  if: Ee,
   items: Z,
-  maximum: pt,
-  maxItems: tt,
-  maxLength: et,
-  maxProperties: st,
-  minimum: it,
-  minItems: nt,
+  maximum: pe,
+  maxItems: ee,
+  maxLength: te,
+  maxProperties: se,
+  minimum: ie,
+  minItems: ne,
   minLength: G,
-  minProperties: rt,
-  multipleOf: at,
-  not: ot,
-  oneOf: ct,
-  pattern: dt,
-  patternProperties: lt,
-  prefixItems: Et,
-  required: ht,
-  type: ut,
-  unevaluatedProperties: Xt,
-  uniqueItems: mt
+  minProperties: re,
+  multipleOf: ae,
+  not: oe,
+  oneOf: le,
+  pattern: ce,
+  patternProperties: de,
+  prefixItems: Le,
+  required: he,
+  type: ue,
+  unevaluatedProperties: Qe,
+  uniqueItems: me
 };
-function je(i, t, e, s, n) {
-  const r = [], a = ae(e);
-  return m(t) && l(a) && Object.keys(t).forEach((o) => {
-    new w({
+function Tt(i, e, t, s, n) {
+  const r = [], a = at(t);
+  return g(e) && d(a) && Object.keys(e).forEach((o) => {
+    new S({
       refParser: i.refParser,
       schema: a,
       data: o
     }).getErrors().length > 0 && r.push({
       messages: [
-        y(v.errorPropertyNames, { propertyName: o })
+        E(v.errorPropertyNames, { propertyName: o })
       ],
       path: n,
       constrain: "propertyNames"
     });
   }), r;
 }
-const Ut = {
-  additionalProperties: ft,
+const Ue = {
+  additionalProperties: fe,
   allOf: J,
   anyOf: _,
-  const: vt,
-  contains: bt,
-  dependentRequired: Ct,
-  dependentSchemas: yt,
+  const: be,
+  contains: ve,
+  dependentRequired: Ce,
+  dependentSchemas: ye,
   enum: W,
   exclusiveMaximum: Q,
   exclusiveMinimum: X,
   format: Y,
-  if: Lt,
+  if: Ee,
   items: Z,
-  maximum: pt,
-  maxItems: tt,
-  maxLength: et,
-  maxProperties: st,
-  minimum: it,
-  minItems: nt,
+  maximum: pe,
+  maxItems: ee,
+  maxLength: te,
+  maxProperties: se,
+  minimum: ie,
+  minItems: ne,
   minLength: G,
-  minProperties: rt,
-  multipleOf: at,
-  not: ot,
-  oneOf: ct,
-  pattern: dt,
-  patternProperties: lt,
-  prefixItems: Et,
-  propertyNames: je,
-  required: ht,
-  type: ut,
-  unevaluatedProperties: Xt,
-  uniqueItems: mt
+  minProperties: re,
+  multipleOf: ae,
+  not: oe,
+  oneOf: le,
+  pattern: ce,
+  patternProperties: de,
+  prefixItems: Le,
+  propertyNames: Tt,
+  required: he,
+  type: ue,
+  unevaluatedProperties: Qe,
+  uniqueItems: me
 };
-class ke {
-  constructor(t = {}) {
-    this.refParser = t.refParser, this.validateFormat = t.validateFormat ? t.validateFormat : !1, this.draft = Ut, this.jsonSchemaDrafts = {
-      "http://json-schema.org/draft-04/schema#": Se,
-      "http://json-schema.org/draft-06/schema#": Pe,
-      "http://json-schema.org/draft-07/schema#": Ae,
-      "https://json-schema.org/draft/2019-09/schema": Oe,
-      "https://json-schema.org/draft/2020-12/schema": Ut
+class jt {
+  constructor(e = {}) {
+    this.refParser = e.refParser, this.validateFormat = e.validateFormat ? e.validateFormat : !1, this.draft = Ue, this.jsonSchemaDrafts = {
+      "http://json-schema.org/draft-04/schema#": St,
+      "http://json-schema.org/draft-06/schema#": Pt,
+      "http://json-schema.org/draft-07/schema#": At,
+      "https://json-schema.org/draft/2019-09/schema": Ot,
+      "https://json-schema.org/draft/2020-12/schema": Ue
     };
   }
   /**
    * Validates a value against it's schema
    */
-  getErrors(t, e, s, n) {
+  getErrors(e, t, s, n) {
     let r = [];
-    const a = f(e, "messages"), o = k(e);
+    const a = m(t, "messages"), o = M(t);
     return P(o) && o === !0 ? r : P(o) && o === !1 ? [{
-      messages: l(a) ? a : ["invalid"],
+      messages: d(a) ? a : ["invalid"],
       path: n
-    }] : (Object.keys(this.draft).forEach((c) => {
-      if (N(o, c)) {
-        const d = this.draft[c], h = d(this, t, e, s, n);
+    }] : (Object.keys(this.draft).forEach((l) => {
+      if (N(o, l)) {
+        const c = this.draft[l], h = c(this, e, t, s, n);
         h && (r = [...r, ...h]);
       }
     }), r.length > 0 && a && (r = [
@@ -1019,7 +1019,7 @@ class ke {
     ]), r);
   }
 }
-class Yt {
+class Xe {
   constructor() {
     this.listeners = [];
   }
@@ -1029,8 +1029,11 @@ class Yt {
    * @param {string} name - The name of the event
    * @param {function} callback - A callback functions that will be executed when this event is emitted
    */
-  on(t, e) {
-    this.listeners.push({ name: t, callback: e });
+  on(e, t) {
+    this.listeners.push({ name: e, callback: t });
+  }
+  off(e) {
+    this.listeners = this.listeners.filter((t) => t.name !== e);
   }
   /**
    * Triggers the callback function of a named event listener
@@ -1038,23 +1041,23 @@ class Yt {
    * @param {string} name - The name of the event to be emitted
    * @param {*} payload - Payload containing data that is passed along with the callback function
    */
-  emit(t, e = void 0) {
-    this.listeners.filter((n) => n.name === t).forEach((n) => {
-      n.callback(e);
+  emit(e, t = void 0) {
+    this.listeners.filter((n) => n.name === e).forEach((n) => {
+      n.callback(t);
     });
   }
   /**
    * Deletes all properties of the class
    */
   destroy() {
-    Object.keys(this).forEach((t) => {
-      delete this[t];
+    Object.keys(this).forEach((e) => {
+      delete this[e];
     });
   }
 }
-class D extends Yt {
-  constructor(t) {
-    super(), this.jedi = t.jedi, this.path = t.path || this.jedi.rootName, this.schema = t.schema, this.value = l(t.value) ? t.value : void 0, this.isActive = !0, this.parent = t.parent || null, this.children = [], this.ui = null, this.init();
+class D extends Xe {
+  constructor(e) {
+    super(), this.jedi = e.jedi, this.path = e.path || this.jedi.rootName, this.schema = e.schema, this.value = d(e.value) ? e.value : void 0, this.isActive = !0, this.parent = e.parent || null, this.children = [], this.ui = null, this.init();
   }
   /**
    * Initializes and register the instance
@@ -1092,14 +1095,14 @@ class D extends Yt {
    */
   setInitialValue() {
     if (U(this.value)) {
-      let t;
-      const e = R(this.schema);
-      e === "boolean" && (t = !1), e === "number" && (t = 0), e === "integer" && (t = 0), e === "string" && (t = ""), e === "array" && (t = []), e === "object" && (t = {}), e === "null" && (t = null), this.value = t;
+      let e;
+      const t = H(this.schema);
+      t === "boolean" && (e = !1), t === "number" && (e = 0), t === "integer" && (e = 0), t === "string" && (e = ""), t === "array" && (e = []), t === "object" && (e = {}), t === "null" && (e = null), this.value = e;
     }
   }
   setDefaultValue() {
-    const t = de(this.schema);
-    l(t) && this.setValue(t, !1);
+    const e = ct(this.schema);
+    d(e) && this.setValue(e, !1);
   }
   /**
    * Returns the value of the instance
@@ -1110,8 +1113,8 @@ class D extends Yt {
   /**
    * Sets the instance value
    */
-  setValue(t, e = !0) {
-    this.value = t, this.emit("set-value", t), e && this.emit("change");
+  setValue(e, t = !0) {
+    this.value = e, this.emit("set-value", e), t && this.emit("change");
   }
   /**
    * Fires when a child's instance state changes
@@ -1124,8 +1127,8 @@ class D extends Yt {
   getErrors() {
     if (!this.isActive)
       return [];
-    const t = this.jedi.validator.getErrors(this.getValue(), this.schema, this.getKey(), this.path);
-    return Kt(t);
+    const e = this.jedi.validator.getErrors(this.getValue(), this.schema, this.getKey(), this.path);
+    return $e(e);
   }
   /**
    * Prepare data before building the editor
@@ -1148,60 +1151,66 @@ class D extends Yt {
    * Returns true if this instance is read only
    */
   isReadOnly() {
-    let t = !1;
-    return Ft(this.schema) === !0 && (t = !0), this.parent && Ft(this.parent.schema) === !0 && (t = !0), t;
+    let e = !1;
+    return Fe(this.schema) === !0 && (e = !0), this.parent && Fe(this.parent.schema) === !0 && (e = !0), e;
   }
   /**
    * Destroy the instance and it's children
    */
   destroy() {
-    this.listeners = [], this.children.forEach((t) => {
-      t.destroy();
-    }), this.unregister(), this.ui && this.ui.destroy(), Object.keys(this).forEach((t) => {
-      delete this[t];
+    this.listeners = [], this.children.forEach((e) => {
+      e.destroy();
+    }), this.unregister(), this.ui && this.ui.destroy(), Object.keys(this).forEach((e) => {
+      delete this[e];
     }), super.destroy();
   }
 }
-const Te = {
+const kt = {
   properties: "glyphicon glyphicon-list",
   delete: "glyphicon glyphicon-trash",
   add: "glyphicon glyphicon-plus",
   moveUp: "glyphicon glyphicon-arrow-up",
-  moveDown: "glyphicon glyphicon-arrow-down"
-}, Me = {
+  moveDown: "glyphicon glyphicon-arrow-down",
+  collapse: "glyphicon glyphicon-chevron-down"
+}, Mt = {
   properties: "bi bi-card-list",
   delete: "bi bi-trash2",
   add: "bi bi-plus",
   moveUp: "bi bi-arrow-up",
-  moveDown: "bi bi-arrow-down"
-}, Ve = {
+  moveDown: "bi bi-arrow-down",
+  collapse: "bi bi-chevron-down"
+}, Vt = {
   properties: "icon-list",
   delete: "icon-trash",
   add: "icon-plus",
   moveUp: "icon-arrow-up",
-  moveDown: "icon-arrow-down"
-}, Re = {
+  moveDown: "icon-arrow-down",
+  collapse: "icon-chevron-down"
+}, Rt = {
   properties: "fa fa-list",
   delete: "fa fa-trash-o",
   add: "fa fa-plus",
   moveUp: "fa fa-arrow-up",
-  moveDown: "fa fa-arrow-down"
-}, He = {
+  moveDown: "fa fa-arrow-down",
+  collapse: "fa fa-chevron-down"
+}, Ht = {
   properties: "fas fa-list",
   delete: "fas fa-trash",
   add: "fas fa-plus",
   moveUp: "fas fa-arrow-up",
-  moveDown: "fas fa-arrow-down"
-}, Be = {
+  moveDown: "fas fa-arrow-down",
+  collapse: "fas fa-chevron-down"
+}, Bt = {
   properties: "fa-solid fa-list",
   delete: "fa-solid fa-trash",
   add: "fa-solid fa-plus",
   moveUp: "fa-solid fa-arrow-up",
-  moveDown: "fa-solid fa-arrow-down"
+  moveDown: "fa-solid fa-arrow-down",
+  collapse: "fa-solid fa-chevron-down"
 };
-class xt {
-  constructor(t = null) {
-    this.icons = t, this.useToggleEvents = !0, this.init();
+class xe {
+  constructor(e = null) {
+    this.icons = e, this.useToggleEvents = !0, this.init();
   }
   /**
    * Inits some instance properties
@@ -1214,221 +1223,245 @@ class xt {
    * Returns a icon element
    * @private
    */
-  getIcon(t) {
-    const e = document.createElement("i"), s = this.icons[t].split(" ");
+  getIcon(e) {
+    const t = document.createElement("i"), s = this.icons[e].split(" ");
     return s.length > 0 && s.forEach((n) => {
-      e.classList.add(n);
-    }), e;
+      t.classList.add(n);
+    }), t;
   }
   /**
    * Used to wrap the editor UI elements
    * @private
    */
   getEditorContainer() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-editor-container"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-editor-container"), e;
   }
   /**
    * Used to group several controls
    * @private
    */
   getFieldset() {
-    const t = document.createElement("fieldset");
-    return t.classList.add("jedi-editor-fieldset"), t;
+    const e = document.createElement("fieldset");
+    return e.classList.add("jedi-editor-fieldset"), e;
   }
   /**
    * Represents a caption for the content of its parent fieldset
    * @private
    */
-  getLegend(t) {
-    const e = document.createElement("legend"), s = document.createElement("span");
-    return e.classList.add("jedi-editor-legend"), s.classList.add("jedi-editor-legend-text"), e.setAttribute("aria-labelledby", "#legend-" + t.id), s.textContent = t.textContent, s.setAttribute("id", "#legend-" + t.id), e.appendChild(s), e;
+  getLegend(e) {
+    const t = document.createElement("legend"), s = document.createElement("span");
+    return t.classList.add("jedi-editor-legend"), s.classList.add("jedi-editor-legend-text"), t.setAttribute("aria-labelledby", "#legend-" + e.id), s.textContent = e.textContent, s.setAttribute("id", "#legend-" + e.id), t.appendChild(s), t;
   }
   /**
    * Container for complex editors like arrays, objects and multiple
    * @private
    */
   getCard() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-editor-card"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-editor-card"), e;
   }
   /**
    * Header for cards
    * @private
    */
   getCardHeader() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-editor-card-header"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-editor-card-header"), e;
   }
   /**
    * A body for the cards
    * @private
    */
   getCardBody() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-editor-card-body"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-editor-card-body"), e;
   }
   /**
    * Wrapper for editor actions buttons
    * @private
    */
   getActionsSlot() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-actions-slot"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-actions-slot"), e;
   }
   /**
    * Wrapper for editor array specific actions buttons
    * @private
    */
   getArrayActionsSlot() {
-    const t = this.getBtnGroup();
-    return t.classList.add("jedi-array-actions-slot"), t;
+    const e = document.createElement("span");
+    return e.classList.add("jedi-array-actions-slot"), e;
   }
   /**
    * Wrapper for child editors
    * @private
    */
   getChildrenSlot() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-children-slot"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-children-slot"), e;
   }
   /**
    * Wrapper for error messages
    * @private
    */
-  getMessagesSlot(t = {}) {
-    const e = document.createElement("div");
-    return e.classList.add("jedi-messages-slot"), e.setAttribute("aria-atomic", "false"), e.setAttribute("aria-live", "polite"), t.id && e.setAttribute("id", t.id), e;
+  getMessagesSlot(e = {}) {
+    const t = document.createElement("div");
+    return t.classList.add("jedi-messages-slot"), t.setAttribute("aria-atomic", "false"), t.setAttribute("aria-live", "polite"), e.id && t.setAttribute("id", e.id), t;
   }
   /**
    * Wrapper for editor controls
    * @private
    */
   getControlSlot() {
+    const e = document.createElement("div");
+    return e.classList.add("jedi-control-slot"), e;
+  }
+  /**
+   * Toggles the ObjectEditor properties wrapper visibility
+   * @private
+   */
+  getPropertiesToggle(e) {
+    const t = this.getButton(e);
+    return t.classList.add("jedi-properties-toggle"), t.addEventListener("click", () => {
+      e.propertiesContainer.open ? e.propertiesContainer.close() : e.propertiesContainer.showModal();
+    }), t;
+  }
+  /**
+   * Container that will collapse and expand to show and hide it contents
+   * @private
+   */
+  getCollapse(e) {
     const t = document.createElement("div");
-    return t.classList.add("jedi-control-slot"), t;
+    return t.classList.add("jedi-collapse"), t.setAttribute("id", e.id), this.useToggleEvents && e.startCollapsed && (t.style.display = "none"), t;
+  }
+  /**
+   * Toggle button for collapse
+   * @private
+   */
+  getCollapseToggle(e) {
+    const t = this.getButton(e);
+    t.classList.add("jedi-collapse-toggle"), this.useToggleEvents && t.addEventListener("click", () => {
+      e.collapse.style.display === "none" ? e.collapse.style.display = "block" : e.collapse.style.display = "none";
+    });
+    let s = e.startCollapsed;
+    return t.style.transition = "transform 0.1s ease", s && (t.style.transform = "rotate(90deg)"), t.addEventListener("click", () => {
+      s ? t.style.transform = "rotate(0deg)" : t.style.transform = "rotate(90deg)", s = !s;
+    }), t;
   }
   /**
    * Container for properties editing elements like property activators
    * @private
    */
-  getPropertiesSlot(t) {
-    const e = document.createElement("div");
-    return e.classList.add("jedi-properties-slot"), e.setAttribute("id", t.id), this.useToggleEvents && (e.style.display = "none"), e;
+  getPropertiesSlot(e) {
+    const t = document.createElement("dialog");
+    return t.classList.add("jedi-properties-slot"), t.setAttribute("id", e.id), window.addEventListener("click", (s) => {
+      s.target === t && t.close();
+    }), t;
   }
   /**
    * Container for screen reader announced messages
    * @private
    */
   getPropertiesAriaLive() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-properties-aria-live"), t.setAttribute("role", "status"), t.setAttribute("aria-live", "polite"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-properties-aria-live"), e.setAttribute("role", "status"), e.setAttribute("aria-live", "polite"), e;
   }
   /**
    * A message that will be announced by screen reader
    * @private
    */
-  getAriaLiveMessage(t) {
-    const e = document.createElement("p");
-    return e.classList.add("jedi-aria-live-message"), e.textContent = t, this.visuallyHidden(e), e;
-  }
-  /**
-   * Toggles the ObjectEditor properties wrapper visibility
-   * @private
-   */
-  getPropertiesToggle(t) {
-    const e = this.getButton(t);
-    return e.classList.add("jedi-properties-toggle"), this.useToggleEvents && e.addEventListener("click", () => {
-      t.propertiesContainer.hasAttribute("style") ? this.visuallyVisible(t.propertiesContainer) : this.visuallyHidden(t.propertiesContainer);
-    }), e;
+  getAriaLiveMessage(e) {
+    const t = document.createElement("p");
+    return t.classList.add("jedi-aria-live-message"), t.textContent = e, this.visuallyHidden(t), t;
   }
   /**
    * Wrapper for property activators
    * @private
    */
   getPropertiesActivators() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-properties-activators"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-properties-activators"), e;
   }
   /**
    * Wrapper buttons
    * @private
    */
   getBtnGroup() {
-    const t = document.createElement("span");
-    return t.classList.add("jedi-btn-group"), t.style.display = "initial", t;
+    const e = document.createElement("span");
+    return e.classList.add("jedi-btn-group"), e;
   }
   /**
    * A button
    * @private
    */
-  getButton(t) {
-    const e = document.createElement("button");
-    e.classList.add("jedi-btn"), e.setAttribute("type", "button"), t.value && (e.value = t.value), t.id && e.setAttribute("id", t.id);
+  getButton(e) {
+    const t = document.createElement("button");
+    t.classList.add("jedi-btn"), t.setAttribute("type", "button"), e.value && (t.value = e.value), e.id && t.setAttribute("id", e.id);
     const s = document.createElement("span");
-    if (s.textContent = t.textContent, this.icons && t.icon) {
-      const n = this.getIcon(t.icon);
-      n.setAttribute("title", t.textContent), e.appendChild(n), this.visuallyHidden(s);
+    if (s.textContent = e.textContent, this.icons && e.icon) {
+      const n = this.getIcon(e.icon);
+      n.setAttribute("title", e.textContent), t.appendChild(n), this.visuallyHidden(s);
     }
-    return e.appendChild(s), e;
+    return t.appendChild(s), t;
   }
   /**
    * Array "add" item button
    * @private
    */
   getArrayBtnAdd() {
-    const t = this.getButton({
-      textContent: "Add item into",
+    const e = this.getButton({
+      textContent: "Add item",
       icon: "add"
     });
-    return t.classList.add("jedi-array-add"), t;
+    return e.classList.add("jedi-array-add"), e;
   }
   getAddPropertyButton() {
-    const t = this.getButton({
+    const e = this.getButton({
       textContent: "Add property"
     });
-    return t.classList.add("jedi-add-property-btn"), t;
+    return e.classList.add("jedi-add-property-btn"), e;
   }
   /**
    * Array "delete" item button
    * @private
    */
   getDeleteItemBtn() {
-    const t = this.getButton({
+    const e = this.getButton({
       textContent: "Delete item",
       icon: "delete"
     });
-    return t.classList.add("jedi-array-delete"), t;
+    return e.classList.add("jedi-array-delete"), e;
   }
   /**
    * Array "move up" item button
    * @private
    */
   getMoveUpItemBtn() {
-    const t = this.getButton({
+    const e = this.getButton({
       textContent: "Move up",
       icon: "moveUp"
     });
-    return t.classList.add("jedi-array-move-up"), t;
+    return e.classList.add("jedi-array-move-up"), e;
   }
   /**
    * Array "move down" item button
    * @private
    */
   getMoveDownItemBtn() {
-    const t = this.getButton({
+    const e = this.getButton({
       textContent: "Move down",
       icon: "moveDown"
     });
-    return t.classList.add("jedi-array-move-down"), t;
+    return e.classList.add("jedi-array-move-down"), e;
   }
   /**
    * Wrapper for the editor description
    * @private
    */
-  getDescription(t = {}) {
-    const e = document.createElement("small");
-    return e.classList.add("jedi-description"), t.textContent && (e.textContent = t.textContent), t.id && e.setAttribute("id", t.id), e;
+  getDescription(e = {}) {
+    const t = document.createElement("small");
+    return t.classList.add("jedi-description"), e.textContent && (t.textContent = e.textContent), e.id && t.setAttribute("id", e.id), t;
   }
   /**
    * Object control is a card containing multiple editors.
@@ -1436,36 +1469,48 @@ class xt {
    * Properties can be added, activated and deactivated depending on configuration
    * @private
    */
-  getObjectControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getCardBody(), a = this.getPropertiesAriaLive(), o = this.getDescription({
-      textContent: t.description
-    }), c = this.getMessagesSlot(), d = this.getChildrenSlot(), h = this.getPropertiesSlot({
-      id: "properties-slot-" + t.id
+  getObjectControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getCardBody(), a = this.getPropertiesAriaLive(), o = this.getDescription({
+      textContent: e.description
+    }), l = this.getMessagesSlot(), c = this.getChildrenSlot(), h = this.getPropertiesSlot({
+      id: "properties-slot-" + e.id
     }), u = this.getPropertiesToggle({
-      textContent: t.title + " properties",
-      id: "properties-slot-toggle-" + t.id,
+      textContent: e.title + " properties",
+      id: "properties-slot-toggle-" + e.id,
       icon: "properties",
       propertiesContainer: h
-    }), p = this.getPropertiesActivators(), g = this.getInputControl({
+    }), p = "collapse-" + e.id, f = this.getCollapse({
+      id: p,
+      startCollapsed: e.startCollapsed
+    }), b = this.getCollapseToggle({
+      textContent: e.title + " properties",
+      id: "collapse-toggle-" + e.id,
+      icon: "collapse",
+      collapseId: p,
+      collapse: f,
+      startCollapsed: e.startCollapsed
+    }), C = this.getPropertiesActivators(), y = this.getInputControl({
       type: "text",
-      id: "jedi-add-property-input-" + t.id,
+      id: "jedi-add-property-input-" + e.id,
       label: "Property"
-    }), b = this.getAddPropertyButton(), L = this.getFieldset(), C = this.getLegend({
-      textContent: t.title,
-      id: t.id
+    }), L = this.getAddPropertyButton(), k = this.getFieldset(), A = this.getLegend({
+      textContent: e.title,
+      id: e.id
     });
-    return b.classList.add("jedi-object-add"), e.appendChild(L), L.appendChild(C), L.appendChild(r), r.appendChild(o), r.appendChild(c), C.appendChild(s), s.appendChild(n), r.appendChild(h), r.appendChild(d), t.addProperty && (h.appendChild(g.container), h.appendChild(b)), t.editableProperties && (s.appendChild(u), h.appendChild(a), h.appendChild(p)), {
-      container: e,
+    return L.classList.add("jedi-object-add"), t.appendChild(k), t.appendChild(h), k.appendChild(A), k.appendChild(f), f.appendChild(r), r.appendChild(o), r.appendChild(l), A.appendChild(s), s.appendChild(n), r.appendChild(c), e.addProperty && (h.appendChild(y.container), h.appendChild(L), h.appendChild(document.createElement("hr"))), e.enablePropertiesToggle && (s.appendChild(u), h.appendChild(a), h.appendChild(C)), e.enableCollapseToggle && s.appendChild(b), {
+      container: t,
+      collapse: f,
+      collapseToggle: b,
       body: r,
       actions: s,
-      messages: c,
-      childrenSlot: d,
+      messages: l,
+      childrenSlot: c,
       propertiesToggle: u,
       propertiesContainer: h,
-      addPropertyControl: g,
-      addPropertyBtn: b,
+      addPropertyControl: y,
+      addPropertyBtn: L,
       ariaLive: a,
-      propertiesActivators: p,
+      propertiesActivators: C,
       arrayActions: n
     };
   }
@@ -1474,20 +1519,32 @@ class xt {
    * Items can bve added, deleted or moved up or down.
    * @private
    */
-  getArrayControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getCardBody(), a = this.getDescription({
-      textContent: t.description
-    }), o = this.getMessagesSlot(), c = this.getChildrenSlot(), d = this.getBtnGroup(), h = this.getArrayBtnAdd(), u = this.getFieldset(), p = this.getLegend({
-      textContent: t.title,
-      id: t.id
+  getArrayControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getCardBody(), a = this.getDescription({
+      textContent: e.description
+    }), o = this.getMessagesSlot(), l = this.getChildrenSlot(), c = this.getBtnGroup(), h = this.getArrayBtnAdd(), u = this.getFieldset(), p = this.getLegend({
+      textContent: e.title,
+      id: e.id
+    }), f = "collapse-" + e.id, b = this.getCollapse({
+      id: f,
+      startCollapsed: e.startCollapsed
+    }), C = this.getCollapseToggle({
+      textContent: e.title + " properties",
+      id: "collapse-toggle-" + e.id,
+      icon: "collapse",
+      collapseId: f,
+      collapse: b,
+      startCollapsed: e.startCollapsed
     });
-    return e.appendChild(u), u.appendChild(p), u.appendChild(r), r.appendChild(a), r.appendChild(o), p.appendChild(s), s.appendChild(d), d.appendChild(h), s.appendChild(n), r.appendChild(c), {
-      container: e,
+    return t.appendChild(u), u.appendChild(p), u.appendChild(b), b.appendChild(r), r.appendChild(a), r.appendChild(o), p.appendChild(s), s.appendChild(c), c.appendChild(h), s.appendChild(n), r.appendChild(l), e.enableCollapseToggle && s.appendChild(C), {
+      container: t,
+      collapseToggle: C,
+      collapse: b,
       body: r,
       actions: s,
       messages: o,
-      childrenSlot: c,
-      btnGroup: d,
+      childrenSlot: l,
+      btnGroup: c,
       addBtn: h,
       arrayActions: n
     };
@@ -1498,27 +1555,27 @@ class xt {
    * at a time
    * @private
    */
-  getMultipleControl(t) {
-    const e = document.createElement("div"), s = this.getCard(), n = this.getActionsSlot(), r = this.getArrayActionsSlot(), a = this.getCardHeader({
-      textContent: t.title,
-      titleHidden: t.titleHidden
-    }), o = this.getCardBody(), c = this.getDescription({
-      textContent: t.description
-    }), d = this.getMessagesSlot(), h = this.getChildrenSlot(), u = this.getSwitcher({
-      values: t.switcherOptionValues,
-      titles: t.switcherOptionsLabels,
-      id: t.id + "-switcher",
-      label: t.id + "-switcher",
+  getMultipleControl(e) {
+    const t = document.createElement("div"), s = this.getCard(), n = this.getActionsSlot(), r = this.getArrayActionsSlot(), a = this.getCardHeader({
+      textContent: e.title,
+      titleHidden: e.titleHidden
+    }), o = this.getCardBody(), l = this.getDescription({
+      textContent: e.description
+    }), c = this.getMessagesSlot(), h = this.getChildrenSlot(), u = this.getSwitcher({
+      values: e.switcherOptionValues,
+      titles: e.switcherOptionsLabels,
+      id: e.id + "-switcher",
+      label: e.id + "-switcher",
       titleHidden: !0,
-      readOnly: t.readOnly
+      readOnly: e.readOnly
     });
-    return u.container.classList.add("jedi-switcher"), e.appendChild(c), e.appendChild(s), s.appendChild(a), s.appendChild(o), a.appendChild(n), n.appendChild(r), n.appendChild(u.container), o.appendChild(d), o.appendChild(h), {
-      container: e,
+    return u.container.classList.add("jedi-switcher"), t.appendChild(l), t.appendChild(s), s.appendChild(a), s.appendChild(o), a.appendChild(n), n.appendChild(u.container), n.appendChild(r), o.appendChild(c), o.appendChild(h), {
+      container: t,
       card: s,
       header: a,
       body: o,
       actions: n,
-      messages: d,
+      messages: c,
       childrenSlot: h,
       switcher: u,
       arrayActions: r
@@ -1528,534 +1585,555 @@ class xt {
    * Control for NullEditor
    * @private
    */
-  getNullControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("label");
-    r.setAttribute("for", t.id);
+  getNullControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("label");
+    r.setAttribute("for", e.id);
     const a = document.createElement("span");
-    a.textContent = t.label, t.titleHidden && this.visuallyHidden(r);
-    const o = t.id + "-description", c = this.getDescription({
-      textContent: t.description,
+    a.textContent = e.label, e.titleHidden && this.visuallyHidden(r);
+    const o = e.id + "-description", l = this.getDescription({
+      textContent: e.description,
       id: o
-    }), d = this.getMessagesSlot();
-    return e.appendChild(r), e.appendChild(c), e.appendChild(d), e.appendChild(s), s.appendChild(n), r.appendChild(a), { container: e, label: r, labelText: a, description: c, messages: d, actions: s, arrayActions: n };
+    }), c = this.getMessagesSlot();
+    return t.appendChild(r), t.appendChild(l), t.appendChild(c), t.appendChild(s), s.appendChild(n), r.appendChild(a), { container: t, label: r, labelText: a, description: l, messages: c, actions: s, arrayActions: n };
   }
   /**
    * A Textarea
    * @private
    */
-  getTextareaControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("textarea");
-    r.setAttribute("id", t.id), r.style.width = "100%";
+  getTextareaControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("textarea");
+    r.setAttribute("id", e.id), r.style.width = "100%";
     const a = document.createElement("label");
-    a.setAttribute("for", t.id);
+    a.setAttribute("for", e.id);
     const o = document.createElement("span");
-    o.textContent = t.label, t.titleHidden && this.visuallyHidden(a);
-    const c = t.id + "-description", d = this.getDescription({
-      textContent: t.description,
-      id: c
-    }), h = t.id + "-messages", u = this.getMessagesSlot({
+    o.textContent = e.label, e.titleHidden && this.visuallyHidden(a);
+    const l = e.id + "-description", c = this.getDescription({
+      textContent: e.description,
+      id: l
+    }), h = e.id + "-messages", u = this.getMessagesSlot({
       id: h
-    }), p = h + " " + c;
-    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), e.appendChild(d), e.appendChild(u), e.appendChild(s), s.appendChild(n), a.appendChild(o), { container: e, input: r, label: a, labelText: o, description: d, messages: u, actions: s, arrayActions: n };
+    }), p = h + " " + l;
+    return r.setAttribute("aria-describedby", p), t.appendChild(a), t.appendChild(r), t.appendChild(c), t.appendChild(u), t.appendChild(s), s.appendChild(n), a.appendChild(o), { container: t, input: r, label: a, labelText: o, description: c, messages: u, actions: s, arrayActions: n };
   }
   /**
    * An Input control
    * @private
    */
-  getInputControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("input");
-    r.setAttribute("type", t.type), r.setAttribute("id", t.id), r.style.width = "100%";
+  getInputControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("input");
+    r.setAttribute("type", e.type), r.setAttribute("id", e.id), r.style.width = "100%";
     const a = document.createElement("label");
-    a.setAttribute("for", t.id);
+    a.setAttribute("for", e.id);
     const o = document.createElement("span");
-    o.textContent = t.label, t.titleHidden && this.visuallyHidden(a);
-    const c = t.id + "-description", d = this.getDescription({
-      textContent: t.description,
-      id: c
-    }), h = t.id + "-messages", u = this.getMessagesSlot({
+    o.textContent = e.label, e.titleHidden && this.visuallyHidden(a);
+    const l = e.id + "-description", c = this.getDescription({
+      textContent: e.description,
+      id: l
+    }), h = e.id + "-messages", u = this.getMessagesSlot({
       id: h
-    }), p = h + " " + c;
-    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), e.appendChild(d), e.appendChild(u), e.appendChild(s), s.appendChild(n), a.appendChild(o), { container: e, input: r, label: a, labelText: o, description: d, messages: u, actions: s, arrayActions: n };
+    }), p = h + " " + l;
+    return r.setAttribute("aria-describedby", p), t.appendChild(a), t.appendChild(r), t.appendChild(c), t.appendChild(u), t.appendChild(s), s.appendChild(n), a.appendChild(o), { container: t, input: r, label: a, labelText: o, description: c, messages: u, actions: s, arrayActions: n };
   }
   /**
    * A radio group control
    * @private
    */
-  getRadiosControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getFieldset(), a = this.getCardBody(), o = this.getLegend({
-      textContent: t.label,
-      id: t.id
-    }), c = t.id + "-messages", d = this.getMessagesSlot({
-      id: c
-    }), h = t.id + "-description", u = this.getDescription({
-      textContent: t.description,
+  getRadiosControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = this.getFieldset(), a = this.getCardBody(), o = this.getLegend({
+      textContent: e.label,
+      id: e.id
+    }), l = e.id + "-messages", c = this.getMessagesSlot({
+      id: l
+    }), h = e.id + "-description", u = this.getDescription({
+      textContent: e.description,
       id: h
     });
-    t.titleHidden && this.visuallyHidden(o);
-    const p = [], g = [], b = [], L = [];
-    return t.values.forEach((C, E) => {
-      const q = document.createElement("div");
-      p.push(q);
-      const M = document.createElement("input");
-      M.setAttribute("type", "radio"), M.setAttribute("id", t.id + "-" + E), M.setAttribute("value", C), g.push(M);
-      const A = c + " " + h;
-      M.setAttribute("aria-describedby", A);
-      const gt = document.createElement("label");
-      gt.setAttribute("for", t.id + "-" + E);
-      const Nt = document.createElement("span");
-      L.push(Nt), t.titles && t.titles[E] && (Nt.textContent = t.titles[E]), b.push(gt);
-    }), e.appendChild(r), e.appendChild(s), r.appendChild(o), r.appendChild(a), s.appendChild(n), p.forEach((C, E) => {
-      a.appendChild(p[E]), C.appendChild(g[E]), C.appendChild(b[E]), b[E].appendChild(L[E]);
-    }), r.appendChild(u), r.appendChild(d), { container: e, fieldset: r, legend: o, body: a, radios: g, labels: b, labelTexts: L, radioControls: p, description: u, messages: d, actions: s, arrayActions: n };
+    e.titleHidden && this.visuallyHidden(o);
+    const p = [], f = [], b = [], C = [];
+    return e.values.forEach((y, L) => {
+      const k = document.createElement("div");
+      p.push(k);
+      const A = document.createElement("input");
+      A.setAttribute("type", "radio"), A.setAttribute("id", e.id + "-" + L), A.setAttribute("value", y), f.push(A);
+      const O = l + " " + h;
+      A.setAttribute("aria-describedby", O);
+      const ge = document.createElement("label");
+      ge.setAttribute("for", e.id + "-" + L);
+      const Ne = document.createElement("span");
+      C.push(Ne), e.titles && e.titles[L] && (Ne.textContent = e.titles[L]), b.push(ge);
+    }), t.appendChild(r), t.appendChild(s), r.appendChild(o), r.appendChild(a), s.appendChild(n), p.forEach((y, L) => {
+      a.appendChild(p[L]), y.appendChild(f[L]), y.appendChild(b[L]), b[L].appendChild(C[L]);
+    }), r.appendChild(u), r.appendChild(c), {
+      container: t,
+      fieldset: r,
+      legend: o,
+      body: a,
+      radios: f,
+      labels: b,
+      labelTexts: C,
+      radioControls: p,
+      description: u,
+      messages: c,
+      actions: s,
+      arrayActions: n
+    };
   }
   /**
    * A checkbox control
    * @private
    */
-  getCheckboxControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("div"), a = document.createElement("input");
-    a.setAttribute("type", "checkbox"), a.setAttribute("id", t.id);
+  getCheckboxControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("div"), a = document.createElement("input");
+    a.setAttribute("type", "checkbox"), a.setAttribute("id", e.id);
     const o = document.createElement("label");
-    o.setAttribute("for", t.id);
-    const c = document.createElement("span");
-    c.textContent = t.label, t.titleHidden && this.visuallyHidden(o);
-    const d = t.id + "-description", h = this.getDescription({
-      textContent: t.description,
-      id: d
-    }), u = t.id + "-messages", p = this.getMessagesSlot({
+    o.setAttribute("for", e.id);
+    const l = document.createElement("span");
+    l.textContent = e.label, e.titleHidden && this.visuallyHidden(o);
+    const c = e.id + "-description", h = this.getDescription({
+      textContent: e.description,
+      id: c
+    }), u = e.id + "-messages", p = this.getMessagesSlot({
       id: u
-    }), g = u + " " + d;
-    return a.setAttribute("aria-describedby", g), e.appendChild(r), e.appendChild(s), s.appendChild(n), r.appendChild(a), r.appendChild(o), o.appendChild(c), r.appendChild(h), r.appendChild(p), { container: e, formGroup: r, input: a, label: o, labelText: c, description: h, messages: p, actions: s, arrayActions: n };
+    }), f = u + " " + c;
+    return a.setAttribute("aria-describedby", f), t.appendChild(r), t.appendChild(s), s.appendChild(n), r.appendChild(a), r.appendChild(o), o.appendChild(l), r.appendChild(h), r.appendChild(p), { container: t, formGroup: r, input: a, label: o, labelText: l, description: h, messages: p, actions: s, arrayActions: n };
   }
   /**
    * A select control
    * @private
    */
-  getSelectControl(t) {
-    const e = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("select");
-    r.setAttribute("id", t.id), r.style.width = "100%", t.values.forEach((g, b) => {
-      const L = document.createElement("option");
-      L.setAttribute("value", g), t.titles && t.titles[b] && (L.textContent = t.titles[b]), r.appendChild(L);
+  getSelectControl(e) {
+    const t = document.createElement("div"), s = this.getActionsSlot(), n = this.getArrayActionsSlot(), r = document.createElement("select");
+    r.setAttribute("id", e.id), e.values.forEach((f, b) => {
+      const C = document.createElement("option");
+      C.setAttribute("value", f), e.titles && e.titles[b] && (C.textContent = e.titles[b]), r.appendChild(C);
     });
     const a = document.createElement("label");
-    a.setAttribute("for", t.id);
+    a.setAttribute("for", e.id);
     const o = document.createElement("span");
-    o.textContent = t.label, t.titleHidden && this.visuallyHidden(a);
-    const c = t.id + "-description", d = this.getDescription({
-      textContent: t.description,
-      id: c
-    }), h = t.id + "-messages", u = this.getMessagesSlot({
+    o.textContent = e.label, e.titleHidden && this.visuallyHidden(a);
+    const l = e.id + "-description", c = this.getDescription({
+      textContent: e.description,
+      id: l
+    }), h = e.id + "-messages", u = this.getMessagesSlot({
       id: h
-    }), p = h + " " + c;
-    return r.setAttribute("aria-describedby", p), e.appendChild(a), e.appendChild(r), a.appendChild(o), e.appendChild(d), e.appendChild(u), e.appendChild(s), s.appendChild(n), { container: e, input: r, label: a, labelText: o, description: d, messages: u, actions: s, arrayActions: n };
+    }), p = h + " " + l;
+    return r.setAttribute("aria-describedby", p), t.appendChild(a), t.appendChild(r), a.appendChild(o), t.appendChild(c), t.appendChild(u), t.appendChild(s), s.appendChild(n), { container: t, input: r, label: a, labelText: o, description: c, messages: u, actions: s, arrayActions: n };
   }
   /**
    * Control to switch between multiple editors options
    * @private
    */
-  getSwitcher(t) {
-    return this.getSelectControl(t);
+  getSwitcher(e) {
+    const t = document.createElement("span"), s = document.createElement("select");
+    s.setAttribute("id", e.id), e.values.forEach((a, o) => {
+      const l = document.createElement("option");
+      l.setAttribute("value", a), e.titles && e.titles[o] && (l.textContent = e.titles[o]), s.appendChild(l);
+    });
+    const n = document.createElement("label");
+    n.setAttribute("for", e.id);
+    const r = document.createElement("span");
+    return r.textContent = e.label, this.visuallyHidden(n), t.appendChild(n), t.appendChild(s), n.appendChild(r), { container: t, input: s, label: n, labelText: r };
   }
   /**
    * Another type of error message container used for more complex editors like
    * object, array and multiple editors
    * @private
    */
-  getAlert(t) {
-    return this.getInvalidFeedback(t);
+  getAlert(e) {
+    return this.getInvalidFeedback(e);
   }
   /**
    * Error messages
    * @public
    */
-  getInvalidFeedback(t) {
-    const e = document.createElement("div"), s = document.createElement("span"), n = document.createElement("span");
-    return s.textContent = t.message, n.textContent = "⚠ ", n.classList.add("jedi-error-message"), n.setAttribute("aria-hidden", "true"), e.classList.add("jedi-error-message"), e.appendChild(n), e.appendChild(s), e;
+  getInvalidFeedback(e) {
+    const t = document.createElement("div"), s = document.createElement("span"), n = document.createElement("span");
+    return s.textContent = e.message, n.textContent = "⚠ ", n.classList.add("jedi-error-message"), n.setAttribute("aria-hidden", "true"), t.classList.add("jedi-error-message"), t.appendChild(n), t.appendChild(s), t;
   }
   /**
    * Container for columns
    * @private
    */
   getRow() {
-    const t = document.createElement("div");
-    return t.classList.add("jedi-row"), t;
+    const e = document.createElement("div");
+    return e.classList.add("jedi-row"), e;
   }
   /**
    * A column to contain content to a specific width
    * @private
    */
-  getCol(t, e, s) {
+  getCol(e, t, s) {
     const n = document.createElement("div");
-    return n.classList.add("jedi-col-xs-" + t), n.classList.add("jedi-col-md-" + e), s && n.classList.add("jedi-col-md-offset-" + s), n;
+    return n.classList.add("jedi-col-xs-" + e), n.classList.add("jedi-col-md-" + t), s && n.classList.add("jedi-col-md-offset-" + s), n;
   }
   /**
    * Tab list is a list of links that triggers tabs visibility ne at the time
    * @private
    */
   getTabList() {
-    const t = document.createElement("ul");
-    return t.classList.add("jedi-nav-list"), t;
+    const e = document.createElement("ul");
+    return e.classList.add("jedi-nav-list"), e;
   }
   /**
    * A Tab is a wrapper for content
    * @private
    */
-  getTab(t) {
-    const e = document.createElement("li"), s = document.createElement("a");
-    return s.classList.add("jedi-nav-link"), s.setAttribute("href", "#" + t.id), s.textContent = t.title, e.appendChild(s), { list: e, link: s };
+  getTab(e) {
+    const t = document.createElement("li"), s = document.createElement("a");
+    return s.classList.add("jedi-nav-link"), s.setAttribute("href", "#" + e.id), s.textContent = e.title, t.appendChild(s), { list: t, link: s };
   }
   /**
    * Wrapper for tabs
    * @private
    */
   getTabContent() {
-    const t = document.createElement("div");
-    return t.classList.add("tab-content"), t;
+    const e = document.createElement("div");
+    return e.classList.add("tab-content"), e;
   }
   /**
    * Set tab attributes to make it toggleable
    * @private
    */
-  setTabPaneAttributes(t, e, s) {
-    t.setAttribute("id", s), t.classList.add("jedi-tab-pane");
+  setTabPaneAttributes(e, t, s) {
+    e.setAttribute("id", s), e.classList.add("jedi-tab-pane");
   }
   /**
    * Makes an element visually hidden
    * @private
    */
-  visuallyHidden(t) {
-    t.setAttribute("style", "position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0,0,0,0);border: 0;");
+  visuallyHidden(e) {
+    e.setAttribute("style", "position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0,0,0,0);border: 0;");
   }
   /**
    * Reveals a visually hidden element
    * @private
    */
-  visuallyVisible(t) {
-    t.removeAttribute("style");
+  visuallyVisible(e) {
+    e.removeAttribute("style");
   }
 }
-class qe extends xt {
+class qt extends xe {
   init() {
     this.useToggleEvents = !1;
   }
-  getFieldset() {
-    const t = document.createElement("fieldset");
-    return t.classList.add("panel"), t.classList.add("panel-default"), t;
+  getAddPropertyButton() {
+    const e = super.getAddPropertyButton();
+    return e.classList.add("btn-primary"), e.classList.add("btn-block"), e;
   }
-  getLegend(t) {
-    const e = super.getLegend(t);
-    return e.classList.add("h5"), e.classList.add("panel-heading"), e.classList.add("pull-left"), e.setAttribute("style", "margin: 0; display: flex; justify-content: space-between; align-items: center;"), e;
+  getCollapseToggle(e) {
+    const t = super.getCollapseToggle(e);
+    return t.setAttribute("href", "#" + e.collapseId), t.setAttribute("data-toggle", "collapse"), t;
+  }
+  getCollapse(e) {
+    const t = super.getCollapse(e);
+    return t.classList.add("collapse"), e.startCollapsed || t.classList.add("in"), t;
+  }
+  getFieldset() {
+    const e = document.createElement("fieldset");
+    return e.classList.add("panel"), e.classList.add("panel-default"), e;
+  }
+  getLegend(e) {
+    const t = super.getLegend(e);
+    return t.classList.add("h5"), t.classList.add("panel-heading"), t.classList.add("pull-left"), t.setAttribute("style", "margin: 0; display: flex; justify-content: space-between; align-items: center;"), t;
   }
   getCard() {
-    const t = super.getCard();
-    return t.classList.add("panel"), t.classList.add("panel-default"), t;
+    const e = super.getCard();
+    return e.classList.add("panel"), e.classList.add("panel-default"), e;
   }
-  getCardHeader(t) {
-    const e = super.getCardHeader(t);
-    return e.classList.add("panel-heading"), e.classList.add("text-right"), e;
+  getCardHeader(e) {
+    const t = super.getCardHeader(e);
+    return t.classList.add("panel-heading"), t.classList.add("text-right"), t;
   }
   getCardBody() {
-    const t = super.getCardBody();
-    return t.classList.add("panel-body"), t.style.clear = "both", t;
-  }
-  getPropertiesToggle(t) {
-    const e = this.getButton(t);
-    return e.setAttribute("data-toggle", "collapse"), e.setAttribute("data-target", "#" + t.propertiesContainer.id), e.classList.add("jedi-properties-toggle"), e;
-  }
-  getPropertiesSlot(t) {
-    const e = super.getPropertiesSlot(t);
-    return e.classList.add("collapse"), e.setAttribute("id", t.id), e;
+    const e = super.getCardBody();
+    return e.classList.add("panel-body"), e.style.clear = "both", e;
   }
   getBtnGroup() {
-    const t = super.getBtnGroup();
-    return t.classList.add("btn-group"), t;
+    const e = super.getBtnGroup();
+    return e.classList.add("btn-group"), e;
   }
-  getButton(t) {
-    const e = super.getButton(t);
-    return e.classList.add("btn"), e.classList.add("btn-xs"), e.classList.add("btn-default"), e;
+  getButton(e) {
+    const t = super.getButton(e);
+    return t.classList.add("btn"), t.classList.add("btn-xs"), t.classList.add("btn-default"), t;
   }
-  getDescription(t) {
-    const e = super.getDescription(t);
-    return e.classList.add("text-muted"), e;
+  getDescription(e) {
+    const t = super.getDescription(e);
+    return t.classList.add("text-muted"), t;
   }
-  getTextareaControl(t) {
-    const e = super.getTextareaControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("form-group"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getTextareaControl(e) {
+    const t = super.getTextareaControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("form-group"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getInputControl(t) {
-    const e = super.getInputControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("form-group"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getInputControl(e) {
+    const t = super.getInputControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("form-group"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getRadiosControl(t) {
-    const e = super.getRadiosControl(t), { body: s, radios: n, labels: r, labelTexts: a, radioControls: o, description: c, messages: d } = e;
+  getRadiosControl(e) {
+    const t = super.getRadiosControl(e), { body: s, radios: n, labels: r, labelTexts: a, radioControls: o, description: l, messages: c } = t;
     return o.forEach((h, u) => {
       h.classList.add("radio"), s.appendChild(o[u]), h.appendChild(r[u]), r[u].appendChild(n[u]), r[u].appendChild(a[u]);
-    }), s.appendChild(c), s.appendChild(d), e;
+    }), s.appendChild(l), s.appendChild(c), t;
   }
-  getCheckboxControl(t) {
-    const e = super.getCheckboxControl(t), { container: s, formGroup: n, input: r, label: a, labelText: o, description: c, messages: d } = e;
-    return n.classList.add("checkbox"), s.appendChild(n), n.appendChild(a), a.appendChild(r), a.appendChild(o), n.appendChild(c), n.appendChild(d), e;
+  getCheckboxControl(e) {
+    const t = super.getCheckboxControl(e), { container: s, formGroup: n, input: r, label: a, labelText: o, description: l, messages: c } = t;
+    return n.classList.add("checkbox"), s.appendChild(n), n.appendChild(a), a.appendChild(r), a.appendChild(o), n.appendChild(l), n.appendChild(c), t;
   }
-  getSelectControl(t) {
-    const e = super.getSelectControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("form-group"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getSelectControl(e) {
+    const t = super.getSelectControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("form-group"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getSwitcher(t) {
-    const e = super.getSwitcher(t), { container: s, input: n } = e;
-    return s.classList.remove("form-group"), n.classList.remove("form-control"), e;
+  getAlert(e) {
+    const t = super.getAlert(e);
+    return t.classList.add("alert"), t.classList.add("alert-danger"), t;
   }
-  getAlert(t) {
-    const e = super.getAlert(t);
-    return e.classList.add("alert"), e.classList.add("alert-danger"), e;
-  }
-  getInvalidFeedback(t) {
-    const e = super.getInvalidFeedback(t);
-    return e.classList.add("text-danger"), e;
+  getInvalidFeedback(e) {
+    const t = super.getInvalidFeedback(e);
+    return t.classList.add("text-danger"), t;
   }
   getRow() {
-    const t = super.getRow();
-    return t.classList.add("row"), t;
+    const e = super.getRow();
+    return e.classList.add("row"), e;
   }
-  getCol(t, e, s) {
+  getCol(e, t, s) {
     const n = super.getRow();
-    return n.classList.add("col-xs-" + t), n.classList.add("col-md-" + e), s && n.classList.add("col-md-offset-" + s), n;
+    return n.classList.add("col-xs-" + e), n.classList.add("col-md-" + t), s && n.classList.add("col-md-offset-" + s), n;
   }
-  getTabList(t) {
-    const e = super.getTabList(t);
-    return e.classList.add("nav"), t.type === "tabs" ? e.classList.add("nav-tabs") : e.classList.add("nav-pills"), e.classList.add("nav-stacked"), t.stacked === !1 && e.classList.remove("nav-stacked"), e;
+  getTabList(e) {
+    const t = super.getTabList(e);
+    return t.classList.add("nav"), e.type === "tabs" ? t.classList.add("nav-tabs") : t.classList.add("nav-pills"), t.classList.add("nav-stacked"), e.stacked === !1 && t.classList.remove("nav-stacked"), t;
   }
-  getTab(t) {
-    const e = super.getTab(t);
-    return t.active && e.list.classList.add("active"), e.link.setAttribute("data-toggle", "tab"), e;
+  getTab(e) {
+    const t = super.getTab(e);
+    return e.active && t.list.classList.add("active"), t.link.setAttribute("data-toggle", "tab"), t;
   }
-  setTabPaneAttributes(t, e, s) {
-    super.setTabPaneAttributes(t, e, s), t.classList.add("tab-pane"), e && (t.classList.add("in"), t.classList.add("active"));
+  setTabPaneAttributes(e, t, s) {
+    super.setTabPaneAttributes(e, t, s), e.classList.add("tab-pane"), t && (e.classList.add("in"), e.classList.add("active"));
   }
-  visuallyHidden(t) {
-    t.classList.add("sr-only");
+  visuallyHidden(e) {
+    e.classList.add("sr-only");
   }
-  visuallyVisible(t) {
-    t.classList.remove("sr-only");
+  visuallyVisible(e) {
+    e.classList.remove("sr-only");
   }
 }
-class Ne extends xt {
+class Nt extends xe {
   init() {
     this.useToggleEvents = !1;
   }
-  getFieldset() {
-    const t = document.createElement("fieldset");
-    return t.classList.add("card"), t.classList.add("mb-3"), t;
+  getAddPropertyButton() {
+    const e = super.getAddPropertyButton();
+    return e.classList.add("btn-primary"), e.classList.add("btn-block"), e;
   }
-  getLegend(t) {
-    const e = super.getLegend(t);
-    return e.classList.add("h6"), e.classList.add("card-header"), e.classList.add("d-flex"), e.classList.add("justify-content-between"), e.classList.add("align-items-center"), e.classList.add("float-left"), e.classList.add("py-2"), e;
+  getCollapseToggle(e) {
+    const t = super.getCollapseToggle(e);
+    return t.setAttribute("href", "#" + e.collapseId), t.setAttribute("data-toggle", "collapse"), t;
+  }
+  getCollapse(e) {
+    const t = super.getCollapse(e);
+    return t.classList.add("collapse"), e.startCollapsed || t.classList.add("show"), t;
+  }
+  getFieldset() {
+    const e = document.createElement("fieldset");
+    return e.classList.add("card"), e.classList.add("mb-3"), e;
+  }
+  getLegend(e) {
+    const t = super.getLegend(e);
+    return t.classList.add("h6"), t.classList.add("card-header"), t.classList.add("d-flex"), t.classList.add("justify-content-between"), t.classList.add("align-items-center"), t.classList.add("float-left"), t.classList.add("py-2"), t;
   }
   getCard() {
-    const t = super.getCard();
-    return t.classList.add("card"), t.classList.add("mb-3"), t;
+    const e = super.getCard();
+    return e.classList.add("card"), e.classList.add("mb-3"), e;
   }
-  getCardHeader(t) {
-    const e = super.getCardHeader(t);
-    return e.classList.add("card-header"), e.classList.add("d-flex"), e.classList.add("justify-content-end"), e.classList.add("align-items-center"), e.classList.add("py-1"), e;
+  getCardHeader(e) {
+    const t = super.getCardHeader(e);
+    return t.classList.add("card-header"), t.classList.add("d-flex"), t.classList.add("justify-content-end"), t.classList.add("align-items-center"), t.classList.add("py-1"), t;
   }
   getCardBody() {
-    const t = super.getCardBody();
-    return t.classList.add("card-body"), t;
-  }
-  getPropertiesSlot(t) {
-    const e = super.getPropertiesSlot(t);
-    return e.classList.add("collapse"), e.setAttribute("id", t.id), e;
-  }
-  getPropertiesToggle(t) {
-    const e = this.getButton(t);
-    return e.setAttribute("data-toggle", "collapse"), e.setAttribute("data-target", "#" + t.propertiesContainer.id), e.classList.add("jedi-properties-toggle"), e;
+    const e = super.getCardBody();
+    return e.classList.add("card-body"), e.classList.add("pb-0"), e;
   }
   getBtnGroup() {
-    const t = super.getBtnGroup();
-    return t.classList.add("btn-group"), t;
+    const e = super.getBtnGroup();
+    return e.classList.add("btn-group"), e;
   }
-  getButton(t) {
-    const e = super.getButton(t);
-    return e.classList.add("btn"), e.classList.add("btn-sm"), e;
+  getButton(e) {
+    const t = super.getButton(e);
+    return t.classList.add("btn"), t.classList.add("btn-sm"), t;
   }
-  getDescription(t) {
-    const e = super.getDescription(t);
-    return e.classList.add("text-muted"), e;
+  getDescription(e) {
+    const t = super.getDescription(e);
+    return t.classList.add("text-muted"), t;
   }
-  getTextareaControl(t) {
-    const e = super.getTextareaControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("form-group"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getTextareaControl(e) {
+    const t = super.getTextareaControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("form-group"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getInputControl(t) {
-    const e = super.getInputControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("form-group"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getInputControl(e) {
+    const t = super.getInputControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("form-group"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getRadiosControl(t) {
-    const e = super.getRadiosControl(t), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: c, description: d, messages: h } = e;
-    return s.classList.add("form-group"), c.forEach((u, p) => {
-      u.classList.add("form-check"), r[p].classList.add("form-check-input"), a[p].classList.add("form-check-label"), n.appendChild(c[p]), u.appendChild(r[p]), u.appendChild(a[p]), a[p].appendChild(o[p]);
-    }), n.appendChild(d), n.appendChild(h), e;
+  getRadiosControl(e) {
+    const t = super.getRadiosControl(e), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: l, description: c, messages: h } = t;
+    return s.classList.add("form-group"), l.forEach((u, p) => {
+      u.classList.add("form-check"), r[p].classList.add("form-check-input"), a[p].classList.add("form-check-label"), n.appendChild(l[p]), u.appendChild(r[p]), u.appendChild(a[p]), a[p].appendChild(o[p]);
+    }), n.appendChild(c), n.appendChild(h), t;
   }
-  getCheckboxControl(t) {
-    const e = super.getCheckboxControl(t), { container: s, formGroup: n, input: r, label: a, description: o, messages: c } = e;
-    return n.classList.add("form-group"), n.classList.add("form-check"), r.classList.add("form-check-input"), a.classList.add("form-check-label"), s.appendChild(n), n.appendChild(r), n.appendChild(a), n.appendChild(o), n.appendChild(c), e;
+  getCheckboxControl(e) {
+    const t = super.getCheckboxControl(e), { container: s, formGroup: n, input: r, label: a, description: o, messages: l } = t;
+    return n.classList.add("form-group"), n.classList.add("form-check"), r.classList.add("form-check-input"), a.classList.add("form-check-label"), s.appendChild(n), n.appendChild(r), n.appendChild(a), n.appendChild(o), n.appendChild(l), t;
   }
-  getSelectControl(t) {
-    const e = super.getSelectControl(t), { container: s, input: n } = e;
-    return s.classList.add("form-group"), n.classList.add("form-control"), e;
+  getSelectControl(e) {
+    const t = super.getSelectControl(e), { container: s, input: n } = t;
+    return s.classList.add("form-group"), n.classList.add("form-control"), t;
   }
-  getSwitcher(t) {
-    const e = super.getSwitcher(t), { container: s, input: n } = e;
-    return s.classList.remove("form-group"), n.classList.remove("form-control"), e;
+  getAlert(e) {
+    const t = super.getAlert(e);
+    return t.classList.add("alert"), t.classList.add("alert-danger"), t;
   }
-  getAlert(t) {
-    const e = super.getAlert(t);
-    return e.classList.add("alert"), e.classList.add("alert-danger"), e;
+  getInvalidFeedback(e) {
+    const t = super.getInvalidFeedback(e);
+    return t.classList.add("text-danger"), t.classList.add("form-text"), t.classList.add("d-block"), t;
   }
-  getInvalidFeedback(t) {
-    const e = super.getInvalidFeedback(t);
-    return e.classList.add("text-danger"), e.classList.add("form-text"), e.classList.add("d-block"), e;
-  }
-  getColumnClass(t, e) {
-    return "col-" + t + "-" + e;
+  getColumnClass(e, t) {
+    return "col-" + e + "-" + t;
   }
   getRow() {
-    const t = super.getRow();
-    return t.classList.add("row"), t;
+    const e = super.getRow();
+    return e.classList.add("row"), e;
   }
-  getCol(t, e, s) {
-    const n = super.getRow(t, e, s);
-    return n.classList.add("col-" + t), n.classList.add("col-md-" + e), s && n.classList.add("offset-md-" + s), n;
+  getCol(e, t, s) {
+    const n = super.getRow(e, t, s);
+    return n.classList.add("col-" + e), n.classList.add("col-md-" + t), s && n.classList.add("offset-md-" + s), n;
   }
-  getTabList(t) {
-    const e = super.getTabList();
-    return e.classList.add("nav"), t.type === "tabs" ? e.classList.add("nav-tabs") : e.classList.add("nav-pills"), e.classList.add("flex-column"), t.stacked === !1 && e.classList.remove("flex-column"), e;
+  getTabList(e) {
+    const t = super.getTabList();
+    return t.classList.add("nav"), e.type === "tabs" ? t.classList.add("nav-tabs") : t.classList.add("nav-pills"), t.classList.add("flex-column"), e.stacked === !1 && t.classList.remove("flex-column"), t;
   }
-  getTab(t) {
-    const e = super.getTab(t);
-    return e.list.classList.add("nav-item"), e.link.classList.add("nav-link"), e.link.setAttribute("data-toggle", "tab"), t.active && e.link.classList.add("active"), e;
+  getTab(e) {
+    const t = super.getTab(e);
+    return t.list.classList.add("nav-item"), t.link.classList.add("nav-link"), t.link.setAttribute("data-toggle", "tab"), e.active && t.link.classList.add("active"), t;
   }
-  setTabPaneAttributes(t, e, s) {
-    super.setTabPaneAttributes(t, e, s), t.classList.add("tab-pane"), e && t.classList.add("active");
+  setTabPaneAttributes(e, t, s) {
+    super.setTabPaneAttributes(e, t, s), e.classList.add("tab-pane"), t && e.classList.add("active");
   }
-  visuallyHidden(t) {
-    t.classList.add("sr-only");
+  visuallyHidden(e) {
+    e.classList.add("sr-only");
   }
-  visuallyVisible(t) {
-    t.classList.remove("sr-only");
+  visuallyVisible(e) {
+    e.classList.remove("sr-only");
   }
 }
-class De extends xt {
+class Dt extends xe {
   init() {
     this.useToggleEvents = !1;
   }
-  getFieldset() {
-    const t = document.createElement("fieldset");
-    return t.classList.add("card"), t.classList.add("mb-3"), t;
+  getAddPropertyButton() {
+    const e = super.getAddPropertyButton();
+    return e.classList.add("btn-primary"), e.classList.add("w-100"), e;
   }
-  getLegend(t) {
-    const e = super.getLegend(t);
-    return e.classList.add("h6"), e.classList.add("card-header"), e.classList.add("d-flex"), e.classList.add("justify-content-between"), e.classList.add("align-items-center"), e.classList.add("py-2"), e;
+  getCollapseToggle(e) {
+    const t = super.getCollapseToggle(e);
+    return t.setAttribute("href", "#" + e.collapseId), t.setAttribute("data-bs-toggle", "collapse"), t;
+  }
+  getCollapse(e) {
+    const t = super.getCollapse(e);
+    return t.classList.add("collapse"), e.startCollapsed || t.classList.add("show"), t;
+  }
+  getFieldset() {
+    const e = document.createElement("fieldset");
+    return e.classList.add("card"), e.classList.add("mb-3"), e;
+  }
+  getLegend(e) {
+    const t = super.getLegend(e);
+    return t.classList.add("h6"), t.classList.add("card-header"), t.classList.add("d-flex"), t.classList.add("justify-content-between"), t.classList.add("align-items-center"), t.classList.add("py-2"), t;
   }
   getCard() {
-    const t = super.getCard();
-    return t.classList.add("card"), t.classList.add("mb-3"), t;
+    const e = super.getCard();
+    return e.classList.add("card"), e.classList.add("mb-3"), e;
   }
-  getCardHeader(t) {
-    const e = super.getCardHeader(t);
-    return e.classList.add("card-header"), e.classList.add("d-flex"), e.classList.add("justify-content-end"), e.classList.add("align-items-center"), e.classList.add("py-1"), e;
+  getCardHeader(e) {
+    const t = super.getCardHeader(e);
+    return t.classList.add("card-header"), t.classList.add("d-flex"), t.classList.add("justify-content-end"), t.classList.add("align-items-center"), t.classList.add("py-1"), t;
   }
   getCardBody() {
-    const t = super.getCardBody();
-    return t.classList.add("card-body"), t;
-  }
-  getPropertiesSlot(t) {
-    const e = super.getPropertiesSlot(t);
-    return e.classList.add("collapse"), e.setAttribute("id", t.id), e;
+    const e = super.getCardBody();
+    return e.classList.add("card-body"), e.classList.add("pb-0"), e;
   }
   getControlSlot() {
-    const t = super.getControlSlot();
-    return t.classList.add("mb-3"), t;
-  }
-  getPropertiesToggle(t) {
-    const e = this.getButton(t);
-    return e.setAttribute("data-bs-toggle", "collapse"), e.setAttribute("data-bs-target", "#" + t.propertiesContainer.id), e.classList.add("jedi-properties-toggle"), e;
+    const e = super.getControlSlot();
+    return e.classList.add("mb-3"), e;
   }
   getBtnGroup() {
-    const t = super.getBtnGroup();
-    return t.classList.add("btn-group"), t;
+    const e = super.getBtnGroup();
+    return e.classList.add("btn-group"), e;
   }
-  getButton(t) {
-    const e = super.getButton(t);
-    return e.classList.add("btn"), e.classList.add("btn-sm"), e;
+  getButton(e) {
+    const t = super.getButton(e);
+    return t.classList.add("btn"), t.classList.add("btn-sm"), t;
   }
-  getDescription(t) {
-    const e = super.getDescription(t);
-    return e.classList.add("text-muted"), e;
+  getDescription(e) {
+    const t = super.getDescription(e);
+    return t.classList.add("text-muted"), t;
   }
-  getTextareaControl(t) {
-    const e = super.getTextareaControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("mb-3"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getTextareaControl(e) {
+    const t = super.getTextareaControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("mb-3"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getInputControl(t) {
-    const e = super.getInputControl(t), { container: s, input: n, label: r } = e;
-    return s.classList.add("mb-3"), n.classList.add("form-control"), t.titleHidden && this.visuallyHidden(r), e;
+  getInputControl(e) {
+    const t = super.getInputControl(e), { container: s, input: n, label: r } = t;
+    return s.classList.add("mb-3"), n.classList.add("form-control"), e.titleHidden && this.visuallyHidden(r), t;
   }
-  getRadiosControl(t) {
-    const e = super.getRadiosControl(t), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: c, description: d, messages: h } = e;
-    return s.classList.add("mb-3"), c.forEach((u, p) => {
-      u.classList.add("form-check"), r[p].classList.add("form-check-input"), a[p].classList.add("form-check-label"), n.appendChild(c[p]), u.appendChild(r[p]), u.appendChild(a[p]), a[p].appendChild(o[p]);
-    }), n.appendChild(d), n.appendChild(h), e;
+  getRadiosControl(e) {
+    const t = super.getRadiosControl(e), { container: s, body: n, radios: r, labels: a, labelTexts: o, radioControls: l, description: c, messages: h } = t;
+    return s.classList.add("mb-3"), l.forEach((u, p) => {
+      u.classList.add("form-check"), r[p].classList.add("form-check-input"), a[p].classList.add("form-check-label"), n.appendChild(l[p]), u.appendChild(r[p]), u.appendChild(a[p]), a[p].appendChild(o[p]);
+    }), n.appendChild(c), n.appendChild(h), t;
   }
-  getCheckboxControl(t) {
-    const e = super.getCheckboxControl(t), { container: s, formGroup: n, input: r, label: a, description: o, messages: c } = e;
-    return s.classList.add("mb-3"), n.classList.add("form-check"), r.classList.add("form-check-input"), a.classList.add("form-check-label"), t.titleHidden && this.visuallyHidden(a), s.appendChild(n), n.appendChild(r), n.appendChild(a), n.appendChild(o), n.appendChild(c), e;
+  getCheckboxControl(e) {
+    const t = super.getCheckboxControl(e), { container: s, formGroup: n, input: r, label: a, description: o, messages: l } = t;
+    return s.classList.add("mb-3"), n.classList.add("form-check"), r.classList.add("form-check-input"), a.classList.add("form-check-label"), e.titleHidden && this.visuallyHidden(a), s.appendChild(n), n.appendChild(r), n.appendChild(a), n.appendChild(o), n.appendChild(l), t;
   }
-  getSelectControl(t) {
-    const e = super.getSelectControl(t), { container: s, input: n } = e;
-    return s.classList.add("mb-3"), n.classList.add("form-select"), e;
+  getSelectControl(e) {
+    const t = super.getSelectControl(e), { container: s, input: n } = t;
+    return s.classList.add("mb-3"), n.classList.add("form-select"), t;
   }
-  getSwitcher(t) {
-    const e = super.getSwitcher(t), { container: s, input: n, label: r } = e;
-    return s.classList.remove("mb-3"), n.classList.remove("form-select"), this.visuallyHidden(r), e;
+  getAlert(e) {
+    const t = super.getAlert(e);
+    return t.classList.add("alert"), t.classList.add("alert-danger"), t;
   }
-  getAlert(t) {
-    const e = super.getAlert(t);
-    return e.classList.add("alert"), e.classList.add("alert-danger"), e;
-  }
-  getInvalidFeedback(t) {
-    const e = super.getInvalidFeedback(t);
-    return e.classList.add("text-danger"), e.classList.add("d-block"), e.classList.add("form-text"), e.classList.add("form-text"), e;
+  getInvalidFeedback(e) {
+    const t = super.getInvalidFeedback(e);
+    return t.classList.add("text-danger"), t.classList.add("d-block"), t.classList.add("form-text"), t.classList.add("form-text"), t;
   }
   getRow() {
-    const t = super.getRow();
-    return t.classList.add("row"), t;
+    const e = super.getRow();
+    return e.classList.add("row"), e;
   }
-  getCol(t, e, s) {
-    const n = super.getRow(t, e, s);
-    return n.classList.add("col-" + t), n.classList.add("col-md-" + e), s && n.classList.add("offset-md-" + s), n;
+  getCol(e, t, s) {
+    const n = super.getRow(e, t, s);
+    return n.classList.add("col-" + e), n.classList.add("col-md-" + t), s && n.classList.add("offset-md-" + s), n;
   }
-  getTabList(t) {
-    const e = super.getTabList(t);
-    return e.classList.add("nav"), t.type === "tabs" ? e.classList.add("nav-tabs") : e.classList.add("nav-pills"), e.classList.add("flex-column"), t.stacked === !1 && e.classList.remove("flex-column"), e;
+  getTabList(e) {
+    const t = super.getTabList(e);
+    return t.classList.add("nav"), e.type === "tabs" ? t.classList.add("nav-tabs") : t.classList.add("nav-pills"), t.classList.add("flex-column"), e.stacked === !1 && t.classList.remove("flex-column"), t;
   }
-  getTab(t) {
-    const e = super.getTab(t);
-    return e.list.classList.add("nav-item"), e.link.classList.add("nav-link"), e.link.setAttribute("data-bs-toggle", "tab"), t.active && e.link.classList.add("active"), e;
+  getTab(e) {
+    const t = super.getTab(e);
+    return t.list.classList.add("nav-item"), t.link.classList.add("nav-link"), t.link.setAttribute("data-bs-toggle", "tab"), e.active && t.link.classList.add("active"), t;
   }
-  setTabPaneAttributes(t, e, s) {
-    super.setTabPaneAttributes(t, e, s), t.classList.add("tab-pane"), e && t.classList.add("active");
+  setTabPaneAttributes(e, t, s) {
+    super.setTabPaneAttributes(e, t, s), e.classList.add("tab-pane"), t && e.classList.add("active");
   }
-  visuallyHidden(t) {
-    t.classList.add("visually-hidden");
+  visuallyHidden(e) {
+    e.classList.add("visually-hidden");
   }
-  visuallyVisible(t) {
-    t.classList.remove("visually-hidden");
+  visuallyVisible(e) {
+    e.classList.remove("visually-hidden");
   }
 }
 class F {
-  constructor(t) {
-    if (this.instance = t, this.theme = null, this.control = null, this.disabled = !1, this.readOnly = this.instance.isReadOnly(), this.init(), this.build(), this.coerceValue(), this.addEventListeners(), this.setContainerAttributes(), this.refreshUI(), this.instance.jedi.options.showErrors === "always" || f(this.instance.schema, "showErrors") === "always") {
+  constructor(e) {
+    if (this.instance = e, this.theme = null, this.control = null, this.disabled = !1, this.readOnly = this.instance.isReadOnly(), this.init(), this.build(), this.coerceValue(), this.addEventListeners(), this.setContainerAttributes(), this.refreshUI(), this.instance.jedi.options.showErrors === "always" || m(this.instance.schema, "showErrors") === "always") {
       const s = this.instance.getErrors();
       this.showValidationErrors(s);
     }
@@ -2074,40 +2152,40 @@ class F {
    * @private
    */
   init() {
-    let t = null;
-    if (l(this.instance.jedi.options.iconLib))
+    let e = null;
+    if (d(this.instance.jedi.options.iconLib))
       switch (this.instance.jedi.options.iconLib) {
         case "glyphicons":
-          t = Te;
+          e = kt;
           break;
         case "bootstrap-icons":
-          t = Me;
+          e = Mt;
           break;
         case "fontawesome3":
-          t = Ve;
+          e = Vt;
           break;
         case "fontawesome4":
-          t = Re;
+          e = Rt;
           break;
         case "fontawesome5":
-          t = He;
+          e = Ht;
           break;
         case "fontawesome6":
-          t = Be;
+          e = Bt;
           break;
       }
     switch (this.instance.jedi.options.theme) {
       case "bootstrap3":
-        this.theme = new qe(t);
+        this.theme = new qt(e);
         break;
       case "bootstrap4":
-        this.theme = new Ne(t);
+        this.theme = new Nt(e);
         break;
       case "bootstrap5":
-        this.theme = new De(t);
+        this.theme = new Dt(e);
         break;
       default:
-        this.theme = new xt(t);
+        this.theme = new xe(e);
     }
   }
   /**
@@ -2115,7 +2193,7 @@ class F {
    * @private
    */
   setContainerAttributes() {
-    this.control.container.setAttribute("data-path", this.instance.path), this.control.container.setAttribute("data-type", R(this.instance.schema));
+    this.control.container.setAttribute("data-path", this.instance.path), this.control.container.setAttribute("data-type", H(this.instance.schema));
   }
   /**
    * Builds the editor control and appends it to the editor container
@@ -2127,8 +2205,8 @@ class F {
    * Updates the value of the instance by making assumptions based on constrains
    */
   coerceValue() {
-    const t = T(this.instance.schema);
-    l(t) && !t.includes(this.instance.getValue()) && l(t[0]) && this.instance.setValue(t[0], !1);
+    const e = V(this.instance.schema);
+    d(e) && !e.includes(this.instance.getValue()) && d(e[0]) && this.instance.setValue(e[0], !1);
   }
   /**
    * Add event listeners to ui elements
@@ -2140,12 +2218,12 @@ class F {
    * Shows validation messages in the editor container.
    * @private
    */
-  showValidationErrors(t) {
-    if (this.instance.jedi.options.showErrors === "never" || f(this.instance.schema, "showErrors") === "never")
+  showValidationErrors(e) {
+    if (this.instance.jedi.options.showErrors === "never" || m(this.instance.schema, "showErrors") === "never")
       return;
     this.control.messages.innerHTML = "";
     const s = I(this.instance.schema) || this.instance.getKey();
-    t.forEach((n) => {
+    e.forEach((n) => {
       n.messages.forEach((r) => {
         const a = this.getInvalidFeedback({
           message: s + ": " + r
@@ -2158,8 +2236,8 @@ class F {
    * Get an error message container
    * @private
    */
-  getInvalidFeedback(t) {
-    return this.theme.getInvalidFeedback(t);
+  getInvalidFeedback(e) {
+    return this.theme.getInvalidFeedback(e);
   }
   /**
    * Disables the editor
@@ -2181,33 +2259,33 @@ class F {
     this.refreshInteractiveElements();
   }
   refreshInteractiveElements() {
-    this.control.container.querySelectorAll("button, input, select, textarea").forEach((e) => {
-      this.disabled || this.readOnly ? e.setAttribute("disabled", "") : e.removeAttribute("disabled", "");
+    this.control.container.querySelectorAll("button, input, select, textarea").forEach((t) => {
+      this.disabled || this.readOnly ? t.setAttribute("disabled", "") : t.removeAttribute("disabled", "");
     });
   }
   /**
    * Transforms the input value if necessary before value set
    * @private
    */
-  sanitize(t) {
-    return t;
+  sanitize(e) {
+    return e;
   }
   /**
    * Destroys the editor
    * @private
    */
   destroy() {
-    this.control.container && this.control.container.parentNode && this.control.container.parentNode.removeChild(this.control.container), Object.keys(this).forEach((t) => {
-      delete this[t];
+    this.control.container && this.control.container.parentNode && this.control.container.parentNode.removeChild(this.control.container), Object.keys(this).forEach((e) => {
+      delete this[e];
     });
   }
 }
-class Zt extends F {
+class Ye extends F {
   build() {
     this.control = this.theme.getMultipleControl({
       title: "Options",
-      titleHidden: f(this.instance.schema, "titleHidden"),
-      id: S(this.instance.path),
+      titleHidden: m(this.instance.schema, "titleHidden"),
+      id: w(this.instance.path),
       description: j(this.instance.schema),
       switcherOptionValues: this.instance.switcherOptionValues,
       switcherOptionsLabels: this.instance.switcherOptionsLabels
@@ -2215,32 +2293,32 @@ class Zt extends F {
   }
   addEventListeners() {
     this.control.switcher.input.addEventListener("change", () => {
-      const t = Number(this.control.switcher.input.value);
-      this.instance.switchInstance(t);
+      const e = Number(this.control.switcher.input.value);
+      this.instance.switchInstance(e);
     });
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.childrenSlot.innerHTML = "", this.control.childrenSlot.appendChild(this.instance.activeInstance.ui.control.container), this.control.switcher.input.value = this.instance.index, this.disabled || this.instance.isReadOnly() ? this.instance.activeInstance.ui.disable() : this.instance.activeInstance.ui.enable();
   }
-  getInvalidFeedback(t) {
-    return this.theme.getAlert(t);
+  getInvalidFeedback(e) {
+    return this.theme.getAlert(e);
   }
 }
-class Fe extends D {
+class Ft extends D {
   setUI() {
-    this.ui = new Zt(this);
+    this.ui = new Ye(this);
   }
   prepare() {
     this.instances = [], this.activeInstance = null, this.activeInstanceChanged = !0, this.index = 0, this.schemas = [], this.switcherOptionValues = [], this.switcherOptionsLabels = [], this.ifThenElseShemas = [], this.traverseSchema(this.schema), delete this.schema.if, delete this.schema.then, delete this.schema.else;
-    let t = 0;
+    let e = 0;
     this.ifThenElseShemas.forEach((r) => {
-      l(r.then) && (this.schemas.push(K({}, k(this.schema), r.then)), this.switcherOptionValues.push(t), this.switcherOptionsLabels.push(JSON.stringify(r.then)), t++), l(r.else) && (this.schemas.push(K({}, k(this.schema), r.else)), this.switcherOptionValues.push(t), this.switcherOptionsLabels.push(JSON.stringify(r.else)), t++);
+      d(r.then) && (this.schemas.push(K({}, M(this.schema), r.then)), this.switcherOptionValues.push(e), this.switcherOptionsLabels.push(JSON.stringify(r.then)), e++), d(r.else) && (this.schemas.push(K({}, M(this.schema), r.else)), this.switcherOptionValues.push(e), this.switcherOptionsLabels.push(JSON.stringify(r.else)), e++);
     });
-    const e = k(this.schema);
-    delete e.if, delete e.then, delete e.else;
+    const t = M(this.schema);
+    delete t.if, delete t.then, delete t.else;
     const s = this.jedi.createInstance({
       jedi: this.jedi,
-      schema: e,
+      schema: t,
       path: this.path,
       parent: this.parent
     });
@@ -2256,10 +2334,10 @@ class Fe extends D {
         this.getFittestIndex(o) !== this.index ? this.setValue(o) : (this.value = this.activeInstance.getValue(), this.emit("change"));
       }), this.instances.push(a), this.register();
     }), this.on("set-value", (r) => {
-      this.instances.forEach((c) => {
-        const d = c.getValue();
+      this.instances.forEach((l) => {
+        const c = l.getValue();
         let h = r;
-        m(d) && m(h) && (h = $t(d, h)), c.setValue(h, !1);
+        g(c) && g(h) && (h = it(c, h)), l.setValue(h, !1);
       });
       const a = this.getFittestIndex(r);
       a !== this.index && (this.switchInstance(a), this.emit("change"));
@@ -2267,82 +2345,82 @@ class Fe extends D {
     const n = this.getFittestIndex(this.value);
     this.switchInstance(n);
   }
-  switchInstance(t) {
-    this.index = t, this.activeInstance = this.instances[this.index], this.value = this.activeInstance.getValue(), this.emit("change");
+  switchInstance(e) {
+    this.index = e, this.activeInstance = this.instances[this.index], this.value = this.activeInstance.getValue(), this.emit("change");
   }
-  traverseSchema(t) {
-    const e = jt(t);
-    if (l(e)) {
-      const s = Vt(t), n = Ot(t);
+  traverseSchema(e) {
+    const t = Te(e);
+    if (d(t)) {
+      const s = Ve(e), n = Oe(e);
       this.ifThenElseShemas.push({
-        if: e,
-        then: l(s) ? s : {}
+        if: t,
+        then: d(s) ? s : {}
       }), this.ifThenElseShemas.push({
-        if: e,
-        else: l(n) ? n : {}
+        if: t,
+        else: d(n) ? n : {}
       });
     }
   }
   /**
    * Returns the index of the instance that has less validation errors
    */
-  getFittestIndex(t) {
-    let e = this.index;
+  getFittestIndex(e) {
+    let t = this.index;
     return this.ifThenElseShemas.forEach((s, n) => {
-      const r = new w({
+      const r = new S({
         schema: s.if,
-        data: t
+        data: e
       }), a = r.getErrors();
-      r.destroy(), a.length === 0 && s.then && (e = n), a.length > 0 && s.else && (e = n);
-    }), e;
+      r.destroy(), a.length === 0 && s.then && (t = n), a.length > 0 && s.else && (t = n);
+    }), t;
   }
   destroy() {
-    this.instances.forEach((t) => {
-      t.destroy();
+    this.instances.forEach((e) => {
+      e.destroy();
     }), super.destroy();
   }
-  getAllOfCombinations(t) {
-    const e = [], s = (r, a) => ({ ...r, ...a }), n = (r, a) => {
+  getAllOfCombinations(e) {
+    const t = [], s = (r, a) => ({ ...r, ...a }), n = (r, a) => {
       if (a.length === 0) {
-        e.push(r);
+        t.push(r);
         return;
       }
       const o = a[0];
       n(s(r, o), a.slice(1)), n(r, a.slice(1));
     };
-    for (let r = 0; r < t.length; r++)
-      n(t[r], t.slice(r + 1));
-    return e.sort((r, a) => Object.keys(r).length - Object.keys(a).length), e;
+    for (let r = 0; r < e.length; r++)
+      n(e[r], e.slice(r + 1));
+    return t.sort((r, a) => Object.keys(r).length - Object.keys(a).length), t;
   }
 }
-class Ue extends D {
+class Ut extends D {
   setUI() {
-    this.ui = new Zt(this);
+    this.ui = new Ye(this);
   }
   prepare() {
-    this.instances = [], this.activeInstance = null, this.activeInstanceChanged = !0, this.lastIndex = 0, this.index = 0, this.schemas = [], this.switcherOptionValues = [], this.switcherOptionsLabels = [], this.on("set-value", () => {
+    this.instances = [], this.activeInstance = null, this.lastIndex = 0, this.index = 0, this.schemas = [], this.switcherOptionValues = [], this.switcherOptionsLabels = [], this.on("set-value", () => {
       this.onSetValue();
     });
-    const t = R(this.schema);
-    if (l($(this.schema)) || l(z(this.schema))) {
-      const s = l($(this.schema)) ? $(this.schema) : z(this.schema), n = k(this.schema);
+    const e = H(this.schema);
+    if (d($(this.schema)) || d(z(this.schema))) {
+      const s = d($(this.schema)) ? $(this.schema) : z(this.schema), n = M(this.schema);
       delete n.anyOf, delete n.oneOf, delete n.options, s.forEach((r, a) => {
         r = { ...n, ...r }, this.jedi.refParser && (r = this.jedi.refParser.expand(r));
         let o = "Option-" + (a + 1);
-        const c = f(r, "switcherTitle"), d = I(r);
-        l(d) && (o = d), l(c) && (o = c), this.switcherOptionValues.push(a), this.switcherOptionsLabels.push(o), this.schemas.push(r);
+        const l = m(r, "switcherTitle"), c = I(r);
+        d(c) && (o = c), d(l) && (o = l), this.switcherOptionValues.push(a), this.switcherOptionsLabels.push(o), this.schemas.push(r);
       });
-    } else if (x(t))
-      t.forEach((s, n) => {
+    } else if (x(e))
+      e.forEach((s, n) => {
         const r = K(this.schema), a = {
           ...r,
           type: s,
           title: s[0].toUpperCase() + s.slice(1)
         };
-        l(r.title) && (a.title = r.title), this.switcherOptionValues.push(n), this.switcherOptionsLabels.push(s.charAt(0).toUpperCase() + s.slice(1)), this.schemas.push(a);
+        d(r.title) && (a.title = r.title), this.switcherOptionValues.push(n), this.switcherOptionsLabels.push(s.charAt(0).toUpperCase() + s.slice(1)), this.schemas.push(a);
       });
-    else if (t === "any" || !t) {
-      const s = k(this.schema);
+    else if (e === "any" || !e) {
+      const s = M(this.schema);
       this.schemas = [
         { ...s, type: "object" },
         { ...s, type: "array" },
@@ -2369,59 +2447,47 @@ class Ue extends D {
         schema: s,
         path: this.path,
         parent: this.parent,
-        value: k(this.value)
+        value: M(this.value)
       });
-      l(this.value) && n.setValue(this.value, !1), n.unregister(), n.on("change", () => {
-        this.activeInstanceChanged = !0, this.setValue(this.activeInstance.getValue());
+      d(this.value) && n.setValue(this.value, !1), n.unregister(), n.off("change"), n.on("change", () => {
+        this.value = this.activeInstance.getValue(), this.emit("change");
       }), this.instances.push(n), this.register();
     });
-    const e = l(this.if) ? this.getIfIndex(this.value) : this.getFittestIndex(this.value);
-    this.switchInstance(e, this.value);
+    const t = this.getFittestIndex(this.value);
+    this.switchInstance(t, this.value);
   }
-  switchInstance(t, e) {
-    this.lastIndex = this.index, this.index = t, this.activeInstance = this.instances[t], l(e) && this.activeInstance.setValue(e, !1), this.setValue(this.activeInstance.getValue());
+  switchInstance(e, t) {
+    this.lastIndex = this.index, this.index = e, this.activeInstance = this.instances[e], d(t) && this.activeInstance.setValue(t, !1), this.setValue(this.activeInstance.getValue());
   }
   onSetValue() {
-    if (Pt(this.activeInstance.getValue(), this.value) || this.activeInstanceChanged) {
-      this.activeInstanceChanged = !1;
-      const t = l(this.if) ? this.getIfIndex(this.value) : this.getFittestIndex(this.value);
-      this.switchInstance(t, this.value);
+    if (Pe(this.activeInstance.getValue(), this.value)) {
+      const e = this.getFittestIndex(this.value);
+      this.switchInstance(e, this.value);
     }
-  }
-  reassignValues() {
-    const t = this.instances[this.lastIndex].getValue(), e = this.activeInstance.getValue();
-    if (m(t) && m(e)) {
-      const s = $t(e, t);
-      this.activeInstance.setValue(s, !1);
-    }
-  }
-  getIfIndex(t) {
-    const e = new w({ schema: this.if, data: t }), s = e.getErrors();
-    return e.destroy(), s.length === 0 ? 0 : 1;
   }
   /**
    * Returns the index of the instance that has less validation errors
    */
-  getFittestIndex(t) {
-    let e = 0, s, n;
+  getFittestIndex(e) {
+    let t = 0, s, n;
     for (const r of this.instances) {
-      const a = this.jedi.validator.getErrors(t, r.schema, r.getKey(), r.path);
-      (U(s) || U(n)) && (s = e, n = a), a.length < n.length && (s = e, n = a), e++;
+      const a = this.jedi.validator.getErrors(e, r.schema, r.getKey(), r.path);
+      (U(s) || U(n)) && (s = t, n = a), a.length < n.length && (s = t, n = a), t++;
     }
     return s;
   }
   destroy() {
-    this.instances.forEach((t) => {
-      t.destroy();
+    this.instances.forEach((e) => {
+      e.destroy();
     }), super.destroy();
   }
 }
-class Rt extends F {
+class Re extends F {
   build() {
     this.control = this.theme.getCheckboxControl({
-      id: S(this.instance.path),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     });
   }
@@ -2430,186 +2496,188 @@ class Rt extends F {
       this.instance.setValue(this.control.input.checked);
     });
   }
-  sanitize(t) {
-    return !!t;
+  sanitize(e) {
+    return !!e;
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.input.checked = this.instance.getValue();
   }
 }
-class $e extends Rt {
+class $t extends Re {
   build() {
     this.control = this.theme.getRadiosControl({
       values: ["false", "true"],
-      titles: f(this.instance.schema, "enumTitles") || ["false", "true"],
-      id: S(this.instance.path),
+      titles: m(this.instance.schema, "enumTitles") || ["false", "true"],
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     });
   }
   addEventListeners() {
-    this.control.radios.forEach((t) => {
-      t.addEventListener("change", () => {
-        const e = t.value === "true";
-        this.instance.setValue(e);
+    this.control.radios.forEach((e) => {
+      e.addEventListener("change", () => {
+        const t = e.value === "true";
+        this.instance.setValue(t);
       });
     });
   }
   refreshUI() {
-    this.refreshInteractiveElements(), this.control.radios.forEach((t) => {
-      const e = t.value === "true";
-      t.checked = e === this.instance.getValue();
+    this.refreshInteractiveElements(), this.control.radios.forEach((e) => {
+      const t = e.value === "true";
+      e.checked = t === this.instance.getValue();
     });
   }
 }
-class Ke extends Rt {
+class Kt extends Re {
   build() {
     this.control = this.theme.getSelectControl({
       values: ["false", "true"],
-      titles: f(this.instance.schema, "enumTitles") || ["false", "true"],
-      id: S(this.instance.path),
+      titles: m(this.instance.schema, "enumTitles") || ["false", "true"],
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     });
   }
   addEventListeners() {
     this.control.input.addEventListener("change", () => {
-      const t = this.control.input.value === "true";
-      this.instance.setValue(t);
+      const e = this.control.input.value === "true";
+      this.instance.setValue(e);
     });
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.input.value = this.instance.getValue() === !0 ? "true" : "false";
   }
 }
-class ze extends D {
+class zt extends D {
   setUI() {
-    const t = R(this.schema), e = B(this.schema);
-    t === "boolean" && e === "radio" ? this.ui = new $e(this) : t === "boolean" && e === "select" ? this.ui = new Ke(this) : t === "boolean" && (this.ui = new Rt(this));
+    const e = H(this.schema), t = q(this.schema);
+    e === "boolean" && t === "radio" ? this.ui = new $t(this) : e === "boolean" && t === "select" ? this.ui = new Kt(this) : e === "boolean" && (this.ui = new Re(this));
   }
 }
-class Ht extends F {
+class He extends F {
   build() {
     this.propertyActivators = {};
-    const t = this.instance.schema.options || {};
-    let e = !0;
-    const s = St(this.instance.schema);
-    l(s) && s === !1 && (e = !1);
+    const e = this.instance.schema.options || {};
+    let t = !0;
+    const s = Se(this.instance.schema);
+    d(s) && s === !1 && (t = !1);
     let n = !1;
-    l(this.instance.jedi.options.editableProperties) && (n = this.instance.jedi.options.editableProperties), l(t.editableProperties) && (n = t.editableProperties), this.control = this.theme.getObjectControl({
+    d(this.instance.jedi.options.enablePropertiesToggle) && (n = this.instance.jedi.options.enablePropertiesToggle), d(e.enablePropertiesToggle) && (n = e.enablePropertiesToggle), this.control = this.theme.getObjectControl({
       title: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
-      id: S(this.instance.path),
+      titleHidden: m(this.instance.schema, "titleHidden"),
+      id: w(this.instance.path),
       description: j(this.instance.schema),
-      editableProperties: n,
-      addProperty: e
+      enablePropertiesToggle: n,
+      addProperty: t,
+      enableCollapseToggle: this.instance.jedi.options.enableCollapseToggle || m(this.instance.schema, "enableCollapseToggle"),
+      startCollapsed: this.instance.jedi.options.startCollapsed || m(this.instance.schema, "startCollapsed")
     });
   }
   addEventListeners() {
     this.control.addPropertyBtn.addEventListener("click", () => {
-      const t = this.control.addPropertyControl.input.value.split(" ").join("");
-      if (t.length === 0 || l(this.instance.value[t]))
+      const e = this.control.addPropertyControl.input.value.split(" ").join("");
+      if (e.length === 0 || d(this.instance.value[e]))
         return;
       let n = {};
-      const r = St(this.instance.schema);
-      l(r) && (n = r);
-      const a = this.instance.createChild(n, t);
-      a.activate(), this.instance.properties[t] = { schema: n }, this.instance.setValue(this.instance.value), this.control.addPropertyControl.input.value = "";
+      const r = Se(this.instance.schema);
+      d(r) && (n = r);
+      const a = this.instance.createChild(n, e);
+      a.activate(), this.instance.properties[e] = { schema: n }, this.instance.setValue(this.instance.value), this.control.addPropertyControl.input.value = "";
       const o = this.control.ariaLive;
       o.innerHTML = "";
-      const c = I(a.schema), d = l(c) ? c : t, h = this.theme.getAriaLiveMessage();
-      h.textContent = d + " field was added to the form", o.appendChild(h);
+      const l = I(a.schema), c = d(l) ? l : e, h = this.theme.getAriaLiveMessage();
+      h.textContent = c + " field was added to the form", o.appendChild(h), this.control.propertiesContainer.close(), this.control.propertiesContainer.showModal();
     });
   }
-  sanitize(t) {
-    return m(t) ? t : {};
+  sanitize(e) {
+    return g(e) ? e : {};
   }
-  getInvalidFeedback(t) {
-    return this.theme.getAlert(t);
+  getInvalidFeedback(e) {
+    return this.theme.getAlert(e);
   }
   refreshPropertiesSlot() {
-    const t = f(this.instance.schema, "editableProperties");
-    (wt(this.instance.jedi.options.editableProperties, !0) || wt(t, !0)) && Object.keys(this.instance.properties).forEach((e) => {
-      const s = this.instance.isRequired(e), n = this.instance.isDependentRequired(e), r = !s && !n, a = this.propertyActivators[e], o = this.control.ariaLive, c = this.instance.properties[e].schema, d = I(c), h = this.instance.path + this.instance.jedi.pathSeparator + e, u = S(h) + "-activator", p = l(d) ? d : e;
+    const e = m(this.instance.schema, "enablePropertiesToggle");
+    (we(this.instance.jedi.options.enablePropertiesToggle, !0) || we(e, !0)) && Object.keys(this.instance.properties).forEach((t) => {
+      const s = this.instance.isRequired(t), n = this.instance.isDependentRequired(t), r = !s && !n, a = this.propertyActivators[t], o = this.control.ariaLive, l = this.instance.properties[t].schema, c = I(l), h = this.instance.path + this.instance.jedi.pathSeparator + t, u = w(h) + "-activator", p = d(c) ? c : t;
       if (r && !a) {
         const b = this.theme.getCheckboxControl({
           id: u,
           label: p,
           titleHidden: !1
-        }), L = b.input;
-        this.propertyActivators[e] = L, L.addEventListener("change", () => {
+        }), C = b.input;
+        this.propertyActivators[t] = C, C.addEventListener("change", () => {
           o.innerHTML = "";
-          const C = this.theme.getAriaLiveMessage();
-          L.checked ? (this.instance.getChild(e) || this.instance.createChild(c, e), this.instance.getChild(e).activate(), C.textContent = p + " field was added to the form", o.appendChild(C)) : (this.instance.getChild(e).deactivate(), C.textContent = p + " field was removed from the form", o.appendChild(C));
+          const y = this.theme.getAriaLiveMessage();
+          C.checked ? (this.instance.getChild(t) || this.instance.createChild(l, t), this.instance.getChild(t).activate(), y.textContent = p + " field was added to the form", o.appendChild(y)) : (this.instance.getChild(t).deactivate(), y.textContent = p + " field was removed from the form", o.appendChild(y)), this.control.propertiesContainer.close(), this.control.propertiesContainer.showModal();
         }), this.control.propertiesActivators.appendChild(b.container);
       }
-      const g = this.propertyActivators[e];
-      g && (g.disabled = this.disabled, g.checked = N(this.instance.getValue(), e));
+      const f = this.propertyActivators[t];
+      f && (f.disabled = this.disabled, f.checked = N(this.instance.getValue(), t));
     });
   }
   refreshEditors() {
-    this.instance.children.forEach((t) => {
-      t.isActive ? (t.ui.control.container.parentNode === null && this.control.childrenSlot.appendChild(t.ui.control.container), this.disabled || this.instance.isReadOnly() ? t.ui.disable() : t.ui.enable()) : t.ui.control.container.parentNode && t.ui.control.container.parentNode.removeChild(t.ui.control.container);
+    this.instance.children.forEach((e) => {
+      e.isActive ? (e.ui.control.container.parentNode === null && this.control.childrenSlot.appendChild(e.ui.control.container), this.disabled || this.instance.isReadOnly() ? e.ui.disable() : e.ui.enable()) : e.ui.control.container.parentNode && e.ui.control.container.parentNode.removeChild(e.ui.control.container);
     });
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.refreshPropertiesSlot(), this.refreshEditors();
   }
 }
-class Je extends Ht {
+class Jt extends He {
   refreshEditors() {
     for (; this.control.childrenSlot.firstChild; )
       this.control.childrenSlot.removeChild(this.control.childrenSlot.lastChild);
-    let t = this.theme.getRow();
-    this.control.childrenSlot.appendChild(t), this.instance.children.forEach((e) => {
-      if (e.isActive) {
-        const s = f(e.schema, "columns") || 12, n = f(e.schema, "offset") || 0, r = this.theme.getCol(12, s, n);
-        f(e.schema, "newRow") === !0 && (t = this.theme.getRow(), this.control.childrenSlot.appendChild(t)), t.appendChild(r), r.appendChild(e.ui.control.container), this.disabled || this.instance.isReadOnly() ? e.ui.disable() : e.ui.enable();
+    let e = this.theme.getRow();
+    this.control.childrenSlot.appendChild(e), this.instance.children.forEach((t) => {
+      if (t.isActive) {
+        const s = m(t.schema, "columns") || 12, n = m(t.schema, "offset") || 0, r = this.theme.getCol(12, s, n);
+        m(t.schema, "newRow") === !0 && (e = this.theme.getRow(), this.control.childrenSlot.appendChild(e)), e.appendChild(r), r.appendChild(t.ui.control.container), this.disabled || this.instance.isReadOnly() ? t.ui.disable() : t.ui.enable();
       }
     });
   }
 }
-class Ge extends Ht {
+class Gt extends He {
   init() {
     super.init(), this.activeTabIndex = 0;
   }
   refreshEditors() {
     for (; this.control.childrenSlot.firstChild; )
       this.control.childrenSlot.removeChild(this.control.childrenSlot.lastChild);
-    const t = this.instance.schema["x-control-cols"], e = this.instance.schema["x-control-stacked"], s = this.instance.schema["x-control-variant"], n = this.theme.getRow(), r = l(t) ? t : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), c = this.theme.getTabContent(), d = this.theme.getTabList({
-      stacked: l(e) ? e : !1,
-      type: l(s) ? s : "pils"
+    const e = this.instance.schema["x-control-cols"], t = this.instance.schema["x-control-stacked"], s = this.instance.schema["x-control-variant"], n = this.theme.getRow(), r = d(e) ? e : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), l = this.theme.getTabContent(), c = this.theme.getTabList({
+      stacked: d(t) ? t : !1,
+      type: d(s) ? s : "pils"
     });
-    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(d), o.appendChild(c), this.instance.children.forEach((h, u) => {
+    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(c), o.appendChild(l), this.instance.children.forEach((h, u) => {
       if (h.isActive) {
-        const p = u === this.activeTabIndex, g = S(h.path), b = I(h.schema), L = this.theme.getTab({
-          title: l(b) ? b : h.getKey(),
-          id: g,
+        const p = u === this.activeTabIndex, f = w(h.path), b = I(h.schema), C = this.theme.getTab({
+          title: d(b) ? b : h.getKey(),
+          id: f,
           active: p
         });
-        L.list.addEventListener("click", () => {
+        C.list.addEventListener("click", () => {
           this.activeTabIndex = u;
-        }), this.theme.setTabPaneAttributes(h.ui.control.container, p, g), d.appendChild(L.list), c.appendChild(h.ui.control.container), this.disabled || this.instance.isReadOnly() ? h.ui.disable() : h.ui.enable();
+        }), this.theme.setTabPaneAttributes(h.ui.control.container, p, f), c.appendChild(C.list), l.appendChild(h.ui.control.container), this.disabled || this.instance.isReadOnly() ? h.ui.disable() : h.ui.enable();
       }
     });
   }
 }
-class _e extends D {
+class _t extends D {
   setUI() {
-    const t = R(this.schema), e = B(this.schema), s = this.schema["x-control"];
-    t === "object" && e === "grid" ? this.ui = new Je(this) : t === "object" && s === "nav" ? this.ui = new Ge(this) : this.ui = new Ht(this);
+    const e = H(this.schema), t = q(this.schema), s = this.schema["x-control"];
+    e === "object" && t === "grid" ? this.ui = new Jt(this) : e === "object" && s === "nav" ? this.ui = new Gt(this) : this.ui = new He(this);
   }
   prepare() {
     this.properties = {};
-    const t = Mt(this.schema);
-    l(t) && Object.keys(t).forEach((e) => {
-      const s = t[e];
-      this.properties[e] = { schema: s };
+    const e = Me(this.schema);
+    d(e) && Object.keys(e).forEach((t) => {
+      const s = e[t];
+      this.properties[t] = { schema: s };
       let n = !0;
-      const r = f(this.schema, "deactivateNonRequired"), a = f(s, "deactivateNonRequired");
-      this.isNotRequired(e) && l(r) && r === !0 && (n = !1), this.isNotRequired(e) && l(a) && a === !0 && (n = !1), n && this.createChild(s, e);
+      const r = this.jedi.options.deactivateNonRequired, a = m(this.schema, "deactivateNonRequired"), o = m(s, "deactivateNonRequired");
+      this.isNotRequired(t) && d(r) && r === !0 && (n = !1), this.isNotRequired(t) && d(a) && a === !0 && (n = !1), this.isNotRequired(t) && d(o) && o === !0 && (n = !1), n && this.createChild(s, t);
     }), this.refreshInstances(), this.on("set-value", () => {
       this.refreshInstances();
     });
@@ -2617,79 +2685,81 @@ class _e extends D {
   /**
    * Returns true if the property is required
    */
-  isRequired(t) {
-    const e = Qt(this.schema);
-    return l(e) && e.includes(t);
+  isRequired(e) {
+    const t = We(this.schema);
+    return d(t) && t.includes(e);
   }
   /**
    * Returns true if the property is dependent required
    */
-  isDependentRequired(t) {
-    const e = Jt(this.schema);
-    if (l(e)) {
+  isDependentRequired(e) {
+    const t = ze(this.schema);
+    if (d(t)) {
       let s = [];
-      return Object.keys(e).forEach((n) => {
-        l(this.value[n]) && (s = e[n].filter((a) => !N(this.value, a)));
-      }), s.includes(t);
+      return Object.keys(t).forEach((n) => {
+        d(this.value[n]) && (s = t[n].filter((a) => !N(this.value, a)));
+      }), s.includes(e);
     }
     return !1;
   }
-  createChild(t, e, s) {
+  createChild(e, t, s) {
     const n = this.jedi.createInstance({
       jedi: this.jedi,
-      schema: t,
-      path: this.path + this.jedi.pathSeparator + e,
+      schema: e,
+      path: this.path + this.jedi.pathSeparator + t,
       parent: this,
-      value: k(s)
+      value: M(s)
     });
-    this.children.push(n), this.value[e] = n.getValue();
-    const r = f(this.schema, "deactivateNonRequired");
-    return this.isNotRequired(e) && l(r) && r === !0 && n.deactivate(), n;
+    this.children.push(n), this.value[t] = n.getValue();
+    const r = this.jedi.options.deactivateNonRequired || m(this.schema, "deactivateNonRequired");
+    return this.isNotRequired(t) && d(r) && r === !0 && n.deactivate(), n;
   }
-  isNotRequired(t) {
-    return !this.isRequired(t) && !this.isDependentRequired(t);
+  isNotRequired(e) {
+    return !this.isRequired(e) && !this.isDependentRequired(e);
   }
-  deleteChild(t) {
-    for (let e = this.children.length - 1; e >= 0; e--) {
-      const s = this.children[e];
-      s.getKey() === t && (s.destroy(), this.children.splice(e, 1), this.onChildChange());
+  deleteChild(e) {
+    for (let t = this.children.length - 1; t >= 0; t--) {
+      const s = this.children[t];
+      s.getKey() === e && (s.destroy(), this.children.splice(t, 1), this.onChildChange());
     }
   }
-  getChild(t) {
-    return this.children.find((e) => t === e.getKey().split(this.jedi.pathSeparator).pop());
+  getChild(e) {
+    return this.children.find((t) => e === t.getKey().split(this.jedi.pathSeparator).pop());
   }
   onChildChange() {
-    const t = {};
-    this.children.forEach((e) => {
-      e.isActive && (t[e.getKey()] = e.getValue());
-    }), this.setValue(t);
+    const e = {};
+    this.children.forEach((t) => {
+      t.isActive && (e[t.getKey()] = t.getValue());
+    }), this.value = e, this.emit("change");
   }
   refreshInstances() {
-    const t = this.getValue();
-    if (m(t)) {
-      Object.keys(t).forEach((e) => {
-        const s = this.getChild(e);
+    const e = this.getValue();
+    if (g(e)) {
+      Object.keys(e).forEach((t) => {
+        const s = this.getChild(t);
         if (s) {
           s.activate();
-          const n = s.getValue(), r = t[s.getKey()];
-          Pt(n, r) && s.setValue(r, !1);
+          const n = s.getValue(), r = e[s.getKey()];
+          Pe(n, r) && s.setValue(r, !1);
         } else
-          this.createChild({}, e, t[e]);
+          this.createChild({}, t, e[t]);
       });
-      for (let e = this.children.length - 1; e >= 0; e--) {
-        const s = this.children[e], n = s.getKey();
-        U(t[n]) && (this.getChild(n) ? s.deactivate() : this.deleteChild(n));
+      for (let t = this.children.length - 1; t >= 0; t--) {
+        const s = this.children[t], n = s.getKey();
+        U(e[n]) && (this.getChild(n) ? s.deactivate() : this.deleteChild(n));
       }
     }
   }
 }
-class te extends F {
+class Ze extends F {
   build() {
     this.control = this.theme.getArrayControl({
       title: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
-      id: S(this.instance.path),
-      description: j(this.instance.schema)
+      titleHidden: m(this.instance.schema, "titleHidden"),
+      id: w(this.instance.path),
+      description: j(this.instance.schema),
+      enableCollapseToggle: this.instance.jedi.options.enableCollapseToggle || m(this.instance.schema, "enableCollapseToggle"),
+      startCollapsed: this.instance.jedi.options.startCollapsed || m(this.instance.schema, "startCollapsed")
     });
   }
   addEventListeners() {
@@ -2697,18 +2767,18 @@ class te extends F {
       this.instance.addItem();
     });
   }
-  getInvalidFeedback(t) {
-    return this.theme.getAlert(t);
+  getInvalidFeedback(e) {
+    return this.theme.getAlert(e);
   }
-  sanitize(t) {
-    return x(t) ? t : [];
+  sanitize(e) {
+    return x(e) ? e : [];
   }
   refreshUI() {
     this.refreshInteractiveElements();
-    const t = _t(this.instance.schema), e = Wt(this.instance.schema);
-    l(t) && t === this.instance.value.length && this.control.addBtn.setAttribute("disabled", ""), this.control.childrenSlot.innerHTML = "", this.instance.children.forEach((s) => {
-      const n = Number(s.getKey()), r = this.theme.getDeleteItemBtn(), a = this.theme.getMoveUpItemBtn(), o = this.theme.getMoveDownItemBtn();
-      s.ui.control.arrayActions.innerHTML = "", s.ui.control.arrayActions.appendChild(r), s.ui.control.arrayActions.appendChild(a), s.ui.control.arrayActions.appendChild(o), this.control.childrenSlot.appendChild(s.ui.control.container), r.addEventListener("click", () => {
+    const e = Ge(this.instance.schema), t = _e(this.instance.schema);
+    d(e) && e === this.instance.value.length && this.control.addBtn.setAttribute("disabled", ""), this.control.childrenSlot.innerHTML = "", this.instance.children.forEach((s) => {
+      const n = Number(s.getKey()), r = this.theme.getDeleteItemBtn(), a = this.theme.getMoveUpItemBtn(), o = this.theme.getMoveDownItemBtn(), l = this.theme.getBtnGroup();
+      s.ui.control.arrayActions.innerHTML = "", s.ui.control.arrayActions.appendChild(l), l.appendChild(r), l.appendChild(a), l.appendChild(o), this.control.childrenSlot.appendChild(s.ui.control.container), r.addEventListener("click", () => {
         const c = Number(s.path.split(this.instance.jedi.pathSeparator).pop());
         this.instance.deleteItem(c);
       }), a.addEventListener("click", () => {
@@ -2717,11 +2787,11 @@ class te extends F {
       }), o.addEventListener("click", () => {
         const c = n + 1;
         this.instance.move(n, c);
-      }), this.disabled || this.instance.isReadOnly() ? s.ui.disable() : s.ui.enable(), l(e) && this.instance.value.length <= e && r.setAttribute("disabled", "");
+      }), this.disabled || this.instance.isReadOnly() ? s.ui.disable() : s.ui.enable(), d(t) && this.instance.value.length <= t && r.setAttribute("disabled", "");
     });
   }
 }
-class We extends te {
+class Wt extends Ze {
   init() {
     super.init(), this.activeTabIndex = 0;
   }
@@ -2732,163 +2802,163 @@ class We extends te {
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.childrenSlot.innerHTML = "";
-    const t = f(this.instance.schema, "navCols"), e = f(this.instance.schema, "navStacked"), s = f(this.instance.schema, "navType"), n = this.theme.getRow(), r = l(t) ? t : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), c = this.theme.getTabContent(), d = this.theme.getTabList({
-      stacked: l(e) ? e : !1,
-      type: l(s) ? s : "pils"
+    const e = m(this.instance.schema, "navCols"), t = m(this.instance.schema, "navStacked"), s = m(this.instance.schema, "navType"), n = this.theme.getRow(), r = d(e) ? e : 3, a = this.theme.getCol(12, r), o = this.theme.getCol(12, 12 - r), l = this.theme.getTabContent(), c = this.theme.getTabList({
+      stacked: d(t) ? t : !1,
+      type: d(s) ? s : "pils"
     });
-    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(d), o.appendChild(c), this.instance.children.forEach((h, u) => {
-      const p = this.theme.getDeleteItemBtn(), g = this.theme.getMoveUpItemBtn(), b = this.theme.getMoveDownItemBtn();
-      h.ui.control.arrayActions.innerHTML = "", h.ui.control.arrayActions.appendChild(p), h.ui.control.arrayActions.appendChild(g), h.ui.control.arrayActions.appendChild(b), this.control.childrenSlot.appendChild(h.ui.control.container);
-      let L;
-      const C = f(this.instance.schema, "itemTemplate");
-      if (C) {
-        const A = C, gt = {
+    this.control.childrenSlot.appendChild(n), n.appendChild(a), n.appendChild(o), a.appendChild(c), o.appendChild(l), this.instance.children.forEach((h, u) => {
+      const p = this.theme.getDeleteItemBtn(), f = this.theme.getMoveUpItemBtn(), b = this.theme.getMoveDownItemBtn();
+      h.ui.control.arrayActions.innerHTML = "", h.ui.control.arrayActions.appendChild(p), h.ui.control.arrayActions.appendChild(f), h.ui.control.arrayActions.appendChild(b), this.control.childrenSlot.appendChild(h.ui.control.container);
+      let C;
+      const y = m(this.instance.schema, "itemTemplate");
+      if (y) {
+        const O = y, ge = {
           i0: u,
           i1: u + 1,
           value: h.getValue()
         };
-        L = y(A, gt);
+        C = E(O, ge);
       } else {
-        const A = I(h.schema);
-        L = l(A) ? A + " " + (u + 1) : h.getKey();
+        const O = I(h.schema);
+        C = d(O) ? O + " " + (u + 1) : h.getKey();
       }
       p.addEventListener("click", () => {
-        this.activeTabIndex = re(u - 1, 0, this.instance.value.length - 1), this.instance.deleteItem(u);
-      }), g.addEventListener("click", () => {
-        const A = u - 1;
-        this.activeTabIndex = A, this.instance.move(u, A);
+        this.activeTabIndex = rt(u - 1, 0, this.instance.value.length - 1), this.instance.deleteItem(u);
+      }), f.addEventListener("click", () => {
+        const O = u - 1;
+        this.activeTabIndex = O, this.instance.move(u, O);
       }), b.addEventListener("click", () => {
-        const A = u + 1;
-        this.activeTabIndex = A, this.instance.move(u, A);
+        const O = u + 1;
+        this.activeTabIndex = O, this.instance.move(u, O);
       });
-      const E = u === this.activeTabIndex, q = S(h.path), M = this.theme.getTab({
-        title: L,
-        id: q,
-        active: E
+      const L = u === this.activeTabIndex, k = w(h.path), A = this.theme.getTab({
+        title: C,
+        id: k,
+        active: L
       });
-      M.list.addEventListener("click", () => {
+      A.list.addEventListener("click", () => {
         this.activeTabIndex = u;
-      }), this.theme.setTabPaneAttributes(h.ui.control.container, E, q), d.appendChild(M.list), c.appendChild(h.ui.control.container), this.disabled || this.instance.isReadOnly() ? h.ui.disable() : h.ui.enable(), u === 0 && g.setAttribute("disabled", ""), this.instance.value.length - 1 === u && b.setAttribute("disabled", "");
+      }), this.theme.setTabPaneAttributes(h.ui.control.container, L, k), c.appendChild(A.list), l.appendChild(h.ui.control.container), this.disabled || this.instance.isReadOnly() ? h.ui.disable() : h.ui.enable(), u === 0 && f.setAttribute("disabled", ""), this.instance.value.length - 1 === u && b.setAttribute("disabled", "");
     });
   }
 }
-class Qe extends D {
+class Qt extends D {
   setUI() {
-    const t = R(this.schema), e = B(this.schema);
-    t === "array" && e === "nav" ? this.ui = new We(this) : this.ui = new te(this);
+    const e = H(this.schema), t = q(this.schema);
+    e === "array" && t === "nav" ? this.ui = new Wt(this) : this.ui = new Ze(this);
   }
   prepare() {
     this.refreshChildren(), this.on("set-value", () => {
       this.refreshChildren();
     });
   }
-  createItemInstance(t) {
-    let e;
-    const s = this.children.length, n = Gt(this.schema), r = Tt(this.schema);
-    e = l(n) ? n : {}, l(r) && l(r[s]) && (e = r[s]);
+  createItemInstance(e) {
+    let t;
+    const s = this.children.length, n = Je(this.schema), r = ke(this.schema);
+    t = d(n) ? n : {}, d(r) && d(r[s]) && (t = r[s]);
     const o = this.jedi.createInstance({
       jedi: this.jedi,
-      schema: e,
+      schema: t,
       path: this.path + this.jedi.pathSeparator + s,
       parent: this,
-      value: k(t)
+      value: M(e)
     });
-    return l(t) && o.setValue(t, !1), o;
+    return d(e) && o.setValue(e, !1), o;
   }
-  move(t, e) {
-    const s = k(this.getValue()), n = s[t];
-    s.splice(t, 1), s.splice(e, 0, n), this.setValue(s);
+  move(e, t) {
+    const s = M(this.getValue()), n = s[e];
+    s.splice(e, 1), s.splice(t, 0, n), this.setValue(s);
   }
   addItem() {
-    const t = this.createItemInstance(), e = k(this.getValue());
-    e.push(t.getValue()), t.destroy(), this.setValue(e);
+    const e = this.createItemInstance(), t = M(this.getValue());
+    t.push(e.getValue()), e.destroy(), this.setValue(t);
   }
-  deleteItem(t) {
-    const s = k(this.getValue()).filter((n, r) => r !== t);
+  deleteItem(e) {
+    const s = M(this.getValue()).filter((n, r) => r !== e);
     this.setValue(s);
   }
   onChildChange() {
-    const t = [];
-    this.children.forEach((e) => {
-      t.push(e.getValue());
-    }), this.setValue(t);
+    const e = [];
+    this.children.forEach((t) => {
+      e.push(t.getValue());
+    }), this.value = e, this.emit("change");
   }
   refreshChildren() {
     this.children = [];
-    const t = this.getValue();
-    x(t) && t.forEach((e) => {
-      const s = this.createItemInstance(e);
+    const e = this.getValue();
+    x(e) && e.forEach((t) => {
+      const s = this.createItemInstance(t);
       this.children.push(s);
     });
   }
 }
-class Bt extends F {
+class Be extends F {
   build() {
-    const t = ["hidden", "color", "date", "datetime-local", "email", "number", "month", "password", "search", "time", "tel", "text", "textarea", "url", "week"], e = B(this.instance.schema);
+    const e = ["hidden", "color", "date", "datetime-local", "email", "number", "month", "password", "search", "time", "tel", "text", "textarea", "url", "week"], t = q(this.instance.schema);
     this.control = this.theme.getInputControl({
-      type: t.includes(e) ? e : "text",
-      id: S(this.instance.path),
+      type: e.includes(t) ? t : "text",
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden") || e === "hidden",
+      titleHidden: m(this.instance.schema, "titleHidden") || t === "hidden",
       description: j(this.instance.schema)
-    }), e === "color" && this.instance.value.length === 0 && this.instance.setValue("#000000", !1);
+    }), t === "color" && this.instance.value.length === 0 && this.instance.setValue("#000000", !1);
   }
   addEventListeners() {
     this.control.input.addEventListener("change", () => {
       this.instance.setValue(this.control.input.value);
     });
   }
-  sanitize(t) {
-    return String(t);
+  sanitize(e) {
+    return String(e);
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.input.value = this.instance.getValue();
   }
 }
-class Xe extends Bt {
+class Xt extends Be {
   build() {
     this.control = this.theme.getRadiosControl({
-      values: T(this.instance.schema),
-      titles: f(this.instance.schema, "enumTitles") || T(this.instance.schema),
-      id: S(this.instance.path),
+      values: V(this.instance.schema),
+      titles: m(this.instance.schema, "enumTitles") || V(this.instance.schema),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     });
   }
   addEventListeners() {
-    this.control.radios.forEach((t) => {
-      t.addEventListener("change", () => {
-        this.instance.setValue(t.value);
+    this.control.radios.forEach((e) => {
+      e.addEventListener("change", () => {
+        this.instance.setValue(e.value);
       });
     });
   }
   refreshUI() {
-    this.refreshInteractiveElements(), this.control.radios.forEach((t) => {
-      t.checked = t.value === this.instance.getValue();
+    this.refreshInteractiveElements(), this.control.radios.forEach((e) => {
+      e.checked = e.value === this.instance.getValue();
     });
   }
 }
-class Ye extends Bt {
+class Yt extends Be {
   build() {
     this.control = this.theme.getSelectControl({
-      values: T(this.instance.schema),
-      titles: f(this.instance.schema, "enumTitles") || T(this.instance.schema),
-      id: S(this.instance.path),
+      values: V(this.instance.schema),
+      titles: m(this.instance.schema, "enumTitles") || V(this.instance.schema),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     }), this.control.input.addEventListener("change", () => {
       this.instance.setValue(this.control.input.value);
     });
   }
 }
-class Ze extends F {
+class Zt extends F {
   build() {
     this.control = this.theme.getTextareaControl({
-      id: S(this.instance.path),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden") || B(this.instance.schema) === "hidden",
+      titleHidden: m(this.instance.schema, "titleHidden") || q(this.instance.schema) === "hidden",
       description: j(this.instance.schema)
     });
   }
@@ -2897,99 +2967,99 @@ class Ze extends F {
       this.instance.setValue(this.control.input.value);
     });
   }
-  sanitize(t) {
-    return String(t);
+  sanitize(e) {
+    return String(e);
   }
   refreshUI() {
     this.refreshInteractiveElements(), this.control.input.value = this.instance.getValue();
   }
 }
-class ts extends D {
+class es extends D {
   setUI() {
-    const t = R(this.schema), e = T(this.schema), s = B(this.schema);
-    t === "string" && l(e) && s === "radio" ? this.ui = new Xe(this) : t === "string" && s === "textarea" ? this.ui = new Ze(this) : t === "string" && l(e) ? this.ui = new Ye(this) : t === "string" && (this.ui = new Bt(this));
+    const e = H(this.schema), t = V(this.schema), s = q(this.schema);
+    e === "string" && d(t) && s === "radio" ? this.ui = new Xt(this) : e === "string" && s === "textarea" ? this.ui = new Zt(this) : e === "string" && d(t) ? this.ui = new Yt(this) : e === "string" && (this.ui = new Be(this));
   }
 }
-class qt extends F {
+class qe extends F {
   build() {
     this.control = this.theme.getInputControl({
       type: "number",
-      id: S(this.instance.path),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden") || B(this.instance.schema) === "hidden",
+      titleHidden: m(this.instance.schema, "titleHidden") || q(this.instance.schema) === "hidden",
       description: j(this.instance.schema)
     });
   }
   addEventListeners() {
     this.control.input.addEventListener("change", () => {
-      const t = this.sanitize(this.control.input.value);
-      this.instance.setValue(t);
+      const e = this.sanitize(this.control.input.value);
+      this.instance.setValue(e);
     });
   }
-  sanitize(t) {
-    return R(this.instance.schema) === "integer" ? Math.floor(Number(t)) : Number(t);
+  sanitize(e) {
+    return H(this.instance.schema) === "integer" ? Math.floor(Number(e)) : Number(e);
   }
   refreshUI() {
     this.refreshInteractiveElements();
-    const t = this.instance.getValue();
-    O(t) && (this.control.input.value = this.instance.getValue());
+    const e = this.instance.getValue();
+    T(e) && (this.control.input.value = this.instance.getValue());
   }
 }
-class es extends qt {
+class ts extends qe {
   build() {
     this.control = this.theme.getRadiosControl({
-      values: T(this.instance.schema),
-      titles: f(this.instance.schema, "enumTitles") || T(this.instance.schema),
-      id: S(this.instance.path),
+      values: V(this.instance.schema),
+      titles: m(this.instance.schema, "enumTitles") || V(this.instance.schema),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     });
   }
   addEventListeners() {
-    this.control.radios.forEach((t) => {
-      t.addEventListener("change", () => {
-        const e = this.sanitize(t.value);
-        this.instance.setValue(e);
+    this.control.radios.forEach((e) => {
+      e.addEventListener("change", () => {
+        const t = this.sanitize(e.value);
+        this.instance.setValue(t);
       });
     });
   }
   refreshUI() {
-    this.refreshInteractiveElements(), this.control.radios.forEach((t) => {
-      t.checked = Number(t.value) === Number(this.instance.getValue());
+    this.refreshInteractiveElements(), this.control.radios.forEach((e) => {
+      e.checked = Number(e.value) === Number(this.instance.getValue());
     });
   }
 }
-class ss extends qt {
+class ss extends qe {
   build() {
     this.control = this.theme.getSelectControl({
-      values: T(this.instance.schema),
-      titles: f(this.instance.schema, "enumTitles") || T(this.instance.schema),
-      id: S(this.instance.path),
+      values: V(this.instance.schema),
+      titles: m(this.instance.schema, "enumTitles") || V(this.instance.schema),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden"),
+      titleHidden: m(this.instance.schema, "titleHidden"),
       description: j(this.instance.schema)
     });
   }
   addEventListeners() {
     this.control.input.addEventListener("change", () => {
-      const t = this.sanitize(this.control.input.value);
-      this.instance.setValue(t);
+      const e = this.sanitize(this.control.input.value);
+      this.instance.setValue(e);
     });
   }
 }
 class is extends D {
   setUI() {
-    const t = R(this.schema), e = T(this.schema), s = B(this.schema), n = t === "number" || t === "integer";
-    n && l(e) && s === "radio" ? this.ui = new es(this) : n && l(e) ? this.ui = new ss(this) : n && (this.ui = new qt(this));
+    const e = H(this.schema), t = V(this.schema), s = q(this.schema), n = e === "number" || e === "integer";
+    n && d(t) && s === "radio" ? this.ui = new ts(this) : n && d(t) ? this.ui = new ss(this) : n && (this.ui = new qe(this));
   }
 }
 class ns extends F {
   build() {
     this.control = this.theme.getNullControl({
-      id: S(this.instance.path),
+      id: w(this.instance.path),
       label: I(this.instance.schema) || this.instance.getKey(),
-      titleHidden: f(this.instance.schema, "titleHidden") || B(this.instance.schema) === "hidden",
+      titleHidden: m(this.instance.schema, "titleHidden") || q(this.instance.schema) === "hidden",
       description: j(this.instance.schema)
     });
   }
@@ -3002,7 +3072,7 @@ class rs extends D {
     this.ui = new ns(this);
   }
 }
-class as extends Yt {
+class as extends Xe {
   /**
    * Creates a Jedi instance.
    * @param {object} options - Options object
@@ -3010,27 +3080,30 @@ class as extends Yt {
    * @param {boolean} options.container - Where the UI controls will be rendered
    * @param {string} options.theme - How the UI controls will be rendered
    */
-  constructor(t) {
+  constructor(e) {
     super(), this.options = Object.assign({
       container: null,
       refParser: null,
-      editableProperties: !1,
+      enablePropertiesToggle: !1,
+      enableCollapseToggle: !1,
+      startCollapsed: !1,
+      deactivateNonRequired: !1,
       schema: {},
       showErrors: "change",
       data: void 0,
       validateFormat: !1
-    }, t), this.rootName = "#", this.pathSeparator = "/", this.instances = {}, this.root = null, this.theme = null, this.validator = null, this.schema = {}, this.refParser = this.options.refParser ? this.options.refParser : null, this.init();
+    }, e), this.rootName = "#", this.pathSeparator = "/", this.instances = {}, this.root = null, this.theme = null, this.validator = null, this.schema = {}, this.refParser = this.options.refParser ? this.options.refParser : null, this.init();
   }
   /**
    * Initializes instance properties
    * @private
    */
   init() {
-    this.schema = this.options.schema, this.validator = new ke({ refParser: this.refParser, validateFormat: this.options.validateFormat }), this.root = this.createInstance({
+    this.schema = this.options.schema, this.validator = new jt({ refParser: this.refParser, validateFormat: this.options.validateFormat }), this.root = this.createInstance({
       jedi: this,
       schema: this.options.schema,
       path: this.rootName
-    }), l(this.options.data) && this.root.setValue(this.options.data, !1), this.options.container && (this.container = this.options.container, this.appendHiddenInput(), this.container.appendChild(this.root.ui.control.container), this.container.classList.add("jedi-ready")), this.bindEventListeners();
+    }), d(this.options.data) && this.root.setValue(this.options.data, !1), this.options.container && (this.container = this.options.container, this.appendHiddenInput(), this.container.appendChild(this.root.ui.control.container), this.container.classList.add("jedi-ready")), this.bindEventListeners();
   }
   bindEventListeners() {
     this.root && this.root.on("change", () => {
@@ -3045,49 +3118,49 @@ class as extends Yt {
    * @private
    */
   appendHiddenInput() {
-    const t = this.root.ui.theme.getInputControl({
+    const e = this.root.ui.theme.getInputControl({
       type: "hidden",
       id: "jedi-hidden-input"
     });
-    this.hiddenInput = t.input, this.hiddenInput.setAttribute("name", "json"), this.hiddenInput.removeAttribute("aria-describedby"), this.container.appendChild(this.hiddenInput), this.hiddenInput.value = JSON.stringify(this.getValue());
+    this.hiddenInput = e.input, this.hiddenInput.setAttribute("name", "json"), this.hiddenInput.removeAttribute("aria-describedby"), this.container.appendChild(this.hiddenInput), this.hiddenInput.value = JSON.stringify(this.getValue());
   }
   /**
    * Adds a child instance pointer to the instances list
    * @private
    */
-  register(t) {
-    this.instances[t.path] = t;
+  register(e) {
+    this.instances[e.path] = e;
   }
   /**
    * Deletes a child instance pointer from the instances list
    * @private
    */
-  unregister(t) {
-    this.instances[t.path] = null, delete this.instances[t.path];
+  unregister(e) {
+    this.instances[e.path] = null, delete this.instances[e.path];
   }
   /**
    * Creates a json instance and dereference schema on the fly if needed.
    * @private
    */
-  createInstance(t) {
-    this.refParser && (t.schema = this.refParser.expand(t.schema, t.path));
-    const e = R(t.schema), s = z(t.schema), n = $(t.schema), r = jt(t.schema), a = Vt(t.schema), o = Ot(t.schema);
-    if (l(n) || l(s) || e === "any" || x(e) || U(e))
-      return new Ue(t);
-    if (l(r) && (l(a) || l(o)))
-      return new Fe(t);
-    if (e === "object")
-      return new _e(t);
-    if (e === "array")
-      return new Qe(t);
-    if (e === "string")
-      return new ts(t);
-    if (e === "number" || e === "integer")
-      return new is(t);
-    if (e === "boolean")
-      return new ze(t);
-    if (e === "null")
-      return new rs(t);
+  createInstance(e) {
+    this.refParser && (e.schema = this.refParser.expand(e.schema, e.path));
+    const t = H(e.schema), s = z(e.schema), n = $(e.schema), r = Te(e.schema), a = Ve(e.schema), o = Oe(e.schema);
+    if (d(n) || d(s) || t === "any" || x(t) || U(t))
+      return new Ut(e);
+    if (d(r) && (d(a) || d(o)))
+      return new Ft(e);
+    if (t === "object")
+      return new _t(e);
+    if (t === "array")
+      return new Qt(e);
+    if (t === "string")
+      return new es(e);
+    if (t === "number" || t === "integer")
+      return new is(e);
+    if (t === "boolean")
+      return new zt(e);
+    if (t === "null")
+      return new rs(e);
   }
   /**
    * Returns the value of the root instance
@@ -3106,8 +3179,8 @@ class as extends Yt {
    * Returns an instance by path
    * @return {*}
    */
-  getInstance(t) {
-    return this.instances[t];
+  getInstance(e) {
+    return this.instances[e];
   }
   /**
    * Disables the root instance and it's children user interfaces
@@ -3125,28 +3198,28 @@ class as extends Yt {
    * Returns an array of validation error messages
    */
   getErrors() {
-    let t = [];
-    return Object.keys(this.instances).forEach((e) => {
-      const s = this.instances[e];
-      t = [...t, ...s.getErrors()];
-    }), t;
+    let e = [];
+    return Object.keys(this.instances).forEach((t) => {
+      const s = this.instances[t];
+      e = [...e, ...s.getErrors()];
+    }), e;
   }
   /**
    * Destroy the root instance and it's children
    */
   destroy() {
-    this.root.destroy(), this.options.container && (this.container.innerHTML = ""), Object.keys(this).forEach((t) => {
-      delete this[t];
+    this.root.destroy(), this.options.container && (this.container.innerHTML = ""), Object.keys(this).forEach((e) => {
+      delete this[e];
     });
   }
 }
-const w = as;
+const S = as;
 class os {
   constructor() {
     this.refs = {};
   }
-  async dereference(t) {
-    await this.traverseExternal(t), this.traverseLocal(t);
+  async dereference(e) {
+    await this.traverseExternal(e), this.traverseLocal(e);
   }
   /**
    * Traverses the given schema recursively and for each schema with $ref
@@ -3159,32 +3232,32 @@ class os {
    * @param schema
    * @param path
    */
-  async traverseExternal(t, e = "#") {
-    if (!(typeof t != "object" || t === null))
-      for (const [s, n] of Object.entries(t)) {
-        const r = e ? `${e}/${s}` : `/${s}`;
-        if (this.hasRef(t)) {
-          const a = t.$ref;
+  async traverseExternal(e, t = "#") {
+    if (!(typeof e != "object" || e === null))
+      for (const [s, n] of Object.entries(e)) {
+        const r = t ? `${t}/${s}` : `/${s}`;
+        if (this.hasRef(e)) {
+          const a = e.$ref;
           if (this.refs[a])
             return;
-          if (this.refs[a] = null, this.hasExternalRef(t)) {
-            const o = await this.resolveExternal(t);
+          if (this.refs[a] = null, this.hasExternalRef(e)) {
+            const o = await this.resolveExternal(e);
             await this.traverseExternal(o, r);
           }
         }
-        this.refs[e] = t, await this.traverseExternal(n, r);
+        this.refs[t] = e, await this.traverseExternal(n, r);
       }
   }
-  traverseLocal(t, e = "#") {
-    if (!(typeof t != "object" || t === null))
-      for (const [s, n] of Object.entries(t)) {
-        const r = e ? `${e}/${s}` : `/${s}`;
-        if (this.hasRef(t)) {
-          const a = t.$ref;
+  traverseLocal(e, t = "#") {
+    if (!(typeof e != "object" || e === null))
+      for (const [s, n] of Object.entries(e)) {
+        const r = t ? `${t}/${s}` : `/${s}`;
+        if (this.hasRef(e)) {
+          const a = e.$ref;
           if (this.refs[a])
             return;
-          if (!this.hasExternalRef(t)) {
-            const o = this.resolveLocal(t);
+          if (!this.hasExternalRef(e)) {
+            const o = this.resolveLocal(e);
             this.traverseLocal(o, r);
           }
         }
@@ -3196,60 +3269,60 @@ class os {
    * uses that key as the url in a http request to retrieve the external schema. The retrieved schema
    * will be used for the value of that property
    */
-  async resolveExternal(t) {
-    const e = t.$ref, s = await this.load(e);
-    return this.refs[e] = s, s;
+  async resolveExternal(e) {
+    const t = e.$ref, s = await this.load(t);
+    return this.refs[t] = s, s;
   }
   /**
    * Iterates through the this.refs object keys and resolve all schemas that can be found in this.refs object
    */
-  resolveLocal(t) {
-    const e = t.$ref;
+  resolveLocal(e) {
+    const t = e.$ref;
     let s = null;
-    return this.refs[e] && (s = this.refs[e], this.refs[e] = s), s;
+    return this.refs[t] && (s = this.refs[t], this.refs[t] = s), s;
   }
-  hasRef(t) {
-    return typeof t.$ref < "u";
+  hasRef(e) {
+    return typeof e.$ref < "u";
   }
-  hasExternalRef(t) {
-    const e = t.$ref;
-    return typeof e != "string" ? !1 : e.startsWith("http") || e.startsWith("https");
+  hasExternalRef(e) {
+    const t = e.$ref;
+    return typeof t != "string" ? !1 : t.startsWith("http") || t.startsWith("https");
   }
-  isCircularRef(t) {
-    const e = `"$ref":"${t}"`, s = this.refs[t];
-    return JSON.stringify(s).includes(e);
+  isCircularRef(e) {
+    const t = `"$ref":"${e}"`, s = this.refs[e];
+    return JSON.stringify(s).includes(t);
   }
-  isObject(t) {
-    return t !== null && typeof t == "object";
+  isObject(e) {
+    return e !== null && typeof e == "object";
   }
-  expand(t) {
-    const e = JSON.parse(JSON.stringify(t));
-    if (this.isObject(e) && "$ref" in e) {
-      const s = e.$ref;
-      return delete e.$ref, Object.assign({}, this.refs[s], e);
+  expand(e) {
+    const t = JSON.parse(JSON.stringify(e));
+    if (this.isObject(t) && "$ref" in t) {
+      const s = t.$ref;
+      return delete t.$ref, Object.assign({}, this.refs[s], t);
     }
-    return e;
+    return t;
   }
   /**
    * Loads a schema with a synchronous http request
    * @param uri
    * @returns {any}
    */
-  async load(t) {
+  async load(e) {
     try {
-      const e = await fetch(t);
-      if (!e.ok)
+      const t = await fetch(e);
+      if (!t.ok)
         throw new Error("Network response was not ok");
-      return await e.json();
-    } catch (e) {
-      throw console.error("Error loading", t, e), e;
+      return await t.json();
+    } catch (t) {
+      throw console.error("Error loading", e, t), t;
     }
   }
 }
-const cs = {
-  Jedi: w,
+const ls = {
+  Jedi: S,
   RefParser: os
 };
 export {
-  cs as default
+  ls as default
 };
