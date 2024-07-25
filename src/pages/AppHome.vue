@@ -4,12 +4,12 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-3">
-        <app-layers/>
+        <app-layers />
       </div>
 
       <div class="col-xs-12 col-md-6">
-        <app-map/>
-<!--        <pre>
+        <app-map />
+        <!--        <pre>
           {{
             JSON.stringify(appStore.tilemap, (key, value) => {
               if (Array.isArray(value) && Array.isArray(value[0])) {
@@ -23,8 +23,8 @@
       </div>
 
       <div class="col-xs-12 col-md-3">
-        <app-tiles/>
-        <app-tile-info/>
+        <app-tiles />
+        <app-tile-info />
       </div>
     </div>
   </div>
